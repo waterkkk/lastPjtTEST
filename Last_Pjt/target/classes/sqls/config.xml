@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd" >
+<configuration>
+	
+	<typeAliases>
+		<typeAlias type="com.bom.dto.AdminDto" alias="AdminDto"/>
+		<typeAlias type="com.bom.dto.NoticeBoardDto" alias="NoticeBoardDto"/>
+<!-- 		<typeAliase type="com.bom.dto.freetableDto" alias="freetableDto"/> -->
+	</typeAliases>
+	
+	<mappers>
+		<mapper resource="/sqls/Admin_mapper.xml"/>
+		<mapper resource="/sqls/NoticeBoard_mapper.xml"/>
+<!-- 		<mapper resource="/sqls/Freetable_mapper.xml"/> -->
+	</mappers>
+
+</configuration>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="noticeBoard">
+
+	<resultMap type="com.bom.dto.NoticeBoardDto" id="NoticeBoardDto">
+		<result column="NOTICEBOARD_NO" property="noticeboard_no" />
+		<result column="NOTICEBOARD_WRITER" property="noticeboard_writer" />
+		<result column="NOTICEBOARD_TITLE" property="noticeboard_title" />
+		<result column="NOTICEBOARD_CONTENT" property="noticeboard_content" />
+		<result column="NOTICEBOARD_REGDATE" property="noticeboard_regdate" />
+		<result column="NOTICEBOARD_COUNT" property="noticeboard_count" />
+	</resultMap>
+
+	<select id="selectAll" resultType="NoticeBoardDto">
+		SELECT *
+		FROM NOTICEBOARD
+	</select>
+
+	<select id="selectOne" parameterType="map" resultMap="NoticeBoardDto">
+		SELECT *
+		FROM NOTICEBOARD
+		WHERE NOTICEBOARD_NO = #{noticeboard_no}
+	</select>
+
+	<insert id="insert" parameterType="NoticeBoardDto">
+		INSERT INTO NOTICEBOARD (
+		NOTICEBOARD_NO, NOTICEBOARD_WRITER, NOTICEBOARD_TITLE, NOTICEBOARD_CONTENT, NOTICEBOARD_REGDATE,
+		NOTICEBOARD_COUNT
+		) VALUES(
+		NOTICEBOARDSEQ.NEXTVAL,#{noticeboard_title},#{noticeboard_writer},#{noticeboard_content},SYSDATE,#{noticeboard_count}
+		)
+	</insert>
+
+	<update id="update" parameterType="NoticeBoardDto">
+		UPDATE NOTICEBOARD SET NOTICEBOARD_WRITER= #{noticeboard_writer}, NOTICEBOARD_TITLE=
+		#{noticeboard_title}, NOTICEBOARD_CONTENT= #{noticeboard_content}, NOTICEBOARD_REGDATE=
+		SYSDATE, NOTICEBOARD_COUNT= #{noticeboard_count} WHERE NOTICEBOARD_NO = #{noticeboard_no}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		DELETE FROM NOTICEBOARD WHERE
+		NOTICEBOARD_NO= #{noticeboard_no}
+	</delete>
+	
+	<update id="readCount" parameterType="int">
+		UPDATE NOTICEBOARD
+		SET NOTICEBOARD_COUNT = NOTICEBOARD_COUNT+1 WHERE NOTICEBOARD_NO = #{noticeboard_no}
+	</update>
+
+
+</mapper>
