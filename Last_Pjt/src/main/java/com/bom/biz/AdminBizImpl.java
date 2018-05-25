@@ -10,13 +10,13 @@ import com.bom.dto.AdminDto;
 
 @Service
 public class AdminBizImpl implements AdminBiz {
-	
+
 	@Autowired
 	private AdminDao dao;
 
 	@Override
-	public List<AdminDto> selectAll() {
-		return dao.selectAll();
+	public List<AdminDto> selectAll(int startPost, int endPost) {
+		return dao.selectAll(startPost, endPost);
 	}
 
 	@Override
@@ -38,13 +38,17 @@ public class AdminBizImpl implements AdminBiz {
 	public int update(AdminDto dto) {
 		return dao.update(dto);
 	}
-	
+
 	public List<AdminDto> searchList(String Admin_search, String Admin_keyword) {
 		return dao.searchList(Admin_search, Admin_keyword);
 	}
 
 	public int roleUP(String member_id, String member_role) {
 		return dao.roleUP(member_id, member_role);
+	}
+	
+	public int getTotalCount() {
+		return dao.getTotalCount();
 	}
 
 }

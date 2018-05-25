@@ -4,11 +4,15 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <% response.setContentType("text/html; charset=UTF-8"); %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>관리자 -리스트</title>
+<script type="text/javascript">
+	
+</script>
 </head>
 <body>
 	<h3>회원 리스트</h3>
@@ -72,7 +76,21 @@
 						</td>			
 					</tr>
 			</table>
-			</div>
+		</div>
+		
+	<div>
+	
+	</div>
 <%@ include file="bootstrap.jsp" %>
+<jsp:include page="paging.jsp" flush="true">
+    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
+    <jsp:param name="pageNo" value="${paging.pageNo}" />
+    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
+    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+</jsp:include>
+
 </body>
 </html>

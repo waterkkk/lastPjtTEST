@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
+import org.apache.ibatis.javassist.tools.reflect.Sample;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bom.biz.AdminBiz;
 import com.bom.biz.NoticeBoardBiz;
 import com.bom.dto.AdminDto;
 import com.bom.dto.NoticeBoardDto;
+import com.bom.dto.Paging;
 
 @Controller
 public class AdminController {
@@ -35,12 +38,40 @@ public class AdminController {
 		return "Admin_home";
 	}
 	
+//	@RequestMapping(value="list", method=RequestMethod.GET)
+//	public String listpaging(Model model) {
+//	        // (Before) Doing...
+//
+//	        Paging paging = new Paging();
+//	        paging.setPageNo(1);
+//	        paging.setPageSize(10);
+//			int totalCount = biz.getTotalCount();
+//			paging.setTotalCount(totalCount);
+//			
+//			model.addAttribute("admin_list", paging);
+//			
+//			return "Admin_list";
+//
+//
+//	}
+
+	
 	/*목록*/
 	@RequestMapping(value = "Admin_list.do")
 	public String list(Model model) {
 		
-		List<AdminDto> list = biz.selectAll();
+		List<AdminDto> list = biz.selectAll(startPost, endPost);
+		
+	    Paging paging = new Paging();
+        paging.setPageNo(1);
+        paging.setPageSize(10);
+		int totalCount = biz.getTotalCount();
+		paging.setTotalCount(totalCount);
+		
+		System.out.println("paging : " + paging);
+		
 		model.addAttribute("admin_list", list);
+		
 
 		return "Admin_list";
 	}

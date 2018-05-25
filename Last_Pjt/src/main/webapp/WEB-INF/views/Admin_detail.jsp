@@ -103,7 +103,7 @@ a { text-decoration:none }
 			<div class="form-group">
 				<label>등급</label>
 				<p><input type="text" name="member_role"></p>
-				</div>
+			</div>
 				<button type="submit" class="btn btn-primary">저장</button>
 	</form>
 	</div>
