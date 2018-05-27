@@ -15,8 +15,8 @@ public class AdminBizImpl implements AdminBiz {
 	private AdminDao dao;
 
 	@Override
-	public List<AdminDto> selectAll(int startPost, int endPost) {
-		return dao.selectAll(startPost, endPost);
+	public List<AdminDto> selectAll(int startNum, int endNum) {
+		return dao.selectAll(startNum, endNum);
 	}
 
 	@Override
@@ -39,14 +39,17 @@ public class AdminBizImpl implements AdminBiz {
 		return dao.update(dto);
 	}
 
+	@Override
 	public List<AdminDto> searchList(String Admin_search, String Admin_keyword) {
 		return dao.searchList(Admin_search, Admin_keyword);
 	}
 
+	@Override
 	public int roleUP(String member_id, String member_role) {
 		return dao.roleUP(member_id, member_role);
 	}
-	
+
+	@Override
 	public int getTotalCount() {
 		return dao.getTotalCount();
 	}

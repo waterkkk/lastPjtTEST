@@ -3,6 +3,7 @@
     
     <% request.setCharacterEncoding("UTF-8"); %>
     <% response.setContentType("text/html; charset=UTF-8"); %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     
 <!DOCTYPE html>
 <html>
@@ -29,7 +30,7 @@ a { text-decoration:none }
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
           <a href="#" class="btn btn-lg mx-1 btn-secondary">HOME</a>
-          <a href="#" class="btn btn-lg mx-1 btn-secondary">공지사항</a>
+          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-secondary">공지사항</a>
             <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">교육</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
@@ -73,7 +74,10 @@ a { text-decoration:none }
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <p align="right"><a href="Admin_list.do" class="btn btn-lg mx-1 btn-secondary">로그인[관리자]</a><br/></p>
+      <form class="form-inline m-0" action="Admin_list.do" method="post">
+          <input type="hidden" name="Admin_list.do" value="page">
+          <button type="submit" class="btn btn-primary">로그인[관리자]</button>
+          </form>
           <p align="right"><a href="#" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/><br/>
         </div>
       </div>
@@ -90,8 +94,6 @@ a { text-decoration:none }
       </div>
     </div>
   </div>
-
-  
 
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>

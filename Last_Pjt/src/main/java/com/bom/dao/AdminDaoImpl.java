@@ -18,11 +18,14 @@ public class AdminDaoImpl implements AdminDao {
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<AdminDto> selectAll(int startPost, int endPost) {
+	public List<AdminDto> selectAll(int startNum, int endNum) {
 		List<AdminDto> list = new ArrayList<AdminDto>();
 
 		try {
-			list = sqlSession.selectList(namespace + "selectAll");
+			Map<String, Integer> map = new HashMap<>();
+			map.put("startNum", startNum);
+			map.put("endNum", endNum);
+			list = sqlSession.selectList(namespace + "selectAll", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -73,6 +76,7 @@ public class AdminDaoImpl implements AdminDao {
 		return res;
 	}
 
+	@Override
 	public List<AdminDto> searchList(String Admin_search, String Admin_keyword) {
 		List<AdminDto> res = null;
 		try {
@@ -95,6 +99,7 @@ public class AdminDaoImpl implements AdminDao {
 		return res;
 	}
 
+	@Override
 	public int roleUP(String member_id, String member_role) {
 		int res = 0;
 
@@ -113,10 +118,11 @@ public class AdminDaoImpl implements AdminDao {
 	public int getTotalCount() {
 		int res = 0;
 		try {
-			res = sqlSession.update(namespace + "count");
+			res = sqlSession.selectOne(namespace + "count");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return res;
 	}
+	
 }

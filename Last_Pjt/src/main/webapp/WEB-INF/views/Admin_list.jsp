@@ -26,7 +26,7 @@
 		</select>
 		<input type="text" class="form-control" name="Admin_keyword" id="Admin_keyword">
 		<button type="submit" class="btn btn-primary">검색</button>
-		<button class="btn btn-primary" onclick="location.href='Admin_list.do'">목록</button>
+		<button class="btn btn-primary" onclick="location.href='Admin_list.do'" >목록</button>
         </form>
         </div>
       <div class="container">
@@ -79,18 +79,26 @@
 		</div>
 		
 	<div>
+	<c:if test="${startPage>3 }">
+     [<a href="Admin_list.do?page=${startPage - 1 }" id="paging">이전</a>]
+    </c:if>
+
+    <c:forEach var="i" begin="${startPage }" end="${endPage }" step="1">
+     <c:if test="${i==currentPage }">
+     [<a href="Admin_list.do?page=${i }" id="cur_paging">${i }</a>]
+     </c:if>
+     <c:if test="${i!=currentPage }">
+     [<a href="Admin_list.do?page=${i }" id="paging">${i }</a>]
+     </c:if>
+    </c:forEach>
+
+    <c:if test="${endPage<totalP }">
+     [<a href="Admin_list.do?page=${endPage + 1 }" id="paging">다음</a>]
+    </c:if>
 	
 	</div>
 <%@ include file="bootstrap.jsp" %>
-<jsp:include page="paging.jsp" flush="true">
-    <jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-    <jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-    <jsp:param name="startPageNo" value="${paging.startPageNo}" />
-    <jsp:param name="pageNo" value="${paging.pageNo}" />
-    <jsp:param name="endPageNo" value="${paging.endPageNo}" />
-    <jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-    <jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-</jsp:include>
+
 
 </body>
 </html>

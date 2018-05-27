@@ -6,7 +6,6 @@ import com.bom.dto.AdminDto;
 
 public interface AdminBiz {
 	
-	public List<AdminDto> selectAll(int startPost, int endPost);
 	public AdminDto selectOne(String member_id);
 	public int insert(AdminDto dto);
 	public int delete(String member_id);
@@ -14,5 +13,6 @@ public interface AdminBiz {
 	public List<AdminDto> searchList(String Admin_search,String Admin_keyword);
 	public int roleUP(String member_id, String member_role);
 	public int getTotalCount();
+	public List<AdminDto> selectAll(int startNum, int endNum);
 
 }
