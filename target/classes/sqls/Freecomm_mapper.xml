@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  <mapper namespace="Freecomm_mapper">
+  
+  
+  <resultMap type="com.bom.dto.FreecommDto" id="FreecommDtoMap">
+		<result column="FREETABLE_NO" property="freetable_no" />
+		<result column="FREECOMM_NO" property="freecomm_no" />
+		<result column="FREECOMM_ID" property="freecomm_id" />
+		<result column="FREECOMM_CONTENT" property="freecomm_content" />
+		<result column="FREECOMM_REGDATE" property="freecomm_regDate" />   		
+
+		<result column="FREECOMM_GROUPNO" property="freecomm_groupNo" />       
+		<result column="FREECOMM_STEP" property="freecomm_step" />         		<!-- 그룹순서(1부터) -->
+		<result column="FREECOMM_TITLETAB" property="freecomm_titleTab" />         <!-- 제목탭(0부터) -->
+  </resultMap>
+  
+  
+    <select id="commSelectAll"  parameterType="int"  resultMap="FreecommDtoMap">
+	SELECT * FROM FREECOMM
+	WHERE FREETABLE_NO=#{freetable_no}
+	ORDER BY FREECOMM_GROUPNO DESC, FREECOMM_STEP
+	</select>
+
+
+	<select id="commSelectOne" parameterType="int" resultMap="FreecommDtoMap">
+	SELECT * FROM FREECOMM
+	WHERE FREECOMM_NO=#{freecomm_no}
+	</select>
+
+	
+	<insert id="commInsert" parameterType="FreecommDto" >
+	INSERT INTO FREECOMM
+	VALUES(
+		#{freetable_no},
+		FREECOMM_NO_SEQ.NEXTVAL,
+		#{freecomm_id},
+		#{freecomm_content},
+		SYSDATE,
+		FREECOMM_GROUPNO_SEQ.NEXTVAL,
+		1,
+		0
+	)
+	</insert>
+	
+	
+	<insert id="insertReply2" >
+	INSERT INTO FREECOMM
+	VALUES(
+		#{freetable_no},
+		FREECOMM_NO_SEQ.NEXTVAL, 
+		#{freecomm_id},
+		#{freecomm_content},
+		SYSDATE, 
+		#{freecomm_groupNo},
+		#{freecomm_step},
+		#{freecomm_titleTab})
+	</insert>
+
+<!-- 기존의 대댓글 미뤄주기 : 원글 parent와 groupNo가 같고 step이 더 큰 대댓글의 step+1    -->
+	<update id="stepUpdate" parameterType="map">
+	UPDATE FREECOMM 
+	SET FREECOMM_STEP=FREECOMM_STEP+1
+	WHERE FREECOMM_GROUPNO=#{freecomm_groupNo} 
+	AND FREECOMM_STEP>#{freecomm_step} 
+	</update>
+	
+
+	
+  </mapper>
