@@ -33,7 +33,7 @@ a { text-decoration:none }
 
 	<jsp:useBean id="admin_dto" class="com.bom.dto.AdminDto" scope="request"></jsp:useBean>
 	<div class="container">
-	<form action="Admin_delete.do" method="post" id="del"> 
+	<form action="Admin_delete.do?page" method="post" id="del" > 
 	<input type="hidden" name="member_id" value="${admin_dto.member_id }">
 		<h3>회원 정보</h3>
 		<br/>

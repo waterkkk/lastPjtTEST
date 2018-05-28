@@ -114,23 +114,24 @@ public class AdminController {
 			// 위처럼 하면 새로고침할때 마다 글이 추가되기 때문에
 			return "redirect:/Admin_list.do";
 		} else {
-			return "Admin_list";
+			return "redirect:/Admin_list.do";
 		}
 	}
 
 	/* 수정 */
 	@RequestMapping("Admin_update.do")
-	public String updateRes(Model model, @ModelAttribute AdminDto dto) {
+	public String updateRes(Model model, @ModelAttribute AdminDto dto, @RequestParam(required=false) String page) {
 		// @ModelAttribute는 form 태그에서 sumit으로 jsp에서 컨트롤로
 		// 보내준것을 알아서 dto에 담겨서 가지고 온다
 		int res = biz.update(dto);
 		if (res > 0) {
 			model.addAttribute("admin_dto", biz.selectOne(dto.getMember_id()));
-			return "forward:list.do";
+			model.addAttribute("page", page);
+			return "forward:Admin_list.do";
 		} else {
 			model.addAttribute("admin_dto", biz.selectOne(dto.getMember_id()));
 		}
-		return "forward:list.do";
+		return "forward:Admin_list.do";
 	}
 
 	/* 삭제 */
@@ -141,8 +142,10 @@ public class AdminController {
 		int res = biz.delete(member_id);
 		if (res > 0) {
 			model.addAttribute("admin_list", res);
+		}else {
+			return "redirect:/Admin_list.do";
 		}
-		return "Admin_list";
+		return "redirect:/Admin_list.do";
 	}
 
 	/* 검색 */
@@ -161,16 +164,15 @@ public class AdminController {
 	/* 등급조정 */
 	@RequestMapping(value = "Admin_role.do", method = RequestMethod.POST)
 	public String Adminrole(Model model, @RequestParam("member_id") String member_id,
-			@RequestParam("member_role") String member_role) {
+			@RequestParam("member_role") String member_role, @RequestParam(required=false) String page) {
 		System.out.println(member_id + "/" + member_role);
-		// inter = session.getMapper(MyInterface.class);
-		// inter.levelUp(level, id);
-		// model.addAttribute("members", inter.members());
+
 		int res = biz.roleUP(member_id, member_role);
 		if (res > 0) {
 			model.addAttribute("admin_list", res);
+			model.addAttribute("page", page);
 		}
-		return "Admin_list";
+		return "forward:Admin_list.do";
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////

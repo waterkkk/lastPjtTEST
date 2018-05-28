@@ -14,7 +14,7 @@ CONSTRAINT PK_MEMBER PRIMARY KEY(MEMBER_ID)
 
 
 INSERT INTO MEMBER VALUES('a','admin1234','관리자김','abc@d.c','010-1234-4321','Y','관리자');
-INSERT INTO MEMBER VALUES('mabcdec','1234','회원김','abc@e.k','010-0000-0000','Y','회원');
+INSERT INTO MEMBER VALUES('mm','1234','회원김','abc@e.k','010-0000-0000','Y','회원');
 
 SELECT * FROM MEMBER;
 

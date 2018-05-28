@@ -22,11 +22,11 @@ a { text-decoration:none }
    <form action="Admin_insert.do" method="post">
     <div class="form-group">
 				<label>ID</label>
-				<p><input type="text" name="member_pw" value="${admin_dto.member_id }" class="form-control"></p>
+				<p><input type="text" name="member_id" class="form-control"></p>
 			</div>
 			<div class="form-group">
 				<label>PASSWORD</label>
-				<p><input type="text" name="member_pw" value="${admin_dto.member_pw }" class="form-control"></p>
+				<p><input type="text" name="member_pw" <%-- value="${admin_dto.member_pw }" --%> class="form-control"></p>
 			</div>
 			<div class="form-group">
 				<label>이름</label>

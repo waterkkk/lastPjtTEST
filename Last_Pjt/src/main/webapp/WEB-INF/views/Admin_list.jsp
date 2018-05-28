@@ -46,7 +46,7 @@
 			<h3>******회원정보가 없습니다.*******</h3>
 		</c:when>
 		      <c:otherwise>
-					<c:forEach items="${admin_list }" var="admin_dto">
+					<c:forEach items="${requestScope.admin_list }" var="admin_dto">
 						<tr>
 							<td><a href="Admin_detail.do?member_id=${admin_dto.member_id }">${admin_dto.member_id }</a></td>
 							<td>${admin_dto.member_name }</td>
@@ -66,7 +66,7 @@
                 			</td>
 						</tr>
 					</c:forEach>
-					</c:otherwise>	
+				</c:otherwise>	
 	</c:choose>			
 					<tr>
 						<td colspan="3">
