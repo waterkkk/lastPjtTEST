@@ -124,14 +124,14 @@
 <update id="updateReadCount">
 	UPDATE FREETABLE 
 	SET FREETABLE_READCOUNT=FREETABLE_READCOUNT+1 
-	WHERE FREETABLE_ID=#{freetable_id}
+	WHERE FREETABLE_NO=#{freetable_no}
 </update>
 
 
 
 <!-- 검색 -->
 <select id="searchId" parameterType="map" resultMap="FreetableDtoMap">
-<bind name="BindId" value="'%'+freetable_id+'%'"/>
+<bind name="BindId" value="'%'+freetable_id+ '%'"/>
 SELECT * FROM FREETABLE
 WHERE FREETABLE_ID LIKE #{BindId}
 </select>

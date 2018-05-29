@@ -19,14 +19,14 @@
   </resultMap>
   
   
-    <select id="commSelectAll"  parameterType="int"  resultMap="FreecommDtoMap">
+    <select id="commSelectAll"  parameterType="Integer"  resultMap="FreecommDtoMap">
 	SELECT * FROM FREECOMM
 	WHERE FREETABLE_NO=#{freetable_no}
 	ORDER BY FREECOMM_GROUPNO DESC, FREECOMM_STEP
 	</select>
 
 
-	<select id="commSelectOne" parameterType="int" resultMap="FreecommDtoMap">
+	<select id="commSelectOne" parameterType="Integer" resultMap="FreecommDtoMap">
 	SELECT * FROM FREECOMM
 	WHERE FREECOMM_NO=#{freecomm_no}
 	</select>

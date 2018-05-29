@@ -115,13 +115,15 @@
 				</c:choose>
 			</table>
 
-			<form action="commInsert.do">
+			<form action="commInsert.do" method="get">
+<%-- 			<input type="hidden" name="freetable_no" value="${detail.freetable_no }"> --%>
+<%-- 			<input type="hidden" name="freecomm_id" value="${detail.freecomm_id }"> --%>
 				<table align="center">
 					<br>
 					<tr>
 						<th>댓글</th>
 						<td colspan="3">
-						<input type="text" name="freecomm_content">
+						<input type="text" name="freecomm_content" >
 							<input type="submit" value="댓글"></td>
 					</tr>
 				</table>
@@ -174,8 +176,9 @@
 		<div id="ReplyForm">
 			<h1 style="margin-left: 25%;">답글 달기</h1>
 
-			<form action="insertReply.do" method="post">
-			<input	type="hidden" name="freetable_no" value="${detail.freetable_no }">
+			<form action="insertReply.do" method="get">
+				<input type="hidden" name="freetable_no"
+					value="${detail.freetable_no }">
 				<table align="center">
 					<col width="100">
 					<col width="670">
@@ -183,8 +186,8 @@
 					<tr>
 						<th id="titleth">작성자</th>
 						<td style="border: 1px gray solid;">
-						<input type="text" style='border: none'  readonly="readonly" 
-						name="freetable_id"	value="${detail.freetable_id }"></td>
+						<input type="text"	style='border: none' readonly="readonly" name="freetable_id"
+							value="${detail.freetable_id }"></td>
 					</tr>
 
 					<tr>
@@ -199,9 +202,8 @@
 					</tr>
 
 					<tr>
-						<td colspan="2" align="right">
-						<input type="submit"  value="완료"> 
-						<input type="button"  value="취소" onclick="FreetableDetail()" /></td>
+						<td colspan="2" align="right"><input type="submit" value="완료">
+							<input type="button" value="취소" onclick="FreetableDetail()" /></td>
 					</tr>
 
 				</table>

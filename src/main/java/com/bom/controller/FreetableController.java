@@ -155,8 +155,8 @@ public class FreetableController {
 ////////////////////////////////////////////////////////////////////////////////
 
 	// 답글(원글에 대한) : 일단 ok
-		@RequestMapping(value = "insertReply.do", method = RequestMethod.POST)
-		public String insertReply(Model model, @RequestParam FreetableDto dto, @RequestParam int freetable_no) {
+		@RequestMapping(value = "insertReply.do", method = RequestMethod.GET)
+		public String insertReply(Model model, @RequestParam("dto") FreetableDto dto, @RequestParam("freetable_no") int freetable_no) {
 			System.out.println("답글테스트1");
 			boolean res = biz.insertReply(dto, freetable_no);
 			if (res) {
@@ -173,64 +173,64 @@ public class FreetableController {
 
 /////////////////////////////////////////////////////////////////////////////////		
 		
-	 //댓글입력 :일단 ok..
-	 @RequestMapping(value="commInsert.do", method = RequestMethod.POST)
-	 public String commInsert(Model model, @ModelAttribute FreecommDto dto) {
-	 FreecommDao dao = new FreecommDao();
-	 int res=dao.commInsert(dto);
-	 return "redirect:detail.do";
-	 }
-
-	 //댓글출력:일단 ok..
-	 @RequestMapping(value = "commRe.do")
-	 public String commRe(Model model, @ModelAttribute FreecommDto dto) {
-	 FreecommDao dao = new FreecommDao();
-	 int res = dao.commInsert(dto);
-	 model.addAttribute("commRe", dto);
-	
-	 return "redirect:detail.do";
-	 }
-
-	 //댓글의 답글 :일단 ok..
-	 @RequestMapping(value="commReInsert.do",method=RequestMethod.POST)
-	 public String commReInsert(Model model,@ModelAttribute FreecommDto dto,
-	 @RequestParam int freetable_no, @RequestParam int freecomm_no,
-	 @RequestParam String freecomm_id,@RequestParam String freecomm_content){
-	 FreecommDao dao=new FreecommDao();
-	
-	 FreecommDto parent = new FreecommDto();
-	 FreecommDto insert = new FreecommDto();
-	
-	 //원글
-	 parent=dao.commSelectOne(freetable_no);
-	
-	 //기존의 대댓글 미뤄주기 : 원글 parent와 groupNo가 같고 step이 더 큰 기존 대댓글의 step+1
-	 int
-	 res=dao.stepUpdate(parent.getFreecomm_groupNo(),parent.getFreecomm_step());
-	 if(res>0) {
-	 System.out.println("댓글 step 수정 성공");
-	 }else {
-	 System.out.println("댓글 step 수정 실패");//롤백가능?
-	 }
-	
-	 //새로운 대댓글 insert 넣기: 원글과 같은 groupNo, step+1, titletab+1
-	 insert.setFreecomm_groupNo(parent.getFreecomm_groupNo());
-	 insert.setFreecomm_step((parent.getFreecomm_step())+1);
-	 insert.setFreecomm_titleTab((parent.getFreecomm_titleTab())+1);
-	 insert.setFreetable_no(freetable_no);
-	 insert.setFreecomm_id(freecomm_id);
-	 insert.setFreecomm_content(freecomm_content);
-	
-	
-	 int res2=dao.insertReply2(insert);
-	 if(res2>0) {
-	 System.out.println("댓글 step+1, titletab+1 성공");
-	 }else {
-	 System.out.println("댓글 step+1, titletab+1 실패");//롤백가능?
-	 }
-	 return "redirect:detail.do?freetable_no=" +freetable_no;
-	
-	 }
+//	 //댓글입력 :일단 ok..
+//	 @RequestMapping(value="commInsert.do", method = RequestMethod.GET)
+//	 public String commInsert(Model model, @ModelAttribute FreecommDto dto) {
+//	 FreecommDao dao = new FreecommDao();
+//	 int res=dao.commInsert(dto);
+//	 return "redirect:detail.do";
+//	 }
+//
+//	 //댓글출력:일단 ok..
+//	 @RequestMapping(value = "commRe.do")
+//	 public String commRe(Model model, @ModelAttribute FreecommDto dto) {
+//	 FreecommDao dao = new FreecommDao();
+//	 int res = dao.commInsert(dto);
+//	 model.addAttribute("commRe", dto);
+//	
+//	 return "redirect:detail.do";
+//	 }
+//
+//	 //댓글의 답글 :일단 ok..
+//	 @RequestMapping(value="commReInsert.do",method=RequestMethod.POST)
+//	 public String commReInsert(Model model,@ModelAttribute FreecommDto dto,
+//	 @RequestParam int freetable_no, @RequestParam int freecomm_no,
+//	 @RequestParam String freecomm_id,@RequestParam String freecomm_content){
+//	 FreecommDao dao=new FreecommDao();
+//	
+//	 FreecommDto parent = new FreecommDto();
+//	 FreecommDto insert = new FreecommDto();
+//	
+//	 //원글
+//	 parent=dao.commSelectOne(freetable_no);
+//	
+//	 //기존의 대댓글 미뤄주기 : 원글 parent와 groupNo가 같고 step이 더 큰 기존 대댓글의 step+1
+//	 int
+//	 res=dao.stepUpdate(parent.getFreecomm_groupNo(),parent.getFreecomm_step());
+//	 if(res>0) {
+//	 System.out.println("댓글 step 수정 성공");
+//	 }else {
+//	 System.out.println("댓글 step 수정 실패");//롤백가능?
+//	 }
+//	
+//	 //새로운 대댓글 insert 넣기: 원글과 같은 groupNo, step+1, titletab+1
+//	 insert.setFreecomm_groupNo(parent.getFreecomm_groupNo());
+//	 insert.setFreecomm_step((parent.getFreecomm_step())+1);
+//	 insert.setFreecomm_titleTab((parent.getFreecomm_titleTab())+1);
+//	 insert.setFreetable_no(freetable_no);
+//	 insert.setFreecomm_id(freecomm_id);
+//	 insert.setFreecomm_content(freecomm_content);
+//	
+//	
+//	 int res2=dao.insertReply2(insert);
+//	 if(res2>0) {
+//	 System.out.println("댓글 step+1, titletab+1 성공");
+//	 }else {
+//	 System.out.println("댓글 step+1, titletab+1 실패");//롤백가능?
+//	 }
+//	 return "redirect:detail.do?freetable_no=" +freetable_no;
+//	
+//	 }
 
 	////////////////////////////////////////////////////////////////
 
@@ -240,55 +240,54 @@ public class FreetableController {
 	public String search(Model model, @RequestParam("searching") String searching,
 			@RequestParam("keyword") String keyword) {
 
-		System.out.println("searching" + searching);
-		System.out.println("keyword" + keyword);
-
-		List<FreetableDto> res = new ArrayList<FreetableDto>();
-
+		System.out.println("searching: " + searching);
+		System.out.println("keyword: " + keyword);
+		
+		List<FreetableDto> list = new ArrayList<FreetableDto>();
+		
 		if (searching.equals("searchId")) {
 			FreetableDao dao = new FreetableDao();
-			res = dao.searchId("keyword");
-			if (res.isEmpty()) {
+			System.out.println("test1");
+			list = dao.searchId(keyword);
+			System.out.println("test2");
+			if (list.isEmpty()) {
 				System.out.println("검색된 글이 없습니다.");
-				return "redirect:board.do?nowPage=1";
-			} else {
-				model.addAttribute("list", res);
 				return "redirect:board.do?nowPage=1";
 			}
 
 			
 		} else if (searching.equals("searchTitle")) {
 			FreetableDao dao = new FreetableDao();
-			res = dao.searchTitle("keyword");
-			if (res.isEmpty()) {
+			list = dao.searchTitle(keyword);
+			if (list.isEmpty()) {
 				System.out.println("검색된 글이 없습니다.");
 				return "redirect:board.do?nowPage=1";
 			} else {
-				model.addAttribute("list", res);
+				model.addAttribute("list", list);
 				return "redirect:board.do?nowPage=1";
 			}
 
 			
 		} else if (searching.equals("searchNo")) {
 			FreetableDao dao = new FreetableDao();
-			res = dao.searchNo(Integer.parseInt("keyword"));
-			if (res.isEmpty()) {
+			list = dao.searchNo(Integer.parseInt(keyword));
+			if (list.isEmpty()) {
 				System.out.println("검색된 글이 없습니다.");
 				return "redirect:board.do?nowPage=1";
 			} else {
-				model.addAttribute("list", res);
+				model.addAttribute("list", list);
 				return "redirect:board.do?nowPage=1";
 			}
 
 			
 		} else if (searching.equals("searchContent")) {
 			FreetableDao dao = new FreetableDao();
-			res = dao.searchContent("keyword");
-			if (res.isEmpty()) {
+			list = dao.searchContent(keyword);
+			if (list.isEmpty()) {
 				System.out.println("검색된 글이 없습니다.");
 				return "redirect:board.do?nowPage=1";
 			} else {
-				model.addAttribute("list", res);
+				model.addAttribute("list", list);
 				return "redirect:board.do?nowPage=1";
 			}
 		}

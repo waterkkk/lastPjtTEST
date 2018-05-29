@@ -42,7 +42,7 @@
 			<tr>
 				<td colspan="2" align="right">
 					<input type="submit"  value="작성완료">
-					<input type="button" value="취소" onclick="location.href='board.do'"></td>
+					<input type="button" value="취소" onclick="location.href='board.do?nowPage=1'"></td>
 			</tr>
 		</table>
 	</form>
