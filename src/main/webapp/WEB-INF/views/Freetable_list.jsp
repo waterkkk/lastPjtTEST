@@ -114,7 +114,7 @@
 		</div>
 
 		<div align="center">
-			<form action="search.do" method="post">
+			<form action="search.do" method="get">
 				<select name="searching">
 					<option value="searchId">작성자</option>
 					<option value="searchTitle">글 제목</option>

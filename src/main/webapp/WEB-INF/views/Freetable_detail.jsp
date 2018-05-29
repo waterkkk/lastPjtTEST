@@ -101,11 +101,11 @@
 						<c:forEach items="${list }" var="list">
 							<tr>
 								<td align="center">${list.freecomm_id }</td>
-								<td align="center"><c:forEach begin="1"
-										end="${list.freecomm_titleTab }">
+								<td align="center">
+								<c:forEach begin="1" end="${list.freecomm_titleTab }">
 								 RE:
-						</c:forEach> <a
-									href="commRe.do?freetable_no=${list.freetable_no}
+						        </c:forEach> 
+						        <a href="commRe.do?freetable_no=${list.freetable_no}
 									&freecomm_id=${list.freecomm_id}&freecomm_no=${list.freecomm_no}
 									&freecomm_groupNo=${list.freecomm_groupNo}&freecomm_step=${list.freecomm_step}">${list.freecomm_content}</a></td>
 								<td align="center">${list.freecomm_regDate }</td>
@@ -120,7 +120,8 @@
 					<br>
 					<tr>
 						<th>댓글</th>
-						<td colspan="3"><input type="text" name="freecomm_content">
+						<td colspan="3">
+						<input type="text" name="freecomm_content">
 							<input type="submit" value="댓글"></td>
 					</tr>
 				</table>
@@ -198,7 +199,7 @@
 
 					<tr>
 						<td colspan="2" align="right">
-						<input type="submit"  value="답글"> 
+						<input type="submit"  value="완료"> 
 						<input type="button"  value="취소" onclick="FreetableDetail()" /></td>
 					</tr>
 

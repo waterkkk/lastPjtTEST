@@ -19,8 +19,7 @@
 	
 
 	<h1 style="margin-left: 25%;">댓글에 답글달기</h1>
-	<form action="Freetable.do">
-	<input type="hidden" name="command" value="commReInsert">
+	<form action="commReInsert.do">
 	<input type="hidden" name="freetable_no" value="${commRe.freetable_no}">
 	<input type="hidden" name="freecomm_no" value="${commRe.freecomm_no }">
 	<input type="hidden" name="freecomm_id" value="${commRe.freecomm_id }">
