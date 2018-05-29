@@ -136,7 +136,7 @@
 		<div id="UpdateForm">
 			<h1 style="margin-left: 25%;">글 수정</h1>
 			<form action="update.do" method="post">
-				<input type="hidden" name="freetable_id" value="${detail.freetable_id }">
+				<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
 				<table align="center">
 					<col width="100">
 					<col width="670">
@@ -175,6 +175,7 @@
 			<h1 style="margin-left: 25%;">답글 달기</h1>
 
 			<form action="insertReply.do" method="post">
+			<input	type="hidden" name="freetable_no" value="${detail.freetable_no }">
 				<table align="center">
 					<col width="100">
 					<col width="670">

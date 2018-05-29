@@ -33,8 +33,8 @@ public class FreetableController {
 
 	// 일부출력(원글/댓글)
 	@RequestMapping(value = "detail.do")
-	public String detail(Model model, @RequestParam String freetable_id) {
-		model.addAttribute("detail", biz.selectOne(freetable_id));
+	public String detail(Model model, @RequestParam int freetable_no) {
+		model.addAttribute("detail", biz.selectOne(freetable_no));
 		return "Freetable_detail";
 	}
 
@@ -59,8 +59,8 @@ public class FreetableController {
 
 	// 수정-1:페이지로 이동
 	@RequestMapping(value = "updateForm.do")
-	public String updateForm(Model model, @RequestParam String freetable_id) {
-		model.addAttribute("detail", biz.selectOne(freetable_id));
+	public String updateForm(Model model, @RequestParam int freetable_no) {
+		model.addAttribute("detail", biz.selectOne(freetable_no));
 		return "Freetable_detail";
 	}
 
@@ -69,11 +69,11 @@ public class FreetableController {
 	public String update(Model model, @ModelAttribute FreetableDto dto) {
 		boolean res = biz.update(dto);
 		if (res) {
-			model.addAttribute("detail", biz.selectOne(dto.getFreetable_id()));
+			model.addAttribute("detail", biz.selectOne(dto.getFreetable_no()));
 			 System.out.println("수정 성공");
 			return "forward:updateForm.do";
 		} else {
-			model.addAttribute("detail", biz.selectOne(dto.getFreetable_id()));
+			model.addAttribute("detail", biz.selectOne(dto.getFreetable_no()));
 			System.out.println("수정 실패");
 			return "forward:updateForm.do";
 		}
@@ -156,15 +156,17 @@ public class FreetableController {
 
 	// 답글(원글에 대한) : 일단 ok
 		@RequestMapping(value = "insertReply.do", method = RequestMethod.POST)
-		public String insertReply(Model model, @RequestParam FreetableDto dto, @RequestParam String freetable_id) {
-			boolean res = biz.insertReply(dto, freetable_id);
+		public String insertReply(Model model, @RequestParam FreetableDto dto, @RequestParam int freetable_no) {
+			System.out.println("답글테스트1");
+			boolean res = biz.insertReply(dto, freetable_no);
 			if (res) {
 				System.out.println("reply 성공");
 				model.addAttribute("allList", biz.selectAll());
+				System.out.println("답글테스트2");
 				return "redirect:board.do?nowPage=1";
 			} else {
 				System.out.println("reply 실패");
-				model.addAttribute("detail", biz.selectOne(freetable_id));
+				model.addAttribute("detail", biz.selectOne(freetable_no));
 				return "redirect:board.do?nowPage=1";
 			}
 		}

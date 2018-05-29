@@ -62,10 +62,10 @@ public class FreetableDao {
 		return res;
 	}
 
-	public FreetableDto selectOne(String freetable_id) {
+	public FreetableDto selectOne(int freetable_no) {
 		FreetableDto res = new FreetableDto();
 		try {
-			res = sqlSession.selectOne(namespace + "selectOne", freetable_id);
+			res = sqlSession.selectOne(namespace + "selectOne", freetable_no);
 		} catch (Exception e) {
 			System.out.println("selectOne error");
 			e.printStackTrace();
@@ -158,11 +158,11 @@ public class FreetableDao {
 	}
 
 // 글조회수
-	public boolean updateReadCount(String freetable_id) {
+	public boolean updateReadCount(int freetable_no) {
 		int res = 0;
 		try {
 			System.out.println("updateReadCount");
-			res = sqlSession.update(namespace + "updateReadCount", freetable_id);
+			res = sqlSession.update(namespace + "updateReadCount", freetable_no);
 		} catch (Exception e) {
 			System.out.println("updateReadCount error");
 			e.printStackTrace();

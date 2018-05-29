@@ -29,12 +29,12 @@ public class FreetableBiz {
 	}
 
 	
-	public FreetableDto selectOne(String freetable_id) {
-		boolean read = dao.updateReadCount(freetable_id);
+	public FreetableDto selectOne(int freetable_no) {
+		boolean read = dao.updateReadCount(freetable_no);
 		if (read) {
 			System.out.println("조회수+1");
 		}
-		FreetableDto res = dao.selectOne(freetable_id);
+		FreetableDto res = dao.selectOne(freetable_no);
 		return res;
 	}
 	
@@ -54,8 +54,8 @@ public class FreetableBiz {
 	}
 
 	
-	public boolean insertReply(FreetableDto dto, String ParentFreetable_id) {
-		FreetableDto parent = dao.selectOne(ParentFreetable_id);
+	public boolean insertReply(FreetableDto dto, int freetable_no) {
+		FreetableDto parent = dao.selectOne(freetable_no);
 		boolean stepUp = dao.updateStep(parent.getFreetable_groupNo(), parent.getFreetable_step());
 		dto.setFreetable_groupNo(parent.getFreetable_groupNo());
 		dto.setFreetable_step(parent.getFreetable_step() + 1);

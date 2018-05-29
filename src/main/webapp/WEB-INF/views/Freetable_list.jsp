@@ -81,7 +81,7 @@
 											<!-- 타이틀탭 수에 따라 앞부분 공백주기 --> <c:forEach begin="1"
 												end="${dto.freetable_titleTab }">
 								&nbsp;&nbsp;
-								</c:forEach> <a href="detail.do?freetable_id=${dto.freetable_id}">${dto.freetable_title}</a>
+								</c:forEach> <a href="detail.do?freetable_no=${dto.freetable_no}">${dto.freetable_title}</a>
 										</td>
 										<td align="center">${dto.freetable_regDate }</td>
 										<td align="center">${dto.freetable_readCount }</td>

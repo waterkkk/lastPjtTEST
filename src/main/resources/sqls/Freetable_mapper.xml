@@ -55,10 +55,10 @@
 </select>
 
 
-<select id="selectOne" parameterType="String" resultMap="FreetableDtoMap">
+<select id="selectOne" parameterType="int" resultMap="FreetableDtoMap">
 	SELECT *	
 	FROM FREETABLE
-	WHERE FREETABLE_ID=#{freetable_id}
+	WHERE FREETABLE_NO=#{freetable_no}
 </select>
 
 
@@ -83,7 +83,7 @@
 	SET FREETABLE_TITLE = #{freetable_title}, 
 		FREETABLE_CONTENT = #{freetable_content}, 
 		FREETABLE_REGDATE = SYSDATE 
-	WHERE FREETABLE_ID = #{freetable_id}
+	WHERE FREETABLE_NO = #{freetable_no}
 </update>
 
 <delete id="delete" parameterType="String">
