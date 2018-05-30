@@ -116,8 +116,8 @@
 			</table>
 
 			<form action="commInsert.do" method="get">
-<%-- 			<input type="hidden" name="freetable_no" value="${detail.freetable_no }"> --%>
-<%-- 			<input type="hidden" name="freecomm_id" value="${detail.freecomm_id }"> --%>
+			<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
+			<input type="hidden" name="freecomm_id" value="${detail.freecomm_id }">
 				<table align="center">
 					<br>
 					<tr>

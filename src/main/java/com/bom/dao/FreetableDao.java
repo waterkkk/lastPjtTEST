@@ -175,65 +175,20 @@ public class FreetableDao {
 	}
 	
 // 검색
-	public List<FreetableDto> searchId(String freetable_id) {
-		List<FreetableDto> res = new ArrayList<FreetableDto>();
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("freetable_id", freetable_id);
-
-		try {
-			res = sqlSession.selectList(namespace + "searchId", map);
-			System.out.println("searchId ok");
-		} catch (Exception e) {
-			System.out.println("searchId error");
-			e.printStackTrace();
-		}
-		return res;
-	}
-
 	
-	public List<FreetableDto> searchTitle(String freetable_title) {
-		List<FreetableDto> res = new ArrayList<FreetableDto>();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("freetable_title", freetable_title);
-
+	public List<FreetableDto> searchList(String searching, String keyword){
+		List<FreetableDto> res= new ArrayList<FreetableDto>();
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("searching", searching);
+		map.put("keyword", keyword);
 		try {
-			res = sqlSession.selectList(namespace + "searchTitle", map);
-			System.out.println("searchTitle ok");
+			res=sqlSession.selectList(namespace+"searchList",map);
+			System.out.println("searchList ok");
 		} catch (Exception e) {
-			System.out.println("searchTitle error");
 			e.printStackTrace();
+			System.out.println("searchList error");
 		}
 		return res;
 	}
-
-	
-	public List<FreetableDto> searchNo(int freetable_no) {
-		List<FreetableDto> res = new ArrayList<FreetableDto>();
-		try {
-			res = sqlSession.selectList(namespace + "searchNo", freetable_no);
-			System.out.println("searchNo ok");
-		} catch (Exception e) {
-			System.out.println("searchNo error");
-			e.printStackTrace();
-		}
-		return res;
-	}
-
-	
-	public List<FreetableDto> searchContent(String freetable_content) {
-		List<FreetableDto> res = new ArrayList<FreetableDto>();
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("freetable_content", freetable_content);
-
-		try {
-			res = sqlSession.selectList(namespace + "searchContent", map);
-			System.out.println("searchContent ok");
-		} catch (Exception e) {
-			System.out.println("searchContent error");
-			e.printStackTrace();
-		}
-		return res;
-	}
-
 
 }

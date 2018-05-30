@@ -130,31 +130,14 @@
 
 
 <!-- 검색 -->
-<select id="searchId" parameterType="map" resultMap="FreetableDtoMap">
-<bind name="BindId" value="'%'+freetable_id+ '%'"/>
-SELECT * FROM FREETABLE
-WHERE FREETABLE_ID LIKE #{BindId}
-</select>
 
-<select id="searchTitle" parameterType="map" resultMap="FreetableDtoMap">
-<bind name="BindTitle" value="'%'+freetable_title+'%'"/>
-SELECT * FROM FREETABLE
-WHERE FREETABLE_TITLE LIKE #{BindTitle}
+<select id="searchList" parameterType="String" resultMap="FreetableDtoMap">
+SELECT * 
+FROM FREETABLE
+WHERE ${searching} LIKE '%'||#{keyword}||'%'
 </select>
 
 
-<select id="searchContent" parameterType="map" resultMap="FreetableDtoMap">
-<bind name="BindContent" value="'%'+freetable_content+'%'"/>
-SELECT * FROM FREETABLE
-WHERE FREETABLE_CONTENT LIKE #{BindContent}
-</select>
-
-
-<select id="searchNo" parameterType="map" resultMap="FreetableDtoMap">
-<bind name="BindNo" value="'%'+freetable_no+'%'"/>
-SELECT * FROM FREETABLE
-WHERE FREETABLE_NO LIKE #{BindNo}
-</select>
 
 
 </mapper>

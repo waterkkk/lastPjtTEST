@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Regist_mapper">
+
+
+	<resultMap type="com.bom.dto.MemberDto" id="MemberDto">
+		<result column="MEMBER_NO" property="member_no" />
+		<result column="MEMBER_ID" property="member_id" />
+		<result column="MEMBER_PW" property="member_pw" />
+		<result column="MEMBER_NAME" property="member_name" />
+		<result column="MEMBER_EMAIL" property="member_email" />
+		<result column="MEMBER_PHONE" property="member_phone" />
+		<result column="MEMBER_ENABLED" property="member_enabled" />
+		<result column="MEMBER_ROLE" property="member_role" />
+	</resultMap>
+
+	<insert id="insertUser" parameterType="MemberDto">
+		INSERT INTO MEMBER
+		VALUES
+		(MEMBER_SEQ.NEXTVAL,
+		#{member_id},
+		#{member_pw},
+		#{member_name},
+		#{member_email},
+		#{member_phone},
+		'Y',
+		'USER' )
+	</insert>
+
+	<select id="idChk" parameterType="map" resultType="RegistDto">
+		SELECT ID FROM MEMBER WHERE ID=#{member_id}
+	</select>
+	
+	<select id="emailChk" parameterType="map" resultType="RegistDto">
+		SELECT ID FROM MEMBER WHERE EMAIL=#{member_email}
+	</select>
+	
+	<select id="phoneChk" parameterType="map" resultType="RegistDto">
+		SELECT ID FROM MEMBER WHERE PHONE=#{member_phone}
+	</select>
+	
+	
+
+
+</mapper>
+  
+  
+  
+  
+  

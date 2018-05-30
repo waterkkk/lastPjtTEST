@@ -64,5 +64,9 @@ public class FreetableBiz {
 		boolean res = dao.insertReply(dto);
 		return res;
 	}
+	
+	public List<FreetableDto> searchList(String searching, String keyword){
+		return dao.searchList(searching,keyword);
+	}
 
 }
