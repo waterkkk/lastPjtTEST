@@ -72,7 +72,7 @@ a { text-decoration:none }
       <div class="row">
         <div class="col-md-12">
           <p align="right"><a href="list.do" class="btn btn-lg mx-1 btn-secondary">로그인[관리자]</a><br/></p>
-          <p align="right"><a href="Regist_Form.jsp" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/><br/>
+          <p align="right"><a href="regiStart.do" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/><br/>
         </div>
       </div>
       <div class="row">
