@@ -12,6 +12,13 @@
 
 a { text-decoration:none }
 
+     @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+* {
+	font-family: 'Nanum Gothic Coding';
+	text-align: center;
+}
+
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script src="//code.jquery.com/jquery.min.js"></script>
@@ -83,7 +90,7 @@ a { text-decoration:none }
       </div>
       <div class="row">
         <div class="col-md-7 text-md-left text-center align-self-center my-5">
-          <h3 class="display-1">메인</h3>
+          <h2>메인</h2>
           <p class="lead">공지사항</p>
         </div>
         <div class="col-md-5">

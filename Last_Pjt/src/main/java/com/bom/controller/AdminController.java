@@ -1,10 +1,19 @@
 package com.bom.controller;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.apache.ibatis.javassist.tools.reflect.Sample;
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +23,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.Node;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
+
 import com.bom.biz.AdminBiz;
 import com.bom.biz.NoticeBoardBiz;
+import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 import com.bom.dto.NoticeBoardDto;
 
+
 @Controller
 public class AdminController {
-	
 
 	@Autowired
 	AdminBiz biz;
@@ -37,7 +53,7 @@ public class AdminController {
 
 	/* 목록 */
 	@RequestMapping(value = "Admin_list.do", method = { RequestMethod.GET, RequestMethod.POST })
-	public String list(Model model, @RequestParam(required=false) String page) {
+	public String list(Model model, @RequestParam(required = false) String page) {
 
 		// List<AdminDto> list = biz.selectAll();
 		// model.addAttribute("admin_list", list);
@@ -54,8 +70,8 @@ public class AdminController {
 
 		List<AdminDto> list = biz.selectAll(startNum, endNum);
 		int totalA = biz.getTotalCount(); // 전체 글의 수
-		System.out.println(totalA);
 		// int totalP = (totalA+4)/5;
+		System.out.println("글 갯수 : " + totalA);
 
 		int totalP = 0; // 모든 글을 띄우기 위한 전체 페이지수
 
@@ -76,13 +92,103 @@ public class AdminController {
 			endPage = totalP; // 끝 페이지는 전체 페이지의 수가 된다.
 		// 예를 들어 전체 작성된 글의 수가 40개(totalA = 40) 이라면 전체 페이지 수는 8페이지가 되고(totalP = 8)
 		// 내가 7페이지를 보고 있다면(currentPage =7) [7] [8] [9] 가 보여지게 되는데,
-		// [9]페이지는 존재하지 않으므로 전체 페이지수(totalP)를 마지막 페이지(endPage)에 넣어주면 된다 (endPage =
-		// totalP)
+		// [9]페이지는 존재하지 않으므로 전체 페이지수(totalP)를 마지막 페이지(endPage)에 넣어주면 된다 (endPage = totalP)
+		
+		List<APItest> listapi = new ArrayList<APItest>();
+		APItest api = new APItest();
+		
+		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/2/999";
+		  
+		  try {
+		   URL url  = new URL(urlString);   
+		   URLConnection URLconnection = url.openConnection();
+		   HttpURLConnection httpConnection = (HttpURLConnection)URLconnection;
+		   int responseCode = httpConnection.getResponseCode();
+		   if (responseCode== HttpURLConnection.HTTP_OK)
+		   {
+		    InputStream in = httpConnection.getInputStream();
+		    
+		    DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+		    DocumentBuilder db = fac.newDocumentBuilder();
+		    Document doc = db.parse(in);
+		
+		    // 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
+		    // NodeList와 Node 인 경우로 나누어서 처리해야 한다.
+		    // 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
+		    Element el = doc.getDocumentElement();
+		    NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
+		    
+		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++)
+		    {
+		     Node row_Node = row_List.item(row_idx);
+		     NodeList rowList = row_Node.getChildNodes();
+		     
+		     String COURSE_CATEGORY_NM = "";
+		     String COURSE_NAME = "";
+		     String AREA_GU = "";
+		     String DISTANCE = "";
+		     String LEAD_TIME = "";
+		     String TRAFFIC_INFO = "";
+		     String CONTENT = "";
+		     String COURSE_LEVEL = "";
+		     
+		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++)
+		     {
+		      Node childNode = rowList.item(cd_idx);
+		      if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
+		    	  COURSE_CATEGORY_NM = childNode.getTextContent();
+		      api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
+		      if (childNode.getNodeName().equals("COURSE_NAME"))
+		    	  COURSE_NAME = childNode.getTextContent();
+		      api.setCOURSE_NAME(COURSE_NAME);
+		      if (childNode.getNodeName().equals("AREA_GU"))
+		    	  AREA_GU = childNode.getTextContent();
+		      api.setAREA_GU(AREA_GU);
+		      if (childNode.getNodeName().equals("DISTANCE"))
+		    	  DISTANCE = childNode.getTextContent();
+		      api.setDISTANCE(DISTANCE);
+		      if (childNode.getNodeName().equals("LEAD_TIME"))
+		    	  LEAD_TIME = childNode.getTextContent();
+		      api.setLEAD_TIME(LEAD_TIME);
+		      if (childNode.getNodeName().equals("TRAFFIC_INFO"))
+		    	  TRAFFIC_INFO = childNode.getTextContent();
+		      api.setTRAFFIC_INFO(TRAFFIC_INFO);
+		      if (childNode.getNodeName().equals("CONTENT"))
+		    	  CONTENT = childNode.getTextContent();
+		      api.setCONTENT(CONTENT);
+		      if (childNode.getNodeName().equals("COURSE_LEVEL"))
+		    	  COURSE_LEVEL = childNode.getTextContent();
+		      api.setCOURSE_LEVEL(COURSE_LEVEL);
+		     }
+		     listapi.add(api);
+		     
+		     System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
+		     System.out.println("COURSE_NAME - " + COURSE_NAME);
+		     System.out.println("AREA_GU - " + AREA_GU);
+		     System.out.println("DISTANCE - " + DISTANCE);
+		     System.out.println("LEAD_TIME - " + LEAD_TIME);
+		     System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
+		     System.out.println("CONTENT - " + CONTENT);
+		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
+		     System.out.println("--------------------");
+		    }
+		   }
+		   else
+		   {
+		    System.out.println("HTTP connection response !=HTTP_OK");
+		   }
+		  } catch (Exception e)
+		  {
+		   e.printStackTrace();
+		  }
+		model.addAttribute("api", listapi);  
+		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalP", totalP);// 페이징 처리를 위해 가져감
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("admin_list", list);
+		
 
 		return "Admin_list";
 	}
@@ -120,7 +226,7 @@ public class AdminController {
 
 	/* 수정 */
 	@RequestMapping("Admin_update.do")
-	public String updateRes(Model model, @ModelAttribute AdminDto dto, @RequestParam(required=false) String page) {
+	public String updateRes(Model model, @ModelAttribute AdminDto dto, @RequestParam(required = false) String page) {
 		// @ModelAttribute는 form 태그에서 sumit으로 jsp에서 컨트롤로
 		// 보내준것을 알아서 dto에 담겨서 가지고 온다
 		int res = biz.update(dto);
@@ -142,7 +248,7 @@ public class AdminController {
 		int res = biz.delete(member_id);
 		if (res > 0) {
 			model.addAttribute("admin_list", res);
-		}else {
+		} else {
 			return "redirect:/Admin_list.do";
 		}
 		return "redirect:/Admin_list.do";
@@ -152,8 +258,96 @@ public class AdminController {
 	@RequestMapping(value = "Admin_search.do")
 	public String AdminSearchRes(Model model, @RequestParam("Admin_search") String Admin_search,
 			@RequestParam("Admin_keyword") String Admin_keyword) {
-		// jsp에서 submit으로 보냈지만 id만 필요해서 id만 받기위해
-		// @RequestParam("id") 사용
+		List<APItest> listapi = new ArrayList<APItest>();
+		APItest api = new APItest();
+		
+		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/2/999";
+		  
+		  try {
+		   URL url  = new URL(urlString);   
+		   URLConnection URLconnection = url.openConnection();
+		   HttpURLConnection httpConnection = (HttpURLConnection)URLconnection;
+		   int responseCode = httpConnection.getResponseCode();
+		   if (responseCode== HttpURLConnection.HTTP_OK)
+		   {
+		    InputStream in = httpConnection.getInputStream();
+		    
+		    DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+		    DocumentBuilder db = fac.newDocumentBuilder();
+		    Document doc = db.parse(in);
+		
+		    // 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
+		    // NodeList와 Node 인 경우로 나누어서 처리해야 한다.
+		    // 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
+		    Element el = doc.getDocumentElement();
+		    NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
+		    
+		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++)
+		    {
+		     Node row_Node = row_List.item(row_idx);
+		     NodeList rowList = row_Node.getChildNodes();
+		     
+		     String COURSE_CATEGORY_NM = "";
+		     String COURSE_NAME = "";
+		     String AREA_GU = "";
+		     String DISTANCE = "";
+		     String LEAD_TIME = "";
+		     String TRAFFIC_INFO = "";
+		     String CONTENT = "";
+		     String COURSE_LEVEL = "";
+		     
+		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++)
+		     {
+		      Node childNode = rowList.item(cd_idx);
+		      if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
+		    	  COURSE_CATEGORY_NM = childNode.getTextContent();
+		      api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
+		      if (childNode.getNodeName().equals("COURSE_NAME"))
+		    	  COURSE_NAME = childNode.getTextContent();
+		      api.setCOURSE_NAME(COURSE_NAME);
+		      if (childNode.getNodeName().equals("AREA_GU"))
+		    	  AREA_GU = childNode.getTextContent();
+		      api.setAREA_GU(AREA_GU);
+		      if (childNode.getNodeName().equals("DISTANCE"))
+		    	  DISTANCE = childNode.getTextContent();
+		      api.setDISTANCE(DISTANCE);
+		      if (childNode.getNodeName().equals("LEAD_TIME"))
+		    	  LEAD_TIME = childNode.getTextContent();
+		      api.setLEAD_TIME(LEAD_TIME);
+		      if (childNode.getNodeName().equals("TRAFFIC_INFO"))
+		    	  TRAFFIC_INFO = childNode.getTextContent();
+		      api.setTRAFFIC_INFO(TRAFFIC_INFO);
+		      if (childNode.getNodeName().equals("CONTENT"))
+		    	  CONTENT = childNode.getTextContent();
+		      api.setCONTENT(CONTENT);
+		      if (childNode.getNodeName().equals("COURSE_LEVEL"))
+		    	  COURSE_LEVEL = childNode.getTextContent();
+		      api.setCOURSE_LEVEL(COURSE_LEVEL);
+		     }
+		     listapi.add(api);
+		     
+		     System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
+		     System.out.println("SOUTH_NORTH_DIV_NM - " + COURSE_NAME);
+		     System.out.println("AREA_GU - " + AREA_GU);
+		     System.out.println("DISTANCE - " + DISTANCE);
+		     System.out.println("LEAD_TIME - " + LEAD_TIME);
+		     System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
+		     System.out.println("CONTENT - " + CONTENT);
+		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
+		     System.out.println("--------------------");
+		    }
+		   }
+		   else
+		   {
+		    System.out.println("HTTP connection response !=HTTP_OK");
+		   }
+		  } catch (Exception e)
+		  {
+		   e.printStackTrace();
+		  }
+		model.addAttribute("api", listapi);  
+		
+		
 		List<AdminDto> res = biz.searchList(Admin_search, Admin_keyword);
 		model.addAttribute("admin_list", res);
 		System.out.println("입력 : " + Admin_search);
@@ -164,7 +358,7 @@ public class AdminController {
 	/* 등급조정 */
 	@RequestMapping(value = "Admin_role.do", method = RequestMethod.POST)
 	public String Adminrole(Model model, @RequestParam("member_id") String member_id,
-			@RequestParam("member_role") String member_role, @RequestParam(required=false) String page) {
+			@RequestParam("member_role") String member_role, @RequestParam(required = false) String page) {
 		System.out.println(member_id + "/" + member_role);
 
 		int res = biz.roleUP(member_id, member_role);
@@ -173,6 +367,18 @@ public class AdminController {
 			model.addAttribute("page", page);
 		}
 		return "forward:Admin_list.do";
+	}
+	
+	@RequestMapping(value = "Admin_searchload.do")
+	public String Api(Model model, @RequestParam("COURSE_CATEGORY_NM") String COURSE_CATEGORY_NM, @RequestParam("Admin_keywordload") String Admin_keywordload) {
+		System.out.println(COURSE_CATEGORY_NM);
+		System.out.println(Admin_keywordload);
+		List<APItest> res = biz.searchLoadList(COURSE_CATEGORY_NM, Admin_keywordload);
+		model.addAttribute("admin_list", res);
+		System.out.println("코스 입력 : " + COURSE_CATEGORY_NM);
+		System.out.println("코스 검색 : " + Admin_keywordload);
+
+		  return "Admin_list";
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -243,5 +449,6 @@ public class AdminController {
 		}
 		return "NoticeBoard_list";
 	}
+
 
 }

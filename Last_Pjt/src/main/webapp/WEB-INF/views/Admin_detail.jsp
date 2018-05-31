@@ -62,6 +62,10 @@ a { text-decoration:none }
 				<p><jsp:getProperty property="member_enabled" name="admin_dto" /></p>
 			</div>
 			<div class="form-group">
+				<label>가입날짜</label>
+				<p><jsp:getProperty property="member_date" name="admin_dto" /></p>
+			</div>
+			<div class="form-group">
 				<label>등급</label>
 				<p><jsp:getProperty property="member_role" name="admin_dto" /></p>
 			</div>
@@ -99,6 +103,10 @@ a { text-decoration:none }
 			<div class="form-group">
 				<label>가입여부</label>
 				<p><input type="text" name="member_enabled"></p>
+			</div>
+			<div class="form-group">
+				<label>가입날짜</label>
+				<p>${admin_dto.member_date }</p>
 			</div>
 			<div class="form-group">
 				<label>등급</label>

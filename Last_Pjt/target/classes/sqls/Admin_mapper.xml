@@ -10,6 +10,11 @@
 		<result column="MEMBER_PHONE" property="member_phone" />
 		<result column="MEMBER_ENABLED" property="member_enabled" />
 		<result column="MEMBER_ROLE" property="member_role" />
+		<result column="MEMBER_DAGE" property="member_date" />
+	</resultMap>
+	
+	<resultMap type="com.bom.dto.AdminDto" id="APItest">
+	
 	</resultMap>
 
 	<select id="selectAll" resultMap="AdminDto" parameterType="map">
@@ -18,8 +23,8 @@
 		FROM 
 		(SELECT ROWNUM AS PAGENUM, T1.*
 		    FROM (SELECT
-		           MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE
-		        FROM MEMBER ORDER BY MEMBER_ID DESC) T1)
+		           MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE, MEMBER_ENABLED, MEMBER_ROLE, MEMBER_DAGE
+		        FROM MEMBER ORDER BY MEMBER_DAGE DESC) T1)
 		    WHERE PAGENUM >= #{startNum}
 		AND PAGENUM <= #{endNum}
 		 ]]>
@@ -34,9 +39,9 @@
 	<insert id="insert" parameterType="AdminDto">
 		INSERT INTO MEMBER (
 		MEMBER_ID, MEMBER_PW, MEMBER_NAME, MEMBER_EMAIL, MEMBER_PHONE,
-		MEMBER_ENABLED, MEMBER_ROLE
+		MEMBER_ENABLED, MEMBER_ROLE, MEMBER_DAGE
 		) VALUES(
-		#{member_id},#{member_pw},#{member_name},#{member_email},#{member_phone},#{member_enabled},#{member_role}
+		#{member_id},#{member_pw},#{member_name},#{member_email},#{member_phone},#{member_enabled},#{member_role},SYSDATE
 		)
 	</insert>
 
@@ -53,7 +58,7 @@
 		MEMBER_ID= #{member_id}
 	</delete>
 
-		<select id="search" resultType="AdminDto">
+	<select id="search" resultType="AdminDto">
 		SELECT *
 		FROM MEMBER
 		WHERE

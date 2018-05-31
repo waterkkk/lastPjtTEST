@@ -2,6 +2,7 @@ package com.bom.biz;
 
 import java.util.List;
 
+import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 
 public interface AdminBiz {
@@ -14,5 +15,6 @@ public interface AdminBiz {
 	public int roleUP(String member_id, String member_role);
 	public int getTotalCount();
 	public List<AdminDto> selectAll(int startNum, int endNum);
+	public List<APItest> searchLoadList(String COURSE_CATEGORY_NM, String Admin_keywordload);
 
 }

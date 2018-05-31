@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.bom.dao.AdminDao;
+import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 
 @Service
@@ -52,6 +53,10 @@ public class AdminBizImpl implements AdminBiz {
 	@Override
 	public int getTotalCount() {
 		return dao.getTotalCount();
+	}
+	
+	public List<APItest> searchLoadList(String COURSE_CATEGORY_NM, String Admin_keywordload){
+		return dao.searchLoadList(COURSE_CATEGORY_NM, Admin_keywordload);
 	}
 
 }
