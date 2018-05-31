@@ -19,29 +19,37 @@
 	text-align: center;
 } */
 
-#table1 {
-	display: none;
-}
-
 </style> 
 <script type="text/javascript">
 
-
 function test1(){
-
+	var searchAPI = $("#searchAPI").val();
+			alert(searchAPI);
+			
 	$.ajax({        
-        url: "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/2/999",
+        url: "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5/"+searchAPI,
         type: "get",
-        dataType:"text",
+        dataType: "html",
         success:function(api){
-        		document.write(api);
-        		alert("성공"); 
-		},				
+        	alert("성공"); 
+        /* 	$("body").append(api); */  
+        $(api).find("row").each(function(){
+        	var course_category_nm = " <h4> 유형 : " + $(this).find("COURSE_CATEGORY_NM").text()+"</h4>";
+        	var detail_course = "<h4> 상세코스 : " + $(this).find("DETAIL_COURSE").text()+"</h4>";
+        	var cpi_name = "<h4> 주요 지점 : " + $(this).find("CPI_NAME").text()+"</h4>";
+        	var area_gu = "<h4> 지역 : " + $(this).find("AREA_GU").text()+"</h4>";
+        	var distance = "<h4> 거리 : " + $(this).find("DISTANCE").text()+"</h4>";
+        	var lead_time = "<h4> 소요시간 : " + $(this).find("LEAD_TIME").text()+"</h4>";
+        	var course_level = "<h4> 난이도 : " + $(this).find("COURSE_LEVEL").text()+"</h4>";
+        	var out = course_category_nm + detail_course + cpi_name + area_gu + distance + lead_time + course_level ;
+        	$("body").append(out+"<br/>");
+        });
+	},				
 		error:function(){								
 			alert("실패"); 
-		}
-	});
-        }
+	}
+});
+	}
 </script>
 </head>
 <body>
@@ -114,9 +122,7 @@ function test1(){
 		<h3>코스 검색</h3>
 				<form class="form-inline m-0" action="Admin_searchload.do" method="post">
 				 <input type="hidden" name="Admin_searchload.do" value="Admin_keywordload">
-						<label for="course_name" class="hiddem">상세 검색</label>
 						<div class="form-group">
-						<input type="text" name="Admin_keywordload" class="form-control" id="Admin_keywordload" placeholder="직접 입력할 수 있습니다."/>
 						</div>
 						<label for="se01" class="label01 end" class="form-control">유 형 별</label>
 						<select name="Admin_searchload" id="Admin_searchload" class="form-control">
@@ -135,61 +141,74 @@ function test1(){
 						<select id="se03" name="AREA_GU" title="구 검색" class="form-control">
 							<option value="">전체</option>
 						</select>
-						<button type="submit" class="btn btn-primary" ><img src="http://gil.seoul.go.kr/walk/images/main/s_btn.gif" alt="검색" /></button>
+						<label for="course_name" class="hiddem">상세 검색</label>
+						<input type="text" name="Admin_keywordload" class="form-control" id="Admin_keywordload" placeholder="직접 입력할 수 있습니다."/>
 						<button type="submit" class="btn btn-primary" >검색</button>
 						</form>
 	</div>
 	<br/><br/><br/>
+	<input id="searchAPI"  /> 
+	<button onclick="test1();">검색</button>
 	
-	<input type="button" value="api테스트" onclick="test1();" />
+	
 	<div class="container">
-	<table class="table1">
-<%-- 	<c:choose>
+	<%--  <table class="table1">
+ 	<c:choose>
 	<c:when test="${empty api }">
 			<h3>******회원정보가 없습니다.*******</h3>
 		</c:when>
 		      <c:otherwise>
-		<c:forEach items="${requestScope.api }" var="api">
+		<c:forEach items="${api }" var="api">
 			
-		<tr>
+			<tr>
 			<th class="tr1th">유형</th>
+			<td class="tr1td" id="td1" >${api.COURSE_CATEGORY_NM }</td>
+			</tr>
+			<tr>
 			<th class="tr2th">코스</th>
+			<td class="tr2td" id="td2" >${api.COURSE_NAME }</td>
+			</tr>
+			<tr>
 			<th class="tr1th">지역</th>
+			<td class="tr1td" id="td3" >${api.AREA_GU }</td>
+			</tr>
+			<tr>
 			<th class="tr2th">거리</th>
+			<td class="tr2td" id="td4" >${api.DISTANCE }</td>
+			</tr>
+			<tr>
 			<th class="tr1th">소요시간</th>
+			<td class="tr1td" id="td5">${api.LEAD_TIME }</td>
+			</tr>
+			<tr>
 			<th class="tr2th">교통편</th>
+			<td class="tr2td" id="td6" >${api.TRAFFIC_INFO }</td>
+			</tr>
+			<tr>
 			<th class="tr2th">난이도</th>
-			<th class="tr1th" width="50">설명</th>
-		</tr>
-		  <tr>
-			<td class="tr1td" id="td1" width="10">${api.COURSE_CATEGORY_NM }</td>
-			<td class="tr2td" id="td2" width="10">${api.COURSE_NAME }</td>
-			<td class="tr1td" id="td3" width="10">${api.AREA_GU }</td>
-			<td class="tr2td" id="td4" width="10">${api.DISTANCE }</td>
-			<td class="tr1td" id="td5" width="10">${api.LEAD_TIME }</td>
-			<td class="tr2td" id="td6" width="30">${api.TRAFFIC_INFO }</td>
-			<td class="tr1td" id="td7" width="30">${api.COURSE_LEVEL }</td>
-			<td class="tr1td" id="td7" width="30">${api.CONTENT }</td>
-		</tr>  
+			<td class="tr1td" id="td7" >${api.COURSE_LEVEL }</td>
+			</tr>
+			<tr>
+			<th class="tr1th" >설명</th>
+			<td class="tr1td" id="td7">${api.CONTENT }</td>
+			</tr>
+			<tr>
+			<th class="tr1th" >상세코스</th>
+			<td class="tr1td" id="td7" >${api.DETAIL_COURSE }</td>
+			</tr>
+			<tr>
+			<th class="tr1th" >number</th>
+			<td class="tr1td" id="td7" >${api.CPI_IDX }</td>
+			</tr>
+		<br/><br/><br/>
 		</c:forEach>
 		</c:otherwise>
-		</c:choose> --%>
-	</table> 
+		</c:choose> 
+	</table>  --%>
 	</div>
 	
 	<br/><br/><br/>
 	
-<%
-/* String name = request.getParameter("COURSE_CATEGORY_NM");
-System.out.println("COURSE_CATEGORY_NM : " + name);
-out.println("COURSE_CATEGORY_NM : " + name);
-
-String abc[] = request.getParameterValues("nodelist");
-for(int i = 0; i < abc.length; i++){
-	out.println("nodelist[+i+]" + abc[i] + "<br/>");
-}
-System.out.println("COURSE_CATEGORY_NM : " + name); */
-%>
 
 	<div class="container" style="margin: auto;" >
 	<c:if test="${startPage>3 }">
@@ -212,7 +231,6 @@ System.out.println("COURSE_CATEGORY_NM : " + name); */
 	</div>
 <%@ include file="bootstrap.jsp" %>
 <br/><br/><br/><br/>
-
 
 </body>
 </html>

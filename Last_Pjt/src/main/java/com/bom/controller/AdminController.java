@@ -35,7 +35,6 @@ import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 import com.bom.dto.NoticeBoardDto;
 
-
 @Controller
 public class AdminController {
 
@@ -97,7 +96,7 @@ public class AdminController {
 		List<APItest> listapi = new ArrayList<APItest>();
 		APItest api = new APItest();
 		
-		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/2/999";
+		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5";
 		  
 		  try {
 		   URL url  = new URL(urlString);   
@@ -131,6 +130,8 @@ public class AdminController {
 		     String TRAFFIC_INFO = "";
 		     String CONTENT = "";
 		     String COURSE_LEVEL = "";
+		     String DETAIL_COURSE = "";
+		     String CPI_IDX = "";
 		     
 		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++)
 		     {
@@ -159,6 +160,12 @@ public class AdminController {
 		      if (childNode.getNodeName().equals("COURSE_LEVEL"))
 		    	  COURSE_LEVEL = childNode.getTextContent();
 		      api.setCOURSE_LEVEL(COURSE_LEVEL);
+		      if (childNode.getNodeName().equals("DETAIL_COURSE"))
+		    	  DETAIL_COURSE = childNode.getTextContent();
+		      api.setDETAIL_COURSE(DETAIL_COURSE);
+		      if (childNode.getNodeName().equals("CPI_IDX"))
+		    	  CPI_IDX = childNode.getTextContent();
+		      api.setCPI_IDX(CPI_IDX);
 		     }
 		     listapi.add(api);
 		     
@@ -170,6 +177,8 @@ public class AdminController {
 		     System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
 		     System.out.println("CONTENT - " + CONTENT);
 		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
+		     System.out.println("DETAIL_COURSE - " + DETAIL_COURSE);
+		     System.out.println("CPI_IDX - " + CPI_IDX);
 		     System.out.println("--------------------");
 		    }
 		   }
@@ -189,7 +198,6 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("admin_list", list);
 		
-
 		return "Admin_list";
 	}
 
@@ -261,7 +269,7 @@ public class AdminController {
 		List<APItest> listapi = new ArrayList<APItest>();
 		APItest api = new APItest();
 		
-		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/2/999";
+		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5";
 		  
 		  try {
 		   URL url  = new URL(urlString);   
@@ -296,8 +304,7 @@ public class AdminController {
 		     String CONTENT = "";
 		     String COURSE_LEVEL = "";
 		     
-		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++)
-		     {
+		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++){
 		      Node childNode = rowList.item(cd_idx);
 		      if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
 		    	  COURSE_CATEGORY_NM = childNode.getTextContent();
@@ -449,6 +456,5 @@ public class AdminController {
 		}
 		return "NoticeBoard_list";
 	}
-
 
 }
