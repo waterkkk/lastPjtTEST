@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Login_mapper">
+
+	<resultMap type="com.bom.dto.LoginDto" id="LoginDto">
+		<result column="MEMBER_NO" property="member_no" />
+		<result column="MEMBER_ID" property="member_id" />
+		<result column="MEMBER_PW" property="member_pw" />
+		<result column="MEMBER_NAME" property="member_name" />
+		<result column="MEMBER_EMAIL" property="member_email" />
+		<result column="MEMBER_PHONE" property="member_phone" />
+		<result column="MEMBER_ENABLED" property="member_enabled" />
+		<result column="MEMBER_ROLE" property="member_role" />
+	</resultMap>
+
+	<select id="login" parameterType="map" resultType="LoginDto">
+		SELECT *
+		FROM
+		MEMBER
+		WHERE MEMBER_ID=#{member_id}
+		AND MEMBER_PW=#{member_pw}
+		AND
+		MEMBER_ENABLED=#{member_enabled}
+	</select>
+
+	<!-- 기존방법 해보고 전화번호 추가하는 방법 생각할것. -->
+	<select id="idFind" parameterType="map" resultType="LoginDto">
+		SELECT
+		MEMBER_ID
+		FROM MEMBER
+		WHERE MEMBER_NAME=#{member_name}
+		AND
+		MEMBER_EMAIL=#{member_email}
+	</select>
+
+	<select id="passFind" parameterType="map" resultType="LoginDto">
+		SELECT
+		MEMBER_PW
+		FROM MEMBER
+		WHERE MEMBER_NAME=#{member_name}
+		AND
+		MEMBER_EMAIL=#{member_email}
+		AND MEMBER_ID=#{member_id}
+	</select>
+
+	<update id="infoUpdate" parameterType="LoginDto">
+		UPDATE MEMBER
+		SET MEMBER_PW=#member_pw}
+		AND MEMBER_EMAIL=#{member_email}
+		AND MEMBER_PHONE=#{member_phone}
+		WHERE MEMBER_NO=#{member_no}
+	</update>
+
+	<update id="enabledUpdate" parameterType="LoginDto">
+		UPDATE MEMBER
+		SET MEMBER_ENABLED='N'
+		WHERE MEMBER_NO=#{member_no}
+	</update>
+
+
+
+
+
+
+
+
+
+
+</mapper>

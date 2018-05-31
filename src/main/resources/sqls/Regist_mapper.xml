@@ -6,7 +6,7 @@
 <mapper namespace="Regist_mapper">
 
 
-	<resultMap type="com.bom.dto.MemberDto" id="MemberDto">
+	<resultMap type="com.bom.dto.RegistDto" id="RegistDto">
 		<result column="MEMBER_NO" property="member_no" />
 		<result column="MEMBER_ID" property="member_id" />
 		<result column="MEMBER_PW" property="member_pw" />
