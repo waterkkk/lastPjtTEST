@@ -7,58 +7,14 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>내정보</title>
+
 <style type="text/css">
-@import url("css/button.css");
-@font-face{
-	font-family:"Seoul";
-	src:url("fonts/남산체.ttf");
-}
-*{
-	font-family:"Seoul";
-}
-
-body,html {
-    margin:0;
-    padding:0;
-    height:100%;
-}
-#header{position:relative; top:-5px;}
-.wrap{min-height:100%; position:relative; width:100%;}
-.content{padding-bottom:25px;}
-#footer{
-	margin-top:-25px;
-	clear:both;
-	position:relative;
-	height:25px;
-}
-
-
 #updateForm {
 	display: none;
 }
-
-#updateForm {
-	margin-top: 7%;
-	background: #E1E1E1;
-	width: 40%;
-	height: 70%;
-	margin-left: 30%;
-}
-
-#myInfoForm {
-	margin-top: 7%;
-	background: #E1E1E1;
-	width: 25%;
-	height: 60%;
-	margin-left: 40%;
-}
-
-
 </style>
+
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<link rel="stylesheet" href="css/alertify.core.css" />
-<link rel="stylesheet" href="css/alertify.default.css" id="toggleCSS" />
-<script src="js/alertify.min.js"></script>
 <script type="text/javascript">
 	function infoFrom() {
 		$("#myInfoForm").hide();
@@ -97,9 +53,6 @@ body,html {
 </head>
 <body>
 
-<div id="header">
-<%@ include file="form/header.jsp"%>
-</div>
 
 <div class="wrap">
 
@@ -126,9 +79,9 @@ body,html {
 				</tr>
 				<tr>
 					<td align="right" colspan="2">
-						<input class="bttn-bordered bttn-xs bttn-danger" type="button"
+						<input type="button"
 						value="정보수정" onclick="infoFrom()">
-						<input class="bttn-bordered bttn-xs bttn-danger" type="button"
+						<input type="button"
 						value="탈퇴하기" onclick="enabled()"></td>
 				</tr>
 			</table>
@@ -180,9 +133,7 @@ body,html {
 	</div>
 	</div>
 	
-	<div id="footer">
-	<%@ include file="form/footer.jsp"%>
-	</div>
+	
 	
 </body>
 </html>
