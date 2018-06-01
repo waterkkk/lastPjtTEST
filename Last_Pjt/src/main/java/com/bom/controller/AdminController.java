@@ -1,18 +1,15 @@
 package com.bom.controller;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -190,7 +187,7 @@ public class AdminController {
 		  {
 		   e.printStackTrace();
 		  }
-		model.addAttribute("api", listapi);  
+		model.addAttribute("walk_api", listapi);  
 		
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalP", totalP);// 페이징 처리를 위해 가져감
@@ -455,6 +452,21 @@ public class AdminController {
 			model.addAttribute("NoticeBoard_list", NoticeBoardbiz.selectAll());
 		}
 		return "NoticeBoard_list";
+	}
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////
+	/*걷기 게시판*/
+	@RequestMapping("Exercise_walk.do")
+	public String Exercise_walk(Model model) {
+		return "Exercise_walk";
+	}
+	
+	/*등산 게시판*/
+	@RequestMapping("Exercise_hiking.do")
+	public String Exercise_hiking(Model model) {
+		
+		
+		return "Exercise_Search";
 	}
 
 }

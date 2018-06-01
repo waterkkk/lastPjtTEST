@@ -30,7 +30,8 @@ a { text-decoration:none }
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
+<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
+</head>
 <title>메인</title>
 </head>
 <body>
@@ -48,9 +49,9 @@ a { text-decoration:none }
           <div class="btn-group">
             <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">운동</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">걷기</a>
+              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">등산</a>
+              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
             </div>
           </div>
           <div class="btn-group">

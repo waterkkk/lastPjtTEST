@@ -12,11 +12,11 @@
 <title>관리자 -리스트</title>
  <style type="text/css">
 
-/*      @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+ /*     @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
 * {
 	font-family: 'Nanum Gothic Coding';
-	text-align: center;
+ 	text-align: center; 
 } */
 
 </style> 
@@ -41,7 +41,9 @@ function test1(){
         	var distance = "<h4> 거리 : " + $(this).find("DISTANCE").text()+"</h4>";
         	var lead_time = "<h4> 소요시간 : " + $(this).find("LEAD_TIME").text()+"</h4>";
         	var course_level = "<h4> 난이도 : " + $(this).find("COURSE_LEVEL").text()+"</h4>";
-        	var out = course_category_nm + detail_course + cpi_name + area_gu + distance + lead_time + course_level ;
+        	var traffic_info = "<h4> 교통 : " + $(this).find("TRAFFIC_INFO").text()+"</h4>";
+        	var content = "<h4> 설명 : " + $(this).find("CONTENT").text()+"</h4>";
+        	var out = course_category_nm + detail_course + cpi_name + area_gu + distance + lead_time + course_level + traffic_info + content;
         	$("body").append(out+"<br/>");
         });
 	},				
@@ -119,20 +121,18 @@ function test1(){
 		</div>
 <br/><br/><br/>
 		<div class="container">
+		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307">
 		<h3>코스 검색</h3>
-				<form class="form-inline m-0" action="Admin_searchload.do" method="post">
-				 <input type="hidden" name="Admin_searchload.do" value="Admin_keywordload">
-						<div class="form-group">
-						</div>
+				<form class="form-inline m-0" method="post">
 						<label for="se01" class="label01 end" class="form-control">유 형 별</label>
-						<select name="Admin_searchload" id="Admin_searchload" class="form-control">
+						 <select name="Admin_searchload" id="Admin_searchload" class="form-control">
 							<option value="">전체</option>
 							<option value="1000">생태문화길</option>
 							<option value="2000">서울둘레길</option>
 							<option value="3000">근교산자락길</option>
 							<option value="4000">한양도성길</option>
 							<option value="5000">한강/지천길</option>
-						</select>
+						</select> 
 						<label for="se02" class="label01" class="form-control">지 역 별</label>
 						<select id="se02" name="south_north_div" title="지역 검색" onchange="changeArea(this.value); return false;" class="form-control">
 							<option value="1">전체</option>
@@ -141,14 +141,14 @@ function test1(){
 						<select id="se03" name="AREA_GU" title="구 검색" class="form-control">
 							<option value="">전체</option>
 						</select>
-						<label for="course_name" class="hiddem">상세 검색</label>
-						<input type="text" name="Admin_keywordload" class="form-control" id="Admin_keywordload" placeholder="직접 입력할 수 있습니다."/>
-						<button type="submit" class="btn btn-primary" >검색</button>
-						</form>
+						</form><br/><br/>
+						<div class="div-inline m-0">
+						<label for="course_name">상세 검색</label>
+						<input class="form-control" id="searchAPI" placeholder="ex)관악산,도림천길"/>
+						<button onclick="test1();" class="btn btn-primary" >검색</button>
+						</div>
 	</div>
 	<br/><br/><br/>
-	<input id="searchAPI"  /> 
-	<button onclick="test1();">검색</button>
 	
 	
 	<div class="container">
@@ -210,7 +210,7 @@ function test1(){
 	<br/><br/><br/>
 	
 
-	<div class="container" style="margin: auto;" >
+	<div class="container" style="text-align: center;" >
 	<c:if test="${startPage>3 }">
      [<a href="Admin_list.do?page=${startPage - 1 }" id="paging">이전</a>]
     </c:if>
