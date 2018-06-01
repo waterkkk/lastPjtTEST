@@ -55,8 +55,11 @@ public class FreetableBiz {
 
 	
 	public boolean insertReply(FreetableDto dto, int parentfreetableNo) {
+		//0) 부모글 정보 가져오기 
 		FreetableDto parent = dao.selectOne(parentfreetableNo);
+		//1) 두번째답글 달기전에 기존답글 step밀어주기: [groupNo 같고 step이 하나 많은 글이 있으면]이글의 step을 +1 
 		boolean stepUp = dao.updateStep(parent.getFreetable_groupNo(), parent.getFreetable_step());
+		//2) 두번째답글달기: 부모글의 step+1, titletab+1
 		dto.setFreetable_groupNo(parent.getFreetable_groupNo());
 		dto.setFreetable_step(parent.getFreetable_step() + 1);
 		dto.setFreetable_titleTab(parent.getFreetable_titleTab() + 1);

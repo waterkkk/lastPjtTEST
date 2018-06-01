@@ -95,7 +95,7 @@
 
 
 <!-- 답글 -->
-
+<!-- 두번째답글달기전에 기존답글 step밀어주기 -->
 <update id="updateStep" parameterType="int">
 	UPDATE FREETABLE 
 	SET FREETABLE_STEP=FREETABLE_STEP+1 

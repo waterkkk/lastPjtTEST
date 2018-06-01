@@ -124,25 +124,29 @@ public class FreetableController {
 		int countPost = freebiz.selectAll().size(); // 전체 글 개수 (countPost) cf)dao-getTotalCnt
 
 		/*
-		 * 2-1. 전체 페이지 수를 구하기 (cf.math.ceil: 올림) -1)countPost(전체 글)를 10(한 페이지당 글 수)으로
-		 * 나눈다. -2)대략의 페이지 수가 나온다.(그런데 딱 떨어지지 않을 경우는 페이지가 추가가 되어야 하므로) 나머지 한 페이지도 고려하여
-		 * 나눌때 double값으로 받은 뒤에 올림해준다. 그리고 다시 원래 int로 변환하여 마무리 -3)딱 떨어지지 않는 마지막 페이지까지 고려한
-		 * <전체 페이지 수>가 나온다.
+		  2-1. 전체 페이지 수를 구하기 (cf.math.ceil: 올림) 
+		  -1)countPost(전체 글)를 10(한 페이지당 글 수)으로 나눈다. 
+		  -2)대략의 페이지 수가 나온다.(그런데 딱 떨어지지 않을 경우는 페이지가 추가가 되어야 하므로) 
+		          나머지 한 페이지도 고려하여 나눌때 double값으로 받은 뒤에 올림해준다. 그리고 다시 원래 int로 변환하여 마무리 
+		  -3)딱 떨어지지 않는 마지막 페이지까지 고려한 <전체 페이지 수>가 나온다.
 		 */
 		int countPage = (int) (Math.ceil(((double) countPost / 10))); // countPage: 전체 페이지
 
 		/*
-		 * 2-2. 현재 페이지의 시작, 마지막글 구하기 현재 페이지*10 = (마지막 페이지 글 갯수가 10이라고 가정한) 전체 페이지 글 갯수 0
-		 * 빼면 해당 페이지의 마지막글, 9 빼면 해당 페이지의 첫글 (마지막 페이지에 글이 10개가 아닐 경우도 있으나 페이징에서는 페이지 수만
-		 * 계산하면 되므로 pass)
+		 2-2. 현재 페이지의 시작, 마지막글 구하기 
+		     현재 페이지*10 = (마지막 페이지 글 갯수가 10이라고 가정한) 전체 페이지 
+		     글 갯수 0  빼면 해당 페이지의 마지막글, 9 빼면 해당 페이지의 첫글 
+		  (마지막 페이지에 글이 10개가 아닐 경우도 있으나 페이징에서는 페이지 수만 계산하면 되므로 pass)
 		 */
 		int startPost = (nowPage * 10) - 9; // startPost: 한 페이지의 시작글
 		int endPost = (nowPage * 10); // endPost: 한 페이지의 마지막글
 
-		// 2-3. (현재 페이지가 들어있는) 페이지블록의 시작 페이지, 마지막 페이지 구하기
-		// 현재 페이지/10 -> (페이지가 10개 미만인 페이지블록을 포함한)페이지블록의 수
-		// Math.ceil((double)현재 페이지/10)*10->올림
-		// (int)Math.ceil((double)현재 페이지/10)*10 현재 페이지가 들어있는 페이지블록의 마지막 페이지
+		/*
+		 2-3. (현재 페이지가 들어있는) 페이지블록의 시작 페이지, 마지막 페이지 구하기
+		            현재 페이지/10 -> (페이지가 10개 미만인 페이지블록을 포함한)페이지블록의 수
+		     Math.ceil((double)현재 페이지/10)*10->올림
+		     (int)Math.ceil((double)현재 페이지/10)*10 현재 페이지가 들어있는 페이지블록의 마지막 페이지
+		*/
 
 		int startPage = ((int) Math.ceil(((double) nowPage / 10)) * 10) - 9;
 		int endPage = (int) Math.ceil(((double) nowPage / 10)) * 10;
@@ -171,11 +175,9 @@ public class FreetableController {
 		public String insertReply(Model model, @ModelAttribute FreetableDto dto, 
 				@RequestParam("freetable_no") int parentfreetableNo) {
 				boolean res = freebiz.insertReply(dto, parentfreetableNo);
-				System.out.println("test1");
-			if (res) {
+				if (res) {
 				System.out.println("reply 성공");
 				model.addAttribute("allList", freebiz.selectAll());
-				System.out.println("test2");
 				return "redirect:board.do?nowPage=1";
 			} else {
 				System.out.println("reply 실패");

@@ -102,27 +102,36 @@
 					</c:otherwise>
 				</c:choose>
 				<tr></tr>
+				
+<!-- 페이징 -->				
 				<tr></tr>
 				<tr>
-					<td colspan="4" align="center"><c:choose>
+					<td colspan="4" align="center">
+					    <c:choose>
 							<c:when test="${nowPage eq 1 }">◀</c:when>
 							<c:otherwise>
 								<a href="board.do?nowPage=${nowPage-1 }">◀</a>
 							</c:otherwise>
-						</c:choose> <c:forEach begin="${startPage }" end="${endPage }" var="i">
+						</c:choose> 
+						
+						<c:forEach begin="${startPage }" end="${endPage }" var="i">
 							<a href="board.do?nowPage=${i }">${i}</a>&nbsp;
-				</c:forEach> <c:choose>
+				        </c:forEach> 
+				        
+				        <c:choose>
 							<c:when test="${nowPage eq countPage }">▶</c:when>
 							<c:otherwise>
 								<a href="board.do?nowPage=${nowPage+1} ">▶</a>
 							</c:otherwise>
-						</c:choose></td>
+						</c:choose>
+						</td>
 					<td colspan="1" align="center"><input type="button"
 						value="글쓰기" onclick="location.href='writeForm.do'"></td>
 				</tr>
 			</table>
 		</div>
 
+<!-- 검색 -->
 		<div align="center" >
 			<form action="search.do" method="get">
 				<select name="searching" id="searching">
@@ -137,7 +146,7 @@
 		<br> <br>
 
 
-
+<!-- 검색결과 -->
 		<div align="center" id="ResultForm">
 			<table border="1" width="600px">
 				<tr>
