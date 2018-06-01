@@ -18,6 +18,14 @@
 <head>
 
 
+
+<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+
+
+</script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Freetable_list</title>
 
@@ -115,23 +123,22 @@
 			</table>
 		</div>
 
-		<div align="center" id="ResultForm">
+		<div align="center" >
 			<form action="search.do" method="get">
 				<select name="searching" id="searching">
-					<!-- 검색조건을 검색처리후 결과화면에 보여주기위해  c:out 출력태그 사용, 삼항연산자 -->
 					<option value="freetable_id">작성자</option>
 					<option value="freetable_title">글 제목</option>
 					<option value="freetable_content">글 내용</option>
 					<option value="freetable_no">글 번호</option>
 				</select> <input name="keyword" value="${map.keyword}"> <input
-					type="submit" value="검색" onclick="ResultUpdate();">
+					type="submit" id ="result"   value="검색"  >
 			</form>
 		</div>
 		<br> <br>
 
 
 
-		<div align="center">
+		<div align="center" id="ResultForm">
 			<table border="1" width="600px">
 				<tr>
 					<th>번호</th>

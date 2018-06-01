@@ -1,5 +1,7 @@
 package com.bom.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +17,7 @@ public class RegistController {
 
 	@Autowired
 	private RegistBiz biz;
-
+	private static final Logger logger = LoggerFactory.getLogger(RegistController.class);
 	
 	//회원가입화면으로 이동 
 	@RequestMapping(value="regiStart.do")
@@ -34,7 +36,8 @@ public class RegistController {
 		if (idChkDto != null) {
 			idNotUsed = false;
 		}
-		return "redirect: idChk.do?idNotUsed=" + idNotUsed;
+		
+		return "Regist_start";
 	}
 	
 	//phone 중복체크

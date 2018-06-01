@@ -54,8 +54,8 @@ public class FreetableBiz {
 	}
 
 	
-	public boolean insertReply(FreetableDto dto, int freetable_no) {
-		FreetableDto parent = dao.selectOne(freetable_no);
+	public boolean insertReply(FreetableDto dto, int parentfreetableNo) {
+		FreetableDto parent = dao.selectOne(parentfreetableNo);
 		boolean stepUp = dao.updateStep(parent.getFreetable_groupNo(), parent.getFreetable_step());
 		dto.setFreetable_groupNo(parent.getFreetable_groupNo());
 		dto.setFreetable_step(parent.getFreetable_step() + 1);

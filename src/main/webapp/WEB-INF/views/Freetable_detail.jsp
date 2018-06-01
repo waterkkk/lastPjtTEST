@@ -117,7 +117,7 @@
 
 			<form action="commInsert.do" method="get">
 			<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
-			<input type="hidden" name="freecomm_id" value="${detail.freecomm_id }">
+<%-- 			<input type="hidden" name="member_id" value="${detail.member_id }"> --%>
 				<table align="center">
 					<br>
 					<tr>
@@ -177,8 +177,7 @@
 			<h1 style="margin-left: 25%;">답글 달기</h1>
 
 			<form action="insertReply.do" method="get">
-				<input type="hidden" name="freetable_no"
-					value="${detail.freetable_no }">
+				<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
 				<table align="center">
 					<col width="100">
 					<col width="670">

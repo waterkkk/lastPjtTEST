@@ -31,15 +31,17 @@
 	</insert>
 
 	<select id="idChk" parameterType="map" resultType="RegistDto">
-		SELECT ID FROM MEMBER WHERE ID=#{member_id}
+		SELECT MEMBER_ID 
+		FROM MEMBER 
+		WHERE MEMBER_ID=#{member_id}
 	</select>
 	
 	<select id="emailChk" parameterType="map" resultType="RegistDto">
-		SELECT ID FROM MEMBER WHERE EMAIL=#{member_email}
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_EMAIL=#{member_email}
 	</select>
 	
 	<select id="phoneChk" parameterType="map" resultType="RegistDto">
-		SELECT ID FROM MEMBER WHERE PHONE=#{member_phone}
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_PHONE=#{member_phone}
 	</select>
 	
 	

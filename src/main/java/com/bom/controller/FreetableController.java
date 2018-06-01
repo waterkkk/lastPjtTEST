@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.runner.Request;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,13 +19,15 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bom.biz.FreecommBiz;
 import com.bom.biz.FreetableBiz;
 import com.bom.dao.FreetableDao;
-import com.bom.dto.FreecommDto;
 import com.bom.dto.FreetableDto;
+import com.bom.dto.FreecommDto;
 import com.bom.dao.FreecommDao;
 
 @Controller
 public class FreetableController {
-
+	
+	private static final Logger logger = LoggerFactory.getLogger(FreetableController.class);
+	
 	@Autowired
 	private FreetableBiz freebiz;
 	
@@ -160,55 +164,64 @@ public class FreetableController {
 	}
 
 	
-////////////////////////////////////////////////////////////////////////////////
 
-	// 답글(원글에 대한) : 일단 ok
+
+	// 답글(원글에 대한) 
 		@RequestMapping(value = "insertReply.do", method = RequestMethod.GET)
-		public String insertReply(Model model, @RequestParam("dto") FreetableDto dto, 
-				@RequestParam("freetable_no") int freetable_no) {
-			boolean res = freebiz.insertReply(dto, freetable_no);
+		public String insertReply(Model model, @ModelAttribute FreetableDto dto, 
+				@RequestParam("freetable_no") int parentfreetableNo) {
+				boolean res = freebiz.insertReply(dto, parentfreetableNo);
+				System.out.println("test1");
 			if (res) {
 				System.out.println("reply 성공");
 				model.addAttribute("allList", freebiz.selectAll());
+				System.out.println("test2");
 				return "redirect:board.do?nowPage=1";
 			} else {
 				System.out.println("reply 실패");
-				model.addAttribute("detail", freebiz.selectOne(freetable_no));
+				model.addAttribute("detail", freebiz.selectOne(parentfreetableNo));
 				return "redirect:board.do?nowPage=1";
 			}
 		}
 
-/////////////////////////////////////////////////////////////////////////////////		
-		
-	 //댓글입력 :일단 ok..
-	 @RequestMapping(value="commInsert.do", method = RequestMethod.GET)
-	 public String commInsert(Model model, @ModelAttribute FreecommDto dto) {
-		System.out.println("test1");
-	 int res=commbiz.commInsert(dto);
-	 model.addAttribute("detail",dto);
-	 return "redirect:detail.do";
-	 }
 
-	 //댓글출력:일단 ok..
-	 @RequestMapping(value = "commRe.do")
-	 public String commRe(Model model, @ModelAttribute FreecommDto dto) {
-	 int res = commbiz.commInsert(dto);
-	 model.addAttribute("commRe", dto);
+/////////////////////////////////////////////////////////////////////////////////				
 	
-	 return "redirect:detail.do";
-	 }
+	// 댓글입력 :일단 ok..login부분 만들고나서 다시 시도해볼것 
+	@RequestMapping(value = "commInsert.do", method = RequestMethod.GET)
+	public String commInsert(Model model, @ModelAttribute FreecommDto dto) {
+		int res = 0;
+		 res=commbiz.commInsert(dto);
+		if (res > 0) {
+			model.addAttribute("detail",dto);
+		}
+		return "Freetable_detail";
+	}
+		
+		
+
+
+//	 //댓글출력:일단 ok..(꼭 필요한부분인가? 확인)
+//	@RequestMapping(value = "commRe.do")
+//	 public String commRe(Model model, @ModelAttribute FreecommDto dto) {
+//	 int res = 0;
+//	 res= commbiz.commInsert(dto);
+//	 if(res>0) {
+//	 model.addAttribute("detail", dto);
+//	 }
+//	 return "redirect:detail.do";
+//	 }
 
 	 //댓글의 답글 :일단 ok..
 	 @RequestMapping(value="commReInsert.do",method=RequestMethod.POST)
 	 public String commReInsert(Model model,@ModelAttribute FreecommDto dto,
-	 @RequestParam int freetable_no, @RequestParam int freecomm_no,
-	 @RequestParam String freecomm_id,@RequestParam String freecomm_content){
+		@RequestParam("Freecomm_no")int parentFreeNo ){
 	
 	 FreecommDto parent = new FreecommDto();
 	 FreecommDto insert = new FreecommDto();
 	
-	 //원글
-	 parent=commbiz.commSelectOne(freetable_no);
+	 //첫번째 대댓글 미뤄주기:대댓글 parent의 step+1
+	 parent=commbiz.commSelectOne(parentFreeNo);
 	
 	 //기존의 대댓글 미뤄주기 : 원글 parent와 groupNo가 같고 step이 더 큰 기존 대댓글의 step+1
 	 int res=commbiz.stepUpdate(parent.getFreecomm_groupNo(),parent.getFreecomm_step());
@@ -216,30 +229,29 @@ public class FreetableController {
 	 if(res>0) {
 	 System.out.println("댓글 step 수정 성공");
 	 }else {
-	 System.out.println("댓글 step 수정 실패");//롤백가능?
+	 System.out.println("댓글 step 수정 실패");
 	 }
 	
 	 //새로운 대댓글 insert 넣기: 원글과 같은 groupNo, step+1, titletab+1
 	 insert.setFreecomm_groupNo(parent.getFreecomm_groupNo());
 	 insert.setFreecomm_step((parent.getFreecomm_step())+1);
 	 insert.setFreecomm_titleTab((parent.getFreecomm_titleTab())+1);
-	 insert.setFreetable_no(freetable_no);
-	 insert.setFreecomm_id(freecomm_id);
-	 insert.setFreecomm_content(freecomm_content);
-	
-	
+	 insert.setFreetable_no(parentFreeNo);
+//	 insert.setFreecomm_id(member_id); //login 완성후  다시보기 
+//	 insert.setFreecomm_content(freecomm_content);  //login 완성후  다시보기 
+	 
+	//빈공간에 두번째대댓글(댓글 바로 아래 삽입되는 글.)을 넣어준다. 
 	 int res2=commbiz.insertReply2(insert);
 	 
 	 if(res2>0) {
 	 System.out.println("댓글 step+1, titletab+1 성공");
 	 }else {
-	 System.out.println("댓글 step+1, titletab+1 실패");//롤백가능?
+	 System.out.println("댓글 step+1, titletab+1 실패");
 	 }
-	 return "redirect:detail.do?freetable_no=" +freetable_no;
-	
+	 return "redirect:detail.do?freetable_no=" +parentFreeNo;
 	 }
 
-	////////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////////////
 
 	// 검색
 
