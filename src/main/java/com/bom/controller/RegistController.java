@@ -19,14 +19,14 @@ public class RegistController {
 	private RegistBiz biz;
 	private static final Logger logger = LoggerFactory.getLogger(RegistController.class);
 	
-	//회원가입화면으로 이동 
+	// 회원가입화면으로 이동 
 	@RequestMapping(value="regiStart.do")
 	public String regiStart(Model model) {
 		return "Regist_start";
 	}
 	
 	
-	//id 중복체크
+	// id 중복체크
 	@RequestMapping(value = "idChk.do")
 	public String idChk(Model model, @RequestParam("member_id") String member_id) {
 		RegistDto idChkDto = biz.idChk(member_id);

@@ -1,116 +1,50 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%	request.setCharacterEncoding("UTF-8");%>
 <%	response.setContentType("text/html; charset=UTF-8");%>
-<!DOCTYPE html>
+<!DOCTYPE html >
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+  <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head>
 
-<script type="text/javascript">
-
-	function idChk() {
-		var doc = document.getElementsByName("member_id")[0];
-		open("idChk.do?member_id=" + doc.value);
-	}
-
-	
-	function idChkConfirm() {
-		var chk = document.getElementsByName("member_id")[0].title;
-		if (chk == 'n') {
-			alert("아이디 중복체크를 해주세요");
-			//.focus = 커서표시를 표시한부분으로 이동시켜라
-			document.getElementsByName("member_id")[0].focus();
-		}
-	}
-
-	
-	function phoneChk() {
-		var doc = document.getElementsByName("member_phone")[0];
-		open("phoneChk.do?member_phone=" + doc.value);
-	}
-
-	function phoneChkConfirm() {
-		var chk = document.getElementsByName("member_phone")[0].title;
-		if (chk == 'n') {
-			alert("전화번호 중복체크를 해주세요");
-			//.focus = 커서표시를 표시한부분으로 이동시켜라
-			document.getElementsByName("member_phone")[0].focus();
-		}
-	}
-
-	
-	function emailChk() {
-		var doc = document.getElementsByName("member_email")[0];
-		open("emailChk.do?member_email=" + doc.value);
-	}
-	
-	function emailChkConfirm() {
-		var chk = document.getElementsByName("member_email")[0].title;
-		if (chk == 'n') {
-			alert("이메일 중복체크를 해주세요");
-			//.focus = 커서표시를 표시한부분으로 이동시켜라
-			document.getElementsByName("member_email")[0].focus();
-		}
-	}
-
-	
-	
-</script>
-
-
-
-</head>
 <body>
-
-	<h1>회원 가입</h1>
-
-	<form action="insertUser.do" method="post">
-
-
-		<table border="1">
-			<tr>
-				<th>아이디</th>
-				<td><input type="text" name="member_id" title="n"
-					required="required" /> <input type="button" value="중복체크"
-					onclick="idChk();" /></td>
-			</tr>
-			<tr>
-				<th>비밀번호</th>
-				<td><input type="password" name="member_pw"
-					onclick="idChkConfirm();" required="required"></td>
-			</tr>
-			<tr>
-				<th>비밀번호 확인</th>
-				<td><input type="password" name="member_pw2"
-					onclick="idChkConfirm();" required="required"></td>
-			</tr>
-			<tr>
-				<th>이름</th>
-				<td><input type="text" name="member_name"
-					onclick="idChkConfirm();" required="required"></td>
-			</tr>
-
-			<tr>
-				<th>전화번호</th>
-				<td><input type="text" name="member_phone"
-					onclick="idChkConfirm();" required="required"> <input
-					type="button" value="중복체크" onclick="phoneChk();" /></td>
-
-			</tr>
-			<tr>
-				<th>이메일</th>
-				<td><input type="email" name="member_email"
-					onclick="idChkConfirm();" required="required"> <input
-					type="button" value="중복체크" onclick="emailChk();" /></td>
-			<tr>
-				<td colspan="2"><input type="submit" value="가입"></td>
-			</tr>
-		</table>
-	</form>
-
+  <div class="py-5 text-white opaque-overlay" style="background-image: url('images/good.jpg'); background-size:100% 100%">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class="text-gray-dark">회원가입</h1>
+          <p class="lead mb-4">제2의인생과 함께하세요! 회원가입을 하시면 게시판 글쓰기와&nbsp;
+            <br>캘린더를 통한 일정관리가 가능합니다.&nbsp;</p>
+          <form class="" method="post" action="https://formspree.io/">
+            <div class="form-group">
+              <label>아이디</label>
+              <input type="text" name="member_id" class="form-control" placeholder="아이디를 입력해 주세요." required="required"> </div>
+            <div class="form-group">
+              <label>비밀번호</label>
+              <input type="password" name="member_pw" class="form-control" placeholder="비밀번호를 입력해 주세요. (숫자,글자 포함 9자리수 이상)" required="required">
+              <label>비밀번호 재입력</label>
+              <input type="password" class="form-control" name="member_pw" placeholder="비밀번호를 다시 입력해 주세요. (숫자, 글자 포함 9자리수 이상)" required="required">
+              <label>전화번호</label>
+              <input type="text" class="form-control" placeholder="전화번호를 입력해
+ 주세요. 예)000-0000-0000" name="member_phone">
+              <label>이메일</label>
+              <input type="email" class="form-control" name="member_email" placeholder="메일주소를 입력해 주세요. 예)secondlife@naver.com"> </div>
+            <button type="submit" class="btn btn-primary">검색</button>
+            <button type="submit" class="btn btn-primary">취소</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  <pingendo onclick="window.open('https://pingendo.com/', '_blank')" style="cursor:pointer;position: fixed;bottom: 10px;right:10px;padding:4px;background-color: #00b0eb;border-radius: 8px; width:250px;display:flex;flex-direction:row;align-items:center;justify-content:center;font-size:14px;color:white">Made with Pingendo Free&nbsp;&nbsp;
+    <img src="https://pingendo.com/site-assets/Pingendo_logo_big.png" class="d-block" alt="Pingendo logo" height="16">
+  </pingendo>
 </body>
+
+</html>/body>
 </html>
