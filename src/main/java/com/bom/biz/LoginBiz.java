@@ -12,7 +12,7 @@ import com.bom.dto.LoginDto;
 
 @Service
 public class LoginBiz {
-	String loginspace = "Login_mapper.";
+	String namespace = "Login_mapper.";
 
 	@Autowired
 	private LoginDao dao;
@@ -21,16 +21,16 @@ public class LoginBiz {
 	private SqlSessionTemplate sqlSession;
 
 	//로그인
-	public LoginDto Login(LoginDto dto) {
+	public LoginDto login(LoginDto dto) {
 		LoginDto res = new LoginDto();
-
-		Map<String, String> map = new HashMap<String, String>();
+		
+		Map<String, String> map = new HashMap<String,String>();
 		map.put("member_id", dto.getMember_id());
 		map.put("member_pw", dto.getMember_pw());
 		map.put("member_enabled", "Y");
-
-		try {
-			res = sqlSession.selectOne(loginspace + "login", map);
+		
+		 try {
+			res = sqlSession.selectOne(namespace + "login", map);
 			System.out.println("login ok");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,7 +49,7 @@ public class LoginBiz {
 		map.put("member_email", member_email);
 
 		try {
-			res = sqlSession.selectOne(loginspace + "idFind" + map);
+			res = sqlSession.selectOne(namespace + "idFind" + map);
 			System.out.println("idFind ok");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -68,7 +68,7 @@ public class LoginBiz {
 		map.put("member_id", member_id);
 
 		try {
-			res = sqlSession.selectOne(loginspace + "passFind", map);
+			res = sqlSession.selectOne(namespace + "passFind", map);
 			System.out.println("passFind ok");
 		} catch (Exception e) {
 			e.printStackTrace();

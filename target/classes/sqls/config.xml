@@ -5,11 +5,13 @@
 	<typeAliases>
 		<typeAlias type="com.bom.dto.FreetableDto" alias="FreetableDto" />
 		<typeAlias type="com.bom.dto.FreecommDto" alias="FreecommDto" />
+		<typeAlias type="com.bom.dto.LoginDto" alias="LoginDto" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/sqls/Freetable_mapper.xml" />
 		<mapper resource="/sqls/Freecomm_mapper.xml" />
+		<mapper resource="/sqls/Login_mapper.xml" />
 	</mappers>
 
 </configuration>

@@ -11,7 +11,7 @@ import com.bom.dto.LoginDto;
 
 @Repository
 public class LoginDao {
-	String loginspace = "Login_mapper.";
+	String namespace = "Login_mapper.";
 
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -21,7 +21,7 @@ public class LoginDao {
 		int res = 0;
 
 		try {
-			res=sqlSession.update(loginspace+"infoUpdate",dto);
+			res=sqlSession.update(namespace+"infoUpdate",dto);
 			System.out.println("info updated.");
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -35,7 +35,7 @@ public class LoginDao {
 		int res=0;
 	
 		try {
-			res=sqlSession.update(loginspace+"enabledUpdate",dto);
+			res=sqlSession.update(namespace+"enabledUpdate",dto);
 			System.out.println("enabled updated.");
 		} catch (Exception e) {
 			e.printStackTrace();

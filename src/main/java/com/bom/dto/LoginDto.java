@@ -34,6 +34,15 @@ public class LoginDto {
 	
 	
 	
+	
+	public LoginDto(String member_id, String member_pw) {
+		super();
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+	}
+
+
+
 	public int getMember_no() {
 		return member_no;
 	}

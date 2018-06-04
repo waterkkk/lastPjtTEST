@@ -5,7 +5,7 @@
 
 <mapper namespace="Login_mapper">
 
-	<resultMap type="com.bom.dto.LoginDto" id="LoginDto">
+	<resultMap type="com.bom.dto.LoginDto" id="LoginDtoMap">
 		<result column="MEMBER_NO" property="member_no" />
 		<result column="MEMBER_ID" property="member_id" />
 		<result column="MEMBER_PW" property="member_pw" />
@@ -17,19 +17,18 @@
 	</resultMap>
 
 	<select id="login" parameterType="map" resultType="LoginDto">
-		SELECT *
-		FROM
-		MEMBER
+		SELECT * 
+		FROM MEMBER
 		WHERE MEMBER_ID=#{member_id}
-		AND MEMBER_PW=#{member_pw}
 		AND
+		MEMBER_PW=#{member_pw}
+		AND 
 		MEMBER_ENABLED=#{member_enabled}
 	</select>
 
 	<!-- 기존방법 해보고 전화번호 추가하는 방법 생각할것. -->
 	<select id="idFind" parameterType="map" resultType="LoginDto">
-		SELECT
-		MEMBER_ID
+		SELECT *
 		FROM MEMBER
 		WHERE MEMBER_NAME=#{member_name}
 		AND
@@ -48,17 +47,21 @@
 
 	<update id="infoUpdate" parameterType="LoginDto">
 		UPDATE MEMBER
-		SET MEMBER_PW=#member_pw}
+		SET
+		MEMBER_PW=#member_pw}
 		AND MEMBER_EMAIL=#{member_email}
-		AND MEMBER_PHONE=#{member_phone}
+		AND
+		MEMBER_PHONE=#{member_phone}
 		WHERE MEMBER_NO=#{member_no}
 	</update>
 
 	<update id="enabledUpdate" parameterType="LoginDto">
 		UPDATE MEMBER
-		SET MEMBER_ENABLED='N'
+		SET
+		MEMBER_ENABLED='N'
 		WHERE MEMBER_NO=#{member_no}
 	</update>
+
 
 
 

@@ -12,7 +12,7 @@
 
 <div class="wrap">
 <div class="content">
-	${dto.member_id}님, 환영합니다.
+	${dto.member_id} 운영자님, 환영합니다.
 </div>
 </div>
 
