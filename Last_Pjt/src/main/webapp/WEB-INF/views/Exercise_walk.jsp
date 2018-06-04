@@ -124,25 +124,54 @@ $("select").click(function() {
 <button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
 <br/><br/><br/>
 </div>
-<div class="col-md-12">
-		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307"><br/><br/><br/>
-		</div>
+	<div class="col-md-12">
+		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;"><br/><br/><br/>
+	</div>
 <div class="container">
-	
 		<h3>코스 검색</h3><br/><br/><br/>
 		<form class="form-inline m-0" method="post">
-			<label for="se01" class="label01" class="form-control">유형별</label>
+			<label for="se01" class="label01" class="form-control">유형별</label>&nbsp;&nbsp;
 			<select id="select" class="form-control" onchange="window.location.href=this.value;">
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LBTL">서울둘레길</option>
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LARf">근교산자락길</option>
 				<option value="http://seoulcitywall.seoul.go.kr/front/kor/sub01/course_all.do">한양도성길</option>
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LFiq">서울 봄꽃길</option>
 					</select> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<label for="south_north_div" class="label01" class="form-control">지 역 별</label>
+					<label for="se02" class="label01">지역별</label>
+						<select id="se02" name="south_north_div" title="지역 검색" onchange="changeArea(this.value); return false;">
+							<option value="">전체</option>
+							<option value="1">강남권</option>
+							<option value="2">강북권</option>
+						</select>
+					
+						<label for="south_north_div" class="label01" class="form-control">상세 지역별</label>&nbsp;
 						<select id="south_north_div" name="south_north_div" title="지역 검색" onchange="changeArea(this.value); return false;" class="form-control">
-							<option value="1">전체</option>
+							<option value="강남구">강남구</option>
+							<option value="강동">강동구</option>
+							<option value="강서">강서구</option>
+							<option value="관악">관악구</option>
+							<option value="구로">구로구</option>
+							<option value="금천">금천구</option>
+							<option value="동작">동작구</option>
+							<option value="서초">서초구</option>
+							<option value="송파">송파구</option>
+							<option value="양천">양천구</option>
+							<option value="강북">영등포</option>
+							<option value="광진">영등포</option>
+							<option value="노원">영등포</option>
+							<option value="도봉">영등포</option>
+							<option value="동대문">영등포</option>
+							<option value="마포">영등포</option>
+							<option value="서대문">영등포</option>
+							<option value="성동">영등포</option>
+							<option value="성북">영등포</option>
+							<option value="용산">영등포</option>
+							<option value="은평">영등포</option>
+							<option value="종로">영등포</option>
+							<option value="중">영등포</option>
+							<option value="중랑">영등포</option>
 						</select>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-						<label for="AREA_GU" class="blind">지역별</label>
+						<label for="AREA_GU" class="blind">지하철</label>&nbsp;&nbsp;
 						<select id="AREA_GU" name="AREA_GU" title="구 검색" class="form-control">
 							<option value="1호선">1호선</option>
 							<option value="2호선">2호선</option>
@@ -164,14 +193,16 @@ $("select").click(function() {
 							<option value="수인선">수인선</option>
 							<option value="의정부">의정부</option>
 						</select>
-						</form><br/><br/><br/>
-						<div class="div-inline m-0">
-						<label for="course_name">상세 검색</label><br/>
-						<input class="form-control" id="searchAPI" placeholder="ex)관악산,도림천길"/>
-						<br/>
+						</form><br/><br/>
+					<div style="float: left;">
+						<label for="course_name">상세 검색</label>
+						<input type="text" class="form-control" id="searchAPI" placeholder="ex)관악산, 도림천길" style="width:200px;"/>
 						<button onclick="test1();" class="btn btn-primary" >검색</button>
+					</div><br/><br/><br/>
 					</div>
-				</div><br/><br/><br/>
+					
+					
+					
 	<table id="apiList" border="1">
 
 	</table>

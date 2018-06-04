@@ -58,18 +58,23 @@ function test1(){
 	<div class="container">
 	<h3>회원 리스트</h3>
 	<br/><br/>
+	<div style="float: right;">
+	<button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>&nbsp;&nbsp;
+	<button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
+	</div>
 	<form class="form-inline m-0" action="Admin_search.do" method="post">
       <input type="hidden" name="Admin_search.do" value="Admin_keyword">
 		<select name="Admin_search" id="Admin_search" class="form-control">
 			<option value="member_id">ID</option>
 			<option value="member_name">이름</option>
 		</select>
-		<input type="text" class="form-control" name="Admin_keyword" id="Admin_keyword" placeholder="ID/이름을 입력하세요">
+		<input type="text" class="form-control" name="Admin_keyword" id="Admin_keyword" placeholder="ID/이름을 입력하세요">&nbsp;&nbsp;
 		<button type="submit" class="btn btn-primary" >검색</button>
-		<button class="btn btn-primary" onclick="location.href='Admin_list.do'" name="<%= page%>" >목록</button>
-        </form>
+        </form><br/><br/><br/>
+        
         </div>
       <div class="container">
+      
 			<table class="table table-hover">
 					<tr>
 						<th>ID</th>
@@ -110,104 +115,15 @@ function test1(){
 					</c:forEach>
 				</c:otherwise>	
 	</c:choose>			
+	
 					<tr>
-						<td colspan="3">
+						<td colspan="1"><br/><br/>
 							<button class="btn btn-primary" onclick="location.href='Admin_write.do'">회원 추가</button>
-							<button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>
-							<button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
 						</td>			
 					</tr>
 			</table>
 		</div>
 <br/><br/><br/>
-		<div class="container">
-		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307">
-		<h3>코스 검색</h3>
-				<form class="form-inline m-0" method="post">
-						<label for="se01" class="label01 end" class="form-control">유 형 별</label>
-						 <select name="Admin_searchload" id="Admin_searchload" class="form-control">
-							<option value="">전체</option>
-							<option value="1000">생태문화길</option>
-							<option value="2000">서울둘레길</option>
-							<option value="3000">근교산자락길</option>
-							<option value="4000">한양도성길</option>
-							<option value="5000">한강/지천길</option>
-						</select> 
-						<label for="se02" class="label01" class="form-control">지 역 별</label>
-						<select id="se02" name="south_north_div" title="지역 검색" onchange="changeArea(this.value); return false;" class="form-control">
-							<option value="1">전체</option>
-						</select>
-						<label for="se03" class="blind">지역별</label>
-						<select id="se03" name="AREA_GU" title="구 검색" class="form-control">
-							<option value="">전체</option>
-						</select>
-						</form><br/><br/>
-						<div class="div-inline m-0">
-						<label for="course_name">상세 검색</label>
-						<input class="form-control" id="searchAPI" placeholder="ex)관악산,도림천길"/>
-						<button onclick="test1();" class="btn btn-primary" >검색</button>
-						</div>
-	</div>
-	<br/><br/><br/>
-	
-	
-	<div class="container">
-	<%--  <table class="table1">
- 	<c:choose>
-	<c:when test="${empty api }">
-			<h3>******회원정보가 없습니다.*******</h3>
-		</c:when>
-		      <c:otherwise>
-		<c:forEach items="${api }" var="api">
-			
-			<tr>
-			<th class="tr1th">유형</th>
-			<td class="tr1td" id="td1" >${api.COURSE_CATEGORY_NM }</td>
-			</tr>
-			<tr>
-			<th class="tr2th">코스</th>
-			<td class="tr2td" id="td2" >${api.COURSE_NAME }</td>
-			</tr>
-			<tr>
-			<th class="tr1th">지역</th>
-			<td class="tr1td" id="td3" >${api.AREA_GU }</td>
-			</tr>
-			<tr>
-			<th class="tr2th">거리</th>
-			<td class="tr2td" id="td4" >${api.DISTANCE }</td>
-			</tr>
-			<tr>
-			<th class="tr1th">소요시간</th>
-			<td class="tr1td" id="td5">${api.LEAD_TIME }</td>
-			</tr>
-			<tr>
-			<th class="tr2th">교통편</th>
-			<td class="tr2td" id="td6" >${api.TRAFFIC_INFO }</td>
-			</tr>
-			<tr>
-			<th class="tr2th">난이도</th>
-			<td class="tr1td" id="td7" >${api.COURSE_LEVEL }</td>
-			</tr>
-			<tr>
-			<th class="tr1th" >설명</th>
-			<td class="tr1td" id="td7">${api.CONTENT }</td>
-			</tr>
-			<tr>
-			<th class="tr1th" >상세코스</th>
-			<td class="tr1td" id="td7" >${api.DETAIL_COURSE }</td>
-			</tr>
-			<tr>
-			<th class="tr1th" >number</th>
-			<td class="tr1td" id="td7" >${api.CPI_IDX }</td>
-			</tr>
-		<br/><br/><br/>
-		</c:forEach>
-		</c:otherwise>
-		</c:choose> 
-	</table>  --%>
-	</div>
-	
-	<br/><br/><br/>
 	
 
 	<div class="container" style="text-align: center;" >
