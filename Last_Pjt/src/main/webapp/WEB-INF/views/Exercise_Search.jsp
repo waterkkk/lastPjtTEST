@@ -20,12 +20,60 @@
 
 </head>
 <body>
-<h3>등산 게시판</h3><br/><br/><br/>
-<div>
+<div class="py-5" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <a class="btn btn-primary" href="#">HOME</a>
+          <a class="btn btn-primary" href="NoticeBoard_list.do">공지사항</a>
+          <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 교육</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">온라인</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">오프라인</a>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 운동</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">음식</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">건강식단</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">맛집</a>
+            </div>
+          </div>
+          <div class="btn-group">
+            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 여가</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="#">문화행사</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">도서관</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">공원</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="#">노인교실/경로당</a>
+            </div>
+          </div>
+          <a class="btn btn-primary" href="#">자유게시판</a>
+        </div>
+      </div>
+    </div>
+  </div><br/><br/><br/>
+
+<h3>등산 게시판</h3>
+<div class="container">
+<div style="float: right;"><br/><br/>
 <button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>
 <button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
-
-</div><br/><br/><br/>
+</div><br/><br/><br/><br/><br/><br/><br/>
 	
 	<div class="container">
 	<div style="float: right;">
@@ -35,8 +83,11 @@
 	</form>
 	</div>
 	
-<div id="map" style="width:800px; height:700px; border:1px solid black; margin:0 auto;"></div><br/><br/>
+<div id="map" style="width:800px; height:700px; border:2px solid black; margin:0 auto;"></div><br/><br/>
 
+<script type="text/javascript">
+
+</script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7860e07925e3692715c72048890bd002&libraries=services"></script>
 <script>
@@ -58,12 +109,9 @@ var ps = new daum.maps.services.Places();
 function keyword1(){
 	
 var keyword = document.getElementById('keyword').value;
-$("#apiList").append(keyword);
 ps.keywordSearch(keyword, placesSearchCB); 
 }
 
-
-// 키워드로 장소를 검색합니다
 
 // 키워드 검색 완료 시 호출되는 콜백함수 입니다
 function placesSearchCB (data, status, pagination) {
@@ -91,16 +139,26 @@ function displayMarker(place) {
         map: map,
         position: new daum.maps.LatLng(place.y, place.x) 
     });
+    
+    //장소에 대한 설명
+    var infowindow1 = new daum.maps.InfoWindow({
+        content: '<div style="padding:2px; font-size:12px;">'+ place.place_name +'</div>'
+    });
+    infowindow1.open(map, marker);
+    
 
     // 마커에 클릭이벤트를 등록합니다
-    daum.maps.event.addListener(marker, 'click', function() {
+    /* daum.maps.event.addListener(marker, 'click', function() {
         // 마커를 클릭하면 장소명이 인포윈도우에 표출됩니다
-        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div>');
+        infowindow.setContent('<div style="padding:5px;font-size:12px;">' + place.place_name + '</div> ');
         infowindow.open(map, marker);
-    });
+    }); */
 }
 </script>
+</div>
 <table id="apiList" border="1"></table>
+
+<button class="btn btn-primary" onclick="location.href='http://map.seoul.go.kr/smgis/webs/theme/themeMapCopy.do?mode=themeMapCopy&thm_theme_id=100362&map_type=1&xpoint=126.978509&ypoint=37.566611&level=9&oldmap=&tp=0.7&maptile=BASEMAP_NAVER&order=0&utid=&copy_mode=theme#'">서울의 산과 공원 안내</button>
 	</div>
 	
 	<%@ include file="bootstrap.jsp" %>

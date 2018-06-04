@@ -16,18 +16,11 @@ a { text-decoration:none }
 
 * {
 	font-family: 'Nanum Gothic Coding';
-	text-align: center;
+/* 	text-align: center; */
 }
 
 </style>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script src="//code.jquery.com/jquery.min.js"></script>
-<!-- 합쳐지고 최소화된 최신 CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" type="text/css">
-<!-- 부가적인 테마 -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css" type="text/css">
-<!-- 합쳐지고 최소화된 최신 자바스크립트 -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
 
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
 <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
@@ -80,27 +73,48 @@ a { text-decoration:none }
         </div>
 <div class="py-5 text-white bg-dark" >
     <div class="container">
-      <div class="row">
+      <div class="row" >
         <div class="col-md-12">
-      <form class="form-inline m-0" action="Admin_list.do" method="post">
+      <form class="form-inline m-0" action="Admin_list.do" method="post" style="float: right;">
           <input type="hidden" name="Admin_list.do" value="page">
-          <button type="submit" class="btn btn-primary">로그인[관리자]</button>
+          <button type="submit" class="btn btn-primary" style="float: right;">로그인[관리자]</button>
           </form>
-          <p align="right"><a href="#" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/><br/>
+        <!--   <p align="right"><a href="#" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/> -->
+        <button type="submit" class="btn btn-primary" style="float: right;">회원가입</button>
         </div>
-      </div>
+      </div><br/><br/>
       <div class="row">
         <div class="col-md-7 text-md-left text-center align-self-center my-5">
-          <h2>메인</h2>
-          <p class="lead">공지사항</p>
+         <div class="row" >
+        <div class="col-md-8" draggable="true">
+          <div class="list-group" style="opacity: 1.0;">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">공지사항</h5>
+                <small>3 days ago</small>
+              </div>
+              <p class="mb-1">우측 상단의 +를 누르면 화면이 커집니다.</p>
+              <small>버튼을 눌러 확인해보세요.</small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">공지사항</h5>
+                <small class="text-muted">3 days ago</small>
+              </div>
+              <p class="mb-1">자유게시판의 글이 새롭게 등록되었습니다.</p>
+              <small class="text-muted">버튼을 눌러 확인해보세요.</small>
+            </a>
+          </div>
+        </div>
+      </div>
         </div>
         <div class="col-md-5">
-          <div class="embed-responsive embed-responsive-4by3  rounded">
+          <div class="embed-responsive embed-responsive-4by3  rounded"><br/><br/><br/><br/><br/>
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/i__1Z5a9Sak?autoplay=0" allowfullscreen=""> </iframe>
           </div>
         </div>
       </div>
-    </div>
+    </div><br/><br/><br/><br/><br/><br/><br/><br/>
   </div>
 
 
