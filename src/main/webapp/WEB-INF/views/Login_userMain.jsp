@@ -28,18 +28,19 @@
 			<div class="row">
 				<div class="col-md-7">
 					<div align="center">
-						<h1 class="text-gray-dark"> 환영합니다! </h1>
-						<p class="lead mb-4">
-						 "제2의 인생"의 가족이 되셨습니다.
+						<h1 class="text-gray-dark"> 로그인 완료! </h1>
+						<p class="lead mb-4" align="center">
+					 회원님 환영합니다~! <br>제2의 인생과 함께 행복한 하루 보내세요
 					</p>
 					</div>
 
 
-					
 					<div align="center">
-						<br> <label>로그인하시면 더 많은 정보를 이용하실 수 있습니다.</label> <br> <label
-							onclick="location.href='index.jsp'">메인화면</label> <label
-							onclick="location.href='userMain.do'">로그인</label>
+						<input type="button" class="btn btn-primary" value="메인화면" 
+						 	onclick="location.href='index.jsp'">
+						<input type="button" class="btn btn-primary" value="개인페이지" 
+						 	onclick="location.href='indi.do'">
+						 	</div>
 					</div>
 
 

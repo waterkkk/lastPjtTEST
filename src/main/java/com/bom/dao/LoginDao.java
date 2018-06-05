@@ -44,6 +44,18 @@ public class LoginDao {
 		return res;
 	}
 	
+	// 아이디찾기
+	public String searchId(String member_email) throws Exception {
+		String res = null;
+		try {
+			res = sqlSession.selectOne(namespace + "searchId", member_email);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("searchId error");
+		}
+		return res;
+	}
+	
 	
 }
 

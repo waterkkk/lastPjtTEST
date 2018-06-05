@@ -23,16 +23,19 @@
 
 		if (idVal == null || idVal == "") {
 			alert("아이디를 입력해 주세요.");
+			
 		} else if (pwVal == null || pwVal == "") {
 			alert("패스워드를 입력해 주세요.");
+			
 		} else {
 			$.ajax({
 						url : "loginAjax.do",
 						data : "member_id=" + idVal + "&member_pw=" + pwVal,
 						success : function(msg) {
+							
 							if (msg.lc) {
 								location.href = "loginRes.do?member_id="
-										+ member_id + "&member_pw=" + member_pw;
+										+ idVal + "&member_pw=" + pwVal;
 
 							} else {
 								document.getElementById("commLogin").innerHTML = "아이디, 비밀번호를 모두 입력해 주세요.";
@@ -93,9 +96,9 @@
 					</div>
 
 					<div align="center">
-						<br> <label>아이디나 비밀번호가 생각나지 않으시나요?</label> <br> <label
-							onclick="location.href='searchId.do'">아이디 찾기 /</label> <label
-							onclick="location.href='searchPw.do'">비밀번호 찾기</label>
+						<br> <label>아이디나 비밀번호가 생각나지 않으시나요?</label> <br> 
+						<a href="searchId.do" style="color:white">아이디 찾기</a>
+						<a href="searchPw.do" style="color:white">비밀번호 찾기</a>
 					</div>
 
 

@@ -38,7 +38,7 @@
       <button type="submit" class="btn btn-primary">비밀번호 찾기</button>
       <br><br>
               <label>아이디가 생각나지 않으시나요?&nbsp;</label>
-              <label onclick="location.href='searchId.do'">아이디 찾기</label>
+             <a href="searchId.do" style="color:white">아이디 찾기</a>
               
        
             </div>

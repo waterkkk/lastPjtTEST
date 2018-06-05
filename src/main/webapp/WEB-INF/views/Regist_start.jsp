@@ -74,7 +74,7 @@
 								placeholder="전화번호를 입력해 주세요.(기호 없이 입력) 예)03100001234" required="required" >
 
 						</div>
-						<input type="submit" value="회원가입">
+						<input type="submit" value="회원가입" class="btn btn-primary">
 					</form>
 				</div>
 			</div>

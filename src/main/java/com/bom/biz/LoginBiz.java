@@ -1,12 +1,16 @@
 package com.bom.biz;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import org.slf4j.Logger;
 import com.bom.dao.LoginDao;
 import com.bom.dto.LoginDto;
 
@@ -20,16 +24,16 @@ public class LoginBiz {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	//로그인
+	// 로그인
 	public LoginDto login(LoginDto dto) {
 		LoginDto res = new LoginDto();
-		
-		Map<String, String> map = new HashMap<String,String>();
+
+		Map<String, String> map = new HashMap<String, String>();
 		map.put("member_id", dto.getMember_id());
 		map.put("member_pw", dto.getMember_pw());
 		map.put("member_enabled", dto.getMember_enabled());
-		
-		 try {
+
+		try {
 			res = sqlSession.selectOne(namespace + "login", map);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -38,27 +42,16 @@ public class LoginBiz {
 		return res;
 	}
 
-	// 아이디찾기
-	public LoginDto idFind(String member_name, String member_email) {
-		// public LoginDto idFind(LoginDto dto ) { // 이것도 되나 해볼것
-		LoginDto res = new LoginDto();
-
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("member_name", member_name);
-		map.put("member_email", member_email);
-
-		try {
-			res = sqlSession.selectOne(namespace + "idFind" + map);
-			System.out.println("idFind ok");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("idFind error");
-		}
-		return res;
+	
+    //2018.06.05 여기부터 보기  
+	public String searchId(HttpServletResponse response, String member_email) throws Exception {
+		
+		
+		return dao.searchId(member_email);
 	}
 
 	// 비밀번호찾기
-	public LoginDto passFind(String member_name, String member_email, String member_id) {
+	public LoginDto searchPw(String member_name, String member_email, String member_id) {
 		LoginDto res = new LoginDto();
 
 		Map<String, String> map = new HashMap<String, String>();
@@ -67,21 +60,21 @@ public class LoginBiz {
 		map.put("member_id", member_id);
 
 		try {
-			res = sqlSession.selectOne(namespace + "passFind", map);
-			System.out.println("passFind ok");
+			res = sqlSession.selectOne(namespace + "searchPw", map);
+			System.out.println("searchPw ok");
 		} catch (Exception e) {
 			e.printStackTrace();
-			System.out.println("passFind error");
+			System.out.println("searchPw error");
 		}
 		return res;
 	}
 
-	//회원정보 업데이트
+	// 회원정보 업데이트
 	public int infoUpdate(LoginDto dto) {
 		return dao.infoUpdate(dto);
 	}
 
-	//회원등급조정(y->n)
+	// 회원등급조정(y->n)
 	public int enableUpdate(LoginDto dto) {
 		return dao.enableUpdate(dto);
 	}

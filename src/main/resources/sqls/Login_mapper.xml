@@ -27,15 +27,13 @@
 	</select>
 
 	<!-- 기존방법 해보고 전화번호 추가하는 방법 생각할것. -->
-	<select id="idFind" parameterType="map" resultType="LoginDto">
-		SELECT *
-		FROM MEMBER
-		WHERE MEMBER_NAME=#{member_name}
-		AND
-		MEMBER_EMAIL=#{member_email}
+	<select id="searchId" parameterType="String" resultType="String">
+	SELECT MEMBER_ID 
+	FROM MEMBER 
+	WHERE MEMBER_EMAIL=#{member_email}
 	</select>
 
-	<select id="passFind" parameterType="map" resultType="LoginDto">
+	<select id="searchPw" parameterType="map" resultType="LoginDto">
 		SELECT
 		MEMBER_PW
 		FROM MEMBER

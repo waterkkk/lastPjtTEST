@@ -1,5 +1,6 @@
 package com.bom.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,6 +14,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,9 +70,10 @@ public class LoginController {
 	
 		LoginDto parame= new LoginDto(member_id, member_pw);
 		LoginDto dto=biz.login(parame);
-		System.out.println("test4");
+		
 		System.out.println("dto.getMember_role(): "+dto.getMember_role());
 		System.out.println("dto.getMember_pw(): "+ dto.getMember_pw());
+		
 		if (dto.getMember_id() != null || dto.getMember_pw() != null) {
 			model.addAttribute("dto", dto);
 		
@@ -86,10 +89,24 @@ public class LoginController {
 	
 	
 	
-	@RequestMapping("searchId.do")
+	@RequestMapping(value="searchId.do")
 	public String searchId(Model model) {
 		return "Login_searchId";
 	}	
+	
+	
+	@RequestMapping(value="searchIdx.do")
+	@ResponseBody
+	public String searchIdx(Model model, @ModelAttribute LoginDto dto) {
+		System.out.println(dto.toString());
+		
+		ArrayList<String> emailList =biz.searchId(dto);
+		System.out.println(emailList.toString());
+		System.out.println(emailList.get(0));
+		String findEmail="{\"member_email\":\""+emailList+"\"}";
+		System.out.println(findEmail);
+				return findEmail;
+	}
 	
 	@RequestMapping("searchPw.do")
 	public String searchPw(Model model) {
