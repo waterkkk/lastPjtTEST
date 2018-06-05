@@ -41,21 +41,19 @@ public class LoginController {
 	// 서버로 간 뒤  바로 ajax로 response되는애의 객체 body에 rMap을 담아서 보내준다. 
 	//->ajax 쓸때는  @ResponseBody가 붙음!
 	
-	public Map<String,Boolean> loginAjax(HttpSession session, String member_id, 
+	public Map<String,Boolean> loginAjax(HttpSession session, 
+			@RequestParam("member_id") String member_id, 
 			@RequestParam ("member_pw") String member_pw ){ 
-		
-		System.out.println("member_id:"+ member_id);
-		System.out.println("member_pw:"+ member_pw);
 
 		LoginDto dto =new LoginDto(member_id, member_pw);
 		LoginDto mapRes =biz.login(dto);
-		
+			
 		boolean lc=false;
 		if(mapRes!=null) {
 			lc=true;
 			session.setAttribute("dto", mapRes);
 		}
-		
+
 		Map<String, Boolean> rMap= new HashMap<String, Boolean>();
 		rMap.put("lc", lc);
 			System.out.println("lc:"+lc);
@@ -64,22 +62,28 @@ public class LoginController {
 	
 	
 	@RequestMapping("loginRes.do")
-	public String loginRes(Model model, @RequestParam("member_id") String member_id,
-			@RequestParam("member_pw") String member_pw) {
-		String res=null;
-		LoginDto dto= new LoginDto(member_id, member_pw);
+	public String loginRes(Model model, @RequestParam("member_id") 
+	String member_id, @RequestParam("member_pw") String member_pw) {
+		String res=null;	
+	
+		LoginDto parame= new LoginDto(member_id, member_pw);
+		LoginDto dto=biz.login(parame);
+		System.out.println("test4");
+		System.out.println("dto.getMember_role(): "+dto.getMember_role());
+		System.out.println("dto.getMember_pw(): "+ dto.getMember_pw());
+		if (dto.getMember_id() != null || dto.getMember_pw() != null) {
+			model.addAttribute("dto", dto);
 		
-		LoginDto dto1=biz.login(dto);
-		if (dto1.getMember_id() != null || dto1.getMember_pw() != null) {
-			model.addAttribute("dto", dto1);
-			if (dto1.getMember_role().equals("USER")) {
-				res= "Login_userMain";
-			} else if (dto1.getMember_role().equals("ADMIN")) {
+		if (dto.getMember_role().equals("USER")) {
+				res= "Login_userMain";		
+			}else if (dto.getMember_role().equals("ADMIN")) {
 				res= "Login_adminMain";			
 				}
 		} 
 		return res;
-	}	
+	}
+		
+	
 	
 	
 	@RequestMapping("searchId.do")

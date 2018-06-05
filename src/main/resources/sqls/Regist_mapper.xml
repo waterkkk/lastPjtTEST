@@ -17,7 +17,7 @@
 		<result column="MEMBER_ROLE" property="member_role" />
 	</resultMap>
 
-	<insert id="insertUser" parameterType="MemberDto">
+	<insert id="insertUser" parameterType="RegistDto">
 		INSERT INTO MEMBER
 		VALUES
 		(MEMBER_SEQ.NEXTVAL,
@@ -27,21 +27,25 @@
 		#{member_email},
 		#{member_phone},
 		'Y',
-		'USER' )
+		'USER')
 	</insert>
 
-	<select id="idChk" parameterType="map" resultType="RegistDto">
+	<select id="idChk" parameterType="map" resultType="String">
 		SELECT MEMBER_ID 
 		FROM MEMBER 
 		WHERE MEMBER_ID=#{member_id}
 	</select>
 	
-	<select id="emailChk" parameterType="map" resultType="RegistDto">
-		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_EMAIL=#{member_email}
+	<select id="emailChk" parameterType="map" resultType="String">
+		SELECT MEMBER_EMAIL 
+		FROM MEMBER 
+		WHERE MEMBER_EMAIL=#{member_email}
 	</select>
 	
-	<select id="phoneChk" parameterType="map" resultType="RegistDto">
-		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_PHONE=#{member_phone}
+	<select id="phoneChk" parameterType="map" resultType="String">
+		SELECT MEMBER_PHONE 
+		FROM MEMBER 
+		WHERE MEMBER_PHONE=#{member_phone}
 	</select>
 	
 	

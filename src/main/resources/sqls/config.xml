@@ -6,12 +6,14 @@
 		<typeAlias type="com.bom.dto.FreetableDto" alias="FreetableDto" />
 		<typeAlias type="com.bom.dto.FreecommDto" alias="FreecommDto" />
 		<typeAlias type="com.bom.dto.LoginDto" alias="LoginDto" />
+		<typeAlias type="com.bom.dto.RegistDto" alias="RegistDto" />
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="/sqls/Freetable_mapper.xml" />
 		<mapper resource="/sqls/Freecomm_mapper.xml" />
 		<mapper resource="/sqls/Login_mapper.xml" />
+		<mapper resource="/sqls/Regist_mapper.xml" />
 	</mappers>
 
 </configuration>

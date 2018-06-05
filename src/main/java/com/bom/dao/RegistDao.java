@@ -11,7 +11,7 @@ import com.bom.dto.RegistDto;
 
 @Repository
 public class RegistDao {
-	private String regispace="Regist_mapper.";
+	private String namespace="Regist_mapper.";
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
@@ -25,14 +25,11 @@ public class RegistDao {
 		map.put("member_name", dto.getMember_name());
 		map.put("member_email", dto.getMember_email());
 		map.put("member_phone", dto.getMember_phone());
-		map.put("member_enabled", dto.getMember_enabled());
-		map.put("member_role", dto.getMember_role());
+	
 
 		try {
-			res = sqlSession.insert(regispace + "insertUser", map);
-			if (res > 0) {
-				sqlSession.commit();
-			}
+			res = sqlSession.insert(namespace + "insertUser", map);
+			
 		} catch (Exception e) {
 			System.out.println("insert error");
 			e.printStackTrace();

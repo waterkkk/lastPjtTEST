@@ -32,9 +32,9 @@ public class RegistBiz {
 
 		try {
 			res = sqlSession.selectOne(namespace + "idChk", map);
-			System.out.println("idchk returned");
+			System.out.println("idChk returned");
 		} catch (Exception e) {
-			System.out.println("idchk error");
+			System.out.println("idChk error");
 			e.printStackTrace();
 		}
 		return res;

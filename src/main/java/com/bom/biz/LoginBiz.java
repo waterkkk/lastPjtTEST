@@ -27,11 +27,10 @@ public class LoginBiz {
 		Map<String, String> map = new HashMap<String,String>();
 		map.put("member_id", dto.getMember_id());
 		map.put("member_pw", dto.getMember_pw());
-		map.put("member_enabled", "Y");
+		map.put("member_enabled", dto.getMember_enabled());
 		
 		 try {
 			res = sqlSession.selectOne(namespace + "login", map);
-			System.out.println("login ok");
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("login error");

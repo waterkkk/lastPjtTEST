@@ -68,9 +68,10 @@
 
 
 					<input type="hidden" name="member_enabled"	value="${dto.member_enabled }">
+			
 					<div class="form-group">
-
-						<label>아이디</label> <input type="text" id="member_id" class="form-control" placeholder="아이디를 입력해 주세요." name="member_id">
+						<label>아이디</label> <input type="text" id="member_id" class="form-control" 
+						placeholder="아이디를 입력해 주세요." name="member_id">
 					</div>
 
 					<div class="form-group">

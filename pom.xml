@@ -89,6 +89,14 @@
 			</exclusions>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- jackson-mapper-asl :ajax으로 map 끌어쓸때-->
+		<!-- https://mvnrepository.com/artifact/org.codehaus.jackson/jackson-mapper-asl -->
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.13</version>
+		</dependency>
 
 		<!-- @Inject -->
 		<dependency>
