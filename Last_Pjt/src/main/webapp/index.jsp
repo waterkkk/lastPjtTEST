@@ -74,7 +74,7 @@ a { text-decoration:none }
           <div class="btn-group" style="float: right;">
            <form class="form-inline m-0" action="Admin_list.do" method="post" >
           <input type="hidden" name="Admin_list.do" value="page">
-          <button type="submit" class="btn btn-dark" style="float: right;">로그인[관리자]</button><br/>
+          <button type="submit" class="btn btn-dark" style="float: right;">로그인</button><br/>
         <button type="button" class="btn btn-dark" style="float: right;">회원가입</button>
           </form>
           </div>

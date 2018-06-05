@@ -70,10 +70,10 @@ $("select").click(function() {
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <a class="btn btn-primary" href="#">HOME</a>
-          <a class="btn btn-primary" href="NoticeBoard_list.do">공지사항</a>
+          <a class="btn btn-dark" href="index.jsp">HOME</a>
+          <a class="btn btn-dark" href="NoticeBoard_list.do">공지사항</a>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 교육</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 교육</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
               <div class="dropdown-divider"></div>
@@ -81,15 +81,17 @@ $("select").click(function() {
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 운동</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 운동</button>
             <div class="dropdown-menu">
+              <a class="dropdown-item" href="Exercise_search.do">길찾기</a>
+               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">음식</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">건강식단</a>
               <div class="dropdown-divider"></div>
@@ -97,7 +99,7 @@ $("select").click(function() {
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 여가</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 여가</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">문화행사</a>
               <div class="dropdown-divider"></div>
@@ -108,17 +110,13 @@ $("select").click(function() {
               <a class="dropdown-item" href="#">노인교실/경로당</a>
             </div>
           </div>
-          <a class="btn btn-primary" href="#">자유게시판</a>
+          <a class="btn btn-dark" href="#">자유게시판</a>
         </div>
       </div>
     </div>
   </div><br/><br/><br/>
-<div style="float: right;">
-<button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>
-<button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
 <br/><br/><br/><br/><br/>
-</div>
-	<div class="col-md-12">
+	<div class="col-md-12" >
 		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
 	</div>
 <div class="container">
@@ -135,15 +133,15 @@ $("select").click(function() {
 					<div style="float: right;">
 						<label for="course_name">상세 검색</label>
 						<input type="text" class="form-control" id="searchAPI" placeholder="ex)관악산, 도림천길" style="width:200px; "/>
-						<button onclick="test1();" class="btn btn-primary" >검색</button>
+						<button onclick="test1();" class="btn btn-dark" >검색</button>
 					</div><br/><br/><br/>
 					</div>
 					
 					
-					
+	<div class="container">			
 	<table id="apiList" border="1">
-
 	</table>
+	</div>	
 	<br/><br/><br/>
 <%@ include file="bootstrap.jsp" %>
 </body>

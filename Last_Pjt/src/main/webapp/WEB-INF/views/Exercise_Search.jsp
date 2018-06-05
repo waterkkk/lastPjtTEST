@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>등산</title>
+<title>길찾기</title>
 <style type="text/css">
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
@@ -24,10 +24,10 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <a class="btn btn-primary" href="#">HOME</a>
-          <a class="btn btn-primary" href="NoticeBoard_list.do">공지사항</a>
+          <a class="btn btn-dark" href="index.jsp">HOME</a>
+          <a class="btn btn-dark" href="NoticeBoard_list.do">공지사항</a>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 교육</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 교육</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
               <div class="dropdown-divider"></div>
@@ -35,7 +35,7 @@
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 운동</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 운동</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
@@ -43,7 +43,7 @@
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown">음식</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">건강식단</a>
               <div class="dropdown-divider"></div>
@@ -51,7 +51,7 @@
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-primary dropdown-toggle" data-toggle="dropdown"> 여가</button>
+            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 여가</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">문화행사</a>
               <div class="dropdown-divider"></div>
@@ -62,26 +62,25 @@
               <a class="dropdown-item" href="#">노인교실/경로당</a>
             </div>
           </div>
-          <a class="btn btn-primary" href="#">자유게시판</a>
+          <a class="btn btn-dark" href="#">자유게시판</a>
         </div>
       </div>
     </div>
   </div><br/><br/><br/>
 
-<h3>등산 게시판</h3>
+<h3>길찾기 게시판</h3>
 <div class="container">
-<div style="float: right;"><br/><br/>
-<button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>
-<button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
-</div><br/><br/><br/><br/><br/><br/><br/>
+<br/><br/><br/><br/><br/><br/><br/>
 	
 	<div class="container">
 	<div style="float: right;">
 	<form onsubmit="keyword1(); return false;" >
 		<input class="form-control" id="keyword" placeholder="입력하세요." style="width:200px; vertical-align: bottom;"/>
-		<button onclick="keyword1();" class="btn btn-primary">검색</button>
+		<button onclick="keyword1();" class="btn btn-dark">검색</button><br/><br/>
+	 <a class="btn btn-dark" href="Exercise_hiking.do">등산로</a>
 	</form>
 	</div>
+	
 	
 <div id="map" style="width:800px; height:700px; border:2px solid black; margin:0 auto;"></div><br/><br/>
 
@@ -158,7 +157,7 @@ function displayMarker(place) {
 </div>
 <table id="apiList" border="1"></table>
 
-<button class="btn btn-primary" onclick="location.href='http://map.seoul.go.kr/smgis/webs/theme/themeMapCopy.do?mode=themeMapCopy&thm_theme_id=100362&map_type=1&xpoint=126.978509&ypoint=37.566611&level=9&oldmap=&tp=0.7&maptile=BASEMAP_NAVER&order=0&utid=&copy_mode=theme#'">서울의 산과 공원 안내</button>
+<button class="btn btn-dark" onclick="location.href='http://map.seoul.go.kr/smgis/webs/theme/themeMapCopy.do?mode=themeMapCopy&thm_theme_id=100362&map_type=1&xpoint=126.978509&ypoint=37.566611&level=9&oldmap=&tp=0.7&maptile=BASEMAP_NAVER&order=0&utid=&copy_mode=theme#'">서울의 산과 공원 안내</button>
 	</div>
 	
 	<%@ include file="bootstrap.jsp" %>

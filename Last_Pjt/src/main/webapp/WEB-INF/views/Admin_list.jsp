@@ -57,9 +57,9 @@ function test1(){
 <body>
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
-          <a href="#" class="btn btn-lg mx-1 btn-secondary">HOME</a>
-          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-secondary">공지사항</a>
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">교육</button>
+          <a href="index.jsp" class="btn btn-lg mx-1 btn-dark">HOME</a>
+          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-dark">공지사항</a>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">교육</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
               <div class="dropdown-divider"></div>
@@ -67,7 +67,7 @@ function test1(){
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">운동</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">운동</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
@@ -75,7 +75,7 @@ function test1(){
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">음식</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">건강식단</a>
               <div class="dropdown-divider"></div>
@@ -83,7 +83,7 @@ function test1(){
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">여가</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">여가</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">문화행사</a>
               <div class="dropdown-divider"></div>
@@ -95,7 +95,7 @@ function test1(){
             </div>
           </div>
           <div class="btn-group">
-            <a href="#" class="btn btn-lg mx-1 btn-secondary">자유게시판</a>
+            <a href="#" class="btn btn-lg mx-1 btn-dark">자유게시판</a>
           </div>
         </div><br/><br/><br/><br/><br/>
 
@@ -103,8 +103,8 @@ function test1(){
 	<h3>회원 리스트</h3>
 	<br/><br/>
 	<div style="float: right;">
-	<button class="btn btn-primary" onclick="location.href='index.jsp'">메인</button>&nbsp;&nbsp;
-	<button class="btn btn-primary" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
+	<button class="btn btn-dark" onclick="location.href='index.jsp'">메인</button>&nbsp;&nbsp;
+	<button class="btn btn-dark" onclick="location.href='NoticeBoard_list.do'">공지사항 </button>
 	</div>
 	<form class="form-inline m-0" action="Admin_search.do" method="post">
       <input type="hidden" name="Admin_search.do" value="Admin_keyword">
@@ -113,7 +113,7 @@ function test1(){
 			<option value="member_name">이름</option>
 		</select>
 		<input type="text" class="form-control" name="Admin_keyword" id="Admin_keyword" placeholder="ID/이름을 입력하세요">&nbsp;&nbsp;
-		<button type="submit" class="btn btn-primary" >검색</button>
+		<button type="submit" class="btn btn-dark" >검색</button>
         </form><br/><br/><br/><br/>
         
         </div>
@@ -152,7 +152,7 @@ function test1(){
 									<option value="회원">회원</option>
 									<option value="관리자">관리자</option>
 								</select>
-                       			<button type="submit" class="btn btn-primary">저장</button>
+                       			<button type="submit" class="btn btn-dark">저장</button>
                     		  </form>
                 			</td>
 						</tr>
@@ -162,7 +162,7 @@ function test1(){
 	
 					<tr>
 						<td colspan="1"><br/><br/>
-							<button class="btn btn-primary" onclick="location.href='Admin_write.do'">회원 추가</button>
+							<button class="btn btn-dark" onclick="location.href='Admin_write.do'">회원 추가</button>
 						</td>			
 					</tr>
 			</table>

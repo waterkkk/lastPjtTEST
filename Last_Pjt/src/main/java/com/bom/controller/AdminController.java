@@ -1,9 +1,13 @@
 package com.bom.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -20,11 +24,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
 
 import com.bom.biz.AdminBiz;
 import com.bom.biz.NoticeBoardBiz;
@@ -114,8 +118,7 @@ public class AdminController {
 		    Element el = doc.getDocumentElement();
 		    NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
 		    
-		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++)
-		    {
+		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++){
 		     Node row_Node = row_List.item(row_idx);
 		     NodeList rowList = row_Node.getChildNodes();
 		     
@@ -166,7 +169,7 @@ public class AdminController {
 		     }
 		     listapi.add(api);
 		     
-		     System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
+		    /* System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
 		     System.out.println("COURSE_NAME - " + COURSE_NAME);
 		     System.out.println("AREA_GU - " + AREA_GU);
 		     System.out.println("DISTANCE - " + DISTANCE);
@@ -176,7 +179,7 @@ public class AdminController {
 		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
 		     System.out.println("DETAIL_COURSE - " + DETAIL_COURSE);
 		     System.out.println("CPI_IDX - " + CPI_IDX);
-		     System.out.println("--------------------");
+		     System.out.println("--------------------");*/
 		    }
 		   }
 		   else
@@ -462,11 +465,44 @@ public class AdminController {
 	}
 	
 	/*등산 게시판*/
-	@RequestMapping("Exercise_hiking.do")
-	public String Exercise_hiking(Model model) {
-		
+	@RequestMapping("Exercise_search.do")
+	public String Exercise_search(Model model) {
 		
 		return "Exercise_Search";
+	}
+	
+	@RequestMapping("Exercise_hiking.do")
+	public String Exercise_hiking(Model model) throws IOException {
+	    StringBuilder urlBuilder = new StringBuilder("http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI"); /*URL*/
+        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D"); /*Service Key*/
+        urlBuilder.append("&" + URLEncoder.encode("searchArNm","UTF-8") + "=" + URLEncoder.encode("제주", "UTF-8")); /*2619990400*/
+        URL url = new URL(urlBuilder.toString());
+        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+        conn.setRequestMethod("GET");
+        conn.setRequestProperty("Content-type", "application/json");
+        System.out.println("Response code: " + conn.getResponseCode());
+        BufferedReader rd;
+        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+        } else {
+            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+        }
+        
+        StringBuilder sb = new StringBuilder();
+        String line;
+        while ((line = rd.readLine()) != null) {
+            sb.append(line);
+            System.out.println("sb : " + sb);
+        }
+        rd.close();
+        conn.disconnect();
+        System.out.println(sb.toString());
+        
+        
+        model.addAttribute("hiking", line);
+        
+        return "Exercise_hiking";
+		
 	}
 
 }
