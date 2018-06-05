@@ -47,7 +47,7 @@ function test1(){
         	var out = course_category_nm + course_name + detail_course + cpi_name + area_gu + distance + lead_time + course_level + traffic_info + content;
         	$("#apiList").append("<tr><th>유형</th><th>코스</th><th>상세코스</th><th>주요지점</th><th>지역</th><th>거리</th><th>소요시간</th><th>난이도</th><th>교통</th><th>설명</th></tr><tr><td>" + course_category_nm +"</td><td> " +  course_name +"</td><td> "+ detail_course +"</td><td> " + cpi_name +"</td><td> " + area_gu +"</td><td> " + distance +"</td><td> " + lead_time + "</td><td> " + course_level +"</td><td> " + traffic_info +"</td><td> " + content + "</td></tr>");
         });
-	},				
+	},		
 		error:function(){								
 			alert("실패"); 
 	}

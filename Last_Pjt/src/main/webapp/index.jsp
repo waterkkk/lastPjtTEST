@@ -28,11 +28,12 @@ a { text-decoration:none }
 <title>메인</title>
 </head>
 <body>
+ <div class="py-3 bg-dark" >
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
-          <a href="#" class="btn btn-lg mx-1 btn-secondary">HOME</a>
-          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-secondary">공지사항</a>
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">교육</button>
+          <a href="#" class="btn btn-lg mx-1 btn-dark">HOME</a>
+          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-dark">공지사항</a>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">교육</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
               <div class="dropdown-divider"></div>
@@ -40,7 +41,7 @@ a { text-decoration:none }
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">운동</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">운동</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
@@ -48,7 +49,7 @@ a { text-decoration:none }
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">음식</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">건강식단</a>
               <div class="dropdown-divider"></div>
@@ -56,7 +57,7 @@ a { text-decoration:none }
             </div>
           </div>
           <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-secondary dropdown-toggle" data-toggle="dropdown">여가</button>
+            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">여가</button>
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">문화행사</a>
               <div class="dropdown-divider"></div>
@@ -68,27 +69,79 @@ a { text-decoration:none }
             </div>
           </div>
           <div class="btn-group">
-            <a href="#" class="btn btn-lg mx-1 btn-secondary">자유게시판</a>
+            <a href="#" class="btn btn-lg mx-1 btn-dark">자유게시판</a>
+          </div>
+          <div class="btn-group" style="float: right;">
+           <form class="form-inline m-0" action="Admin_list.do" method="post" >
+          <input type="hidden" name="Admin_list.do" value="page">
+          <button type="submit" class="btn btn-dark" style="float: right;">로그인[관리자]</button><br/>
+        <button type="button" class="btn btn-dark" style="float: right;">회원가입</button>
+          </form>
           </div>
         </div>
-<div class="py-5 text-white bg-dark" >
-    <div class="container">
-      <div class="row" >
-        <div class="col-md-12">
-      <form class="form-inline m-0" action="Admin_list.do" method="post" style="float: right;">
-          <input type="hidden" name="Admin_list.do" value="page">
-          <button type="submit" class="btn btn-primary" style="float: right;">로그인[관리자]</button>
-          </form>
-        <!--   <p align="right"><a href="#" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/> -->
-        <button type="submit" class="btn btn-primary" style="float: right;">회원가입</button>
         </div>
-      </div><br/><br/>
+        
+          <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_restaurant.jpg&quot;);" >
+    <div class="container">
       <div class="row">
-        <div class="col-md-7 text-md-left text-center align-self-center my-5">
-         <div class="row" >
-        <div class="col-md-8" draggable="true">
+        <div class="col-md-12">
+          <h1 class="text-gray-dark">제 2의 인생</h1>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="py-5 bg-light" >
+    <div class="container">
+      <div class="row">
+           <div class="py-5 col-md-3" >
+          <div class="row">
+            <div class="col-8 col-md-12">
+              <h5 class="mb-3 text-primary">배우는 기쁨</h5>
+              <p class="my-1">- </p>
+            </div>
+          </div>
+        </div>
+        <div class="py-5 col-md-3">
+          <div class="row">
+            <div class="col-8 col-md-12">
+              <h5 class="mb-3 text-primary">
+                <b>움직이는 희열</b>
+              </h5>
+              <p class="my-1">- </p>
+            </div>
+          </div>
+        </div>
+        <div class="py-5 col-md-3">
+          <div class="row">
+            <div class="col-8 col-md-12">
+              <h5 class="mb-3 text-primary">
+                <b>맛있는 즐거움</b>
+              </h5>
+              <p class="my-1">- </p>
+            </div>
+          </div>
+        </div>
+        <div class="py-5 col-md-3">
+          <div class="row">
+            <div class="col-8 col-md-12">
+              <h5 class="mb-3 text-primary">
+                <b>즐기는 기쁨</b>
+              </h5>
+              <p class="my-1">-
+                <br>
+                <br> </p>
+            </div>
+          </div>
+        </div>
+    </div>
+    </div>
+  </div>  
+<div class="py-5 text-black bg-white" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
           <div class="list-group" style="opacity: 1.0;">
-            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start active">
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">공지사항</h5>
                 <small>3 days ago</small>
@@ -106,17 +159,50 @@ a { text-decoration:none }
             </a>
           </div>
         </div>
-      </div>
-        </div>
-        <div class="col-md-5">
-          <div class="embed-responsive embed-responsive-4by3  rounded"><br/><br/><br/><br/><br/>
+        <div class="col-md-6">
+          <div class="embed-responsive embed-responsive-4by3  rounded">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/i__1Z5a9Sak?autoplay=0" allowfullscreen=""> </iframe>
           </div>
         </div>
       </div>
-    </div><br/><br/><br/><br/><br/><br/><br/><br/>
+    </div>
   </div>
-
+  <div><br/><br/><br/><br/><br/>
+  </div><br/><br/><br/><br/><br/>
+     <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://www.facebook.com" target="_blank">
+            <i class="fa fa-fw fa-facebook fa-3x text-white"></i>
+          </a>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://twitter.com" target="_blank">
+            <i class="fa fa-fw fa-twitter fa-3x text-white"></i>
+          </a>
+        </div>
+        <div class="col-4 col-md-1 align-self-center">
+          <a href="https://www.instagram.com" target="_blank">
+            <i class="fa fa-fw fa-instagram text-white fa-3x"></i>
+          </a>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
