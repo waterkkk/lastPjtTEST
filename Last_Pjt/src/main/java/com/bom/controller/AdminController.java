@@ -1,9 +1,11 @@
 package com.bom.controller;
 
 import java.io.BufferedReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -15,6 +17,8 @@ import java.util.Locale;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,12 +33,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 
 import com.bom.biz.AdminBiz;
 import com.bom.biz.NoticeBoardBiz;
 import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 import com.bom.dto.NoticeBoardDto;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 public class AdminController {
@@ -264,96 +271,89 @@ public class AdminController {
 
 	/* 검색 */
 	@RequestMapping(value = "Admin_search.do")
-	public String AdminSearchRes(Model model, @RequestParam("Admin_search") String Admin_search,
-			@RequestParam("Admin_keyword") String Admin_keyword) {
+	public String AdminSearchRes(Model model, @RequestParam("Admin_search") String Admin_search, @RequestParam("Admin_keyword") String Admin_keyword) {
 		List<APItest> listapi = new ArrayList<APItest>();
 		APItest api = new APItest();
 		
 		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5";
 		  
-		  try {
-		   URL url  = new URL(urlString);   
-		   URLConnection URLconnection = url.openConnection();
-		   HttpURLConnection httpConnection = (HttpURLConnection)URLconnection;
-		   int responseCode = httpConnection.getResponseCode();
-		   if (responseCode== HttpURLConnection.HTTP_OK)
-		   {
-		    InputStream in = httpConnection.getInputStream();
-		    
-		    DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-		    DocumentBuilder db = fac.newDocumentBuilder();
-		    Document doc = db.parse(in);
-		
-		    // 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
-		    // NodeList와 Node 인 경우로 나누어서 처리해야 한다.
-		    // 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
-		    Element el = doc.getDocumentElement();
-		    NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
-		    
-		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++)
-		    {
-		     Node row_Node = row_List.item(row_idx);
-		     NodeList rowList = row_Node.getChildNodes();
-		     
-		     String COURSE_CATEGORY_NM = "";
-		     String COURSE_NAME = "";
-		     String AREA_GU = "";
-		     String DISTANCE = "";
-		     String LEAD_TIME = "";
-		     String TRAFFIC_INFO = "";
-		     String CONTENT = "";
-		     String COURSE_LEVEL = "";
-		     
-		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++){
-		      Node childNode = rowList.item(cd_idx);
-		      if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
-		    	  COURSE_CATEGORY_NM = childNode.getTextContent();
-		      api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
-		      if (childNode.getNodeName().equals("COURSE_NAME"))
-		    	  COURSE_NAME = childNode.getTextContent();
-		      api.setCOURSE_NAME(COURSE_NAME);
-		      if (childNode.getNodeName().equals("AREA_GU"))
-		    	  AREA_GU = childNode.getTextContent();
-		      api.setAREA_GU(AREA_GU);
-		      if (childNode.getNodeName().equals("DISTANCE"))
-		    	  DISTANCE = childNode.getTextContent();
-		      api.setDISTANCE(DISTANCE);
-		      if (childNode.getNodeName().equals("LEAD_TIME"))
-		    	  LEAD_TIME = childNode.getTextContent();
-		      api.setLEAD_TIME(LEAD_TIME);
-		      if (childNode.getNodeName().equals("TRAFFIC_INFO"))
-		    	  TRAFFIC_INFO = childNode.getTextContent();
-		      api.setTRAFFIC_INFO(TRAFFIC_INFO);
-		      if (childNode.getNodeName().equals("CONTENT"))
-		    	  CONTENT = childNode.getTextContent();
-		      api.setCONTENT(CONTENT);
-		      if (childNode.getNodeName().equals("COURSE_LEVEL"))
-		    	  COURSE_LEVEL = childNode.getTextContent();
-		      api.setCOURSE_LEVEL(COURSE_LEVEL);
-		     }
-		     listapi.add(api);
-		     
-		     System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
-		     System.out.println("SOUTH_NORTH_DIV_NM - " + COURSE_NAME);
-		     System.out.println("AREA_GU - " + AREA_GU);
-		     System.out.println("DISTANCE - " + DISTANCE);
-		     System.out.println("LEAD_TIME - " + LEAD_TIME);
-		     System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
-		     System.out.println("CONTENT - " + CONTENT);
-		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
-		     System.out.println("--------------------");
-		    }
-		   }
-		   else
-		   {
-		    System.out.println("HTTP connection response !=HTTP_OK");
-		   }
-		  } catch (Exception e)
-		  {
-		   e.printStackTrace();
-		  }
-		model.addAttribute("api", listapi);  
-		
+		try {
+			URL url = new URL(urlString);
+			URLConnection URLconnection = url.openConnection();
+			HttpURLConnection httpConnection = (HttpURLConnection) URLconnection;
+			int responseCode = httpConnection.getResponseCode();
+			if (responseCode == HttpURLConnection.HTTP_OK) {
+				InputStream in = httpConnection.getInputStream();
+
+				DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
+				DocumentBuilder db = fac.newDocumentBuilder();
+				Document doc = db.parse(in);
+
+				// 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
+				// NodeList와 Node 인 경우로 나누어서 처리해야 한다.
+				// 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
+				Element el = doc.getDocumentElement();
+				NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
+
+				for (int row_idx = 0; row_idx < row_List.getLength(); row_idx++) {
+					Node row_Node = row_List.item(row_idx);
+					NodeList rowList = row_Node.getChildNodes();
+
+					String COURSE_CATEGORY_NM = "";
+					String COURSE_NAME = "";
+					String AREA_GU = "";
+					String DISTANCE = "";
+					String LEAD_TIME = "";
+					String TRAFFIC_INFO = "";
+					String CONTENT = "";
+					String COURSE_LEVEL = "";
+
+					for (int cd_idx = 0; cd_idx < rowList.getLength(); cd_idx++) {
+						Node childNode = rowList.item(cd_idx);
+						if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
+							COURSE_CATEGORY_NM = childNode.getTextContent();
+						api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
+						if (childNode.getNodeName().equals("COURSE_NAME"))
+							COURSE_NAME = childNode.getTextContent();
+						api.setCOURSE_NAME(COURSE_NAME);
+						if (childNode.getNodeName().equals("AREA_GU"))
+							AREA_GU = childNode.getTextContent();
+						api.setAREA_GU(AREA_GU);
+						if (childNode.getNodeName().equals("DISTANCE"))
+							DISTANCE = childNode.getTextContent();
+						api.setDISTANCE(DISTANCE);
+						if (childNode.getNodeName().equals("LEAD_TIME"))
+							LEAD_TIME = childNode.getTextContent();
+						api.setLEAD_TIME(LEAD_TIME);
+						if (childNode.getNodeName().equals("TRAFFIC_INFO"))
+							TRAFFIC_INFO = childNode.getTextContent();
+						api.setTRAFFIC_INFO(TRAFFIC_INFO);
+						if (childNode.getNodeName().equals("CONTENT"))
+							CONTENT = childNode.getTextContent();
+						api.setCONTENT(CONTENT);
+						if (childNode.getNodeName().equals("COURSE_LEVEL"))
+							COURSE_LEVEL = childNode.getTextContent();
+						api.setCOURSE_LEVEL(COURSE_LEVEL);
+					}
+					listapi.add(api);
+
+					System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
+					System.out.println("SOUTH_NORTH_DIV_NM - " + COURSE_NAME);
+					System.out.println("AREA_GU - " + AREA_GU);
+					System.out.println("DISTANCE - " + DISTANCE);
+					System.out.println("LEAD_TIME - " + LEAD_TIME);
+					System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
+					System.out.println("CONTENT - " + CONTENT);
+					System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
+					System.out.println("--------------------");
+				}
+			} else {
+				System.out.println("HTTP connection response !=HTTP_OK");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.addAttribute("api", listapi); 
 		
 		List<AdminDto> res = biz.searchList(Admin_search, Admin_keyword);
 		model.addAttribute("admin_list", res);
@@ -404,7 +404,7 @@ public class AdminController {
 	}
 
 	@RequestMapping(value = "NoticeBoard_detail.do")
-	public String NoticeBoarddetail(Model model, @RequestParam("noticeboard_no") int noticeboard_no) {
+	public String NoticeBoardDetail(Model model, @RequestParam("noticeboard_no") int noticeboard_no) {
 		// @RequestParam("seq") jsp파일에서 넘어오는 seq를 int seq에 넣어주겠다
 		NoticeBoardbiz.readCount(noticeboard_no);
 		NoticeBoardDto dto = NoticeBoardbiz.selectOne(noticeboard_no);
@@ -464,18 +464,28 @@ public class AdminController {
 		return "Exercise_walk";
 	}
 	
-	/*등산 게시판*/
+	/*길찾기*/
 	@RequestMapping("Exercise_search.do")
 	public String Exercise_search(Model model) {
 		
 		return "Exercise_Search";
 	}
 	
+	/*등산 게시판*/
 	@RequestMapping("Exercise_hiking.do")
 	public String Exercise_hiking(Model model) throws IOException {
+       
+        return "Exercise_hiking";
+	}
+	
+	@RequestMapping("Exercise_hiking1.do")
+	public String Exercise_hiking1(Model model,  @RequestParam(required = false) String hiking_keyword) throws IOException {
+		
 	    StringBuilder urlBuilder = new StringBuilder("http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI"); /*URL*/
         urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("searchArNm","UTF-8") + "=" + URLEncoder.encode("제주", "UTF-8")); /*2619990400*/
+        urlBuilder.append("&" + URLEncoder.encode("searchArNm","UTF-8") + "=" + URLEncoder.encode(hiking_keyword,"UTF-8") ); /*2619990400*/
+       // urlBuilder.append(hiking_keyword);
+        System.out.println(urlBuilder);
         URL url = new URL(urlBuilder.toString());
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
@@ -492,17 +502,55 @@ public class AdminController {
         String line;
         while ((line = rd.readLine()) != null) {
             sb.append(line);
-            System.out.println("sb : " + sb);
         }
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());
         
-        
-        model.addAttribute("hiking", line);
-        
-        return "Exercise_hiking";
+        String abc  = sb.toString();
+		System.out.println(sb.toString().matches(".*aeatreason.*"));
 		
+		/*DocumentBuilderFactory t_dbf = null;
+        DocumentBuilder t_db = null;
+        Document t_doc = null;
+        NodeList t_nodes = null;
+        Node t_node = null;
+        Element t_element = null;
+        InputSource t_is = new InputSource();
+ 
+        try
+        {
+            t_dbf = DocumentBuilderFactory.newInstance();
+            t_db = t_dbf.newDocumentBuilder();
+            t_is = new InputSource();
+            t_is.setCharacterStream(new StringReader(abc));
+            t_doc = t_db.parse(t_is);
+            t_nodes = t_doc.getElementsByTagName("item");
+ 
+            for (int i = 0, t_len = t_nodes.getLength(); i < t_len; i ++){
+                t_element = (Element)t_nodes.item(i);
+ 
+                System.out.println(t_element.getAttribute("aeatreason"));
+            }
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }*/
+        
+		System.out.println("검색 단어 : " + hiking_keyword);
+		model.addAttribute("hiking_keyword", hiking_keyword);
+        model.addAttribute("abc", abc);
+		
+		return "Exercise_hiking";
+	}
+	
+	/*문화행사 게시판*/
+	@RequestMapping("Freetime_Culture.do")
+	public String Freetime_Culture(Model model) {
+		
+		
+        return "Freetime_Culture";
 	}
 
 }

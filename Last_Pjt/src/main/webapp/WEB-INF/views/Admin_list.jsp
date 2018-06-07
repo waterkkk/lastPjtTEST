@@ -118,7 +118,6 @@ function test1(){
         
         </div>
       <div class="container">
-      
 			<table class="table table-hover">
 					<tr>
 						<th>ID</th>
@@ -168,7 +167,6 @@ function test1(){
 			</table>
 		</div>
 <br/><br/><br/>
-	
 
 	<div class="container" style="text-align: center;" >
 	<c:if test="${startPage>3 }">
