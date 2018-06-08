@@ -43,37 +43,35 @@ public class LoginBiz {
 	}
 
 	
-    //2018.06.05 여기부터 보기  
-	public String searchId(HttpServletResponse response, String member_email) throws Exception {
-		
-		
-		return dao.searchId(member_email);
+	// 아이디찾기 : 전화번호
+	public LoginDto searchIdByPhone(String member_phone) { 
+		return dao.searchIdByPhone(member_phone);
 	}
 
-	// 비밀번호찾기
-	public LoginDto searchPw(String member_name, String member_email, String member_id) {
-		LoginDto res = new LoginDto();
+	// 아이디찾기 : 이메일
+	public LoginDto searchIdByEmail(String member_email) {
+		return dao.searchIdByEmail(member_email);
+	}	
 
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("member_name", member_name);
-		map.put("member_email", member_email);
-		map.put("member_id", member_id);
 
-		try {
-			res = sqlSession.selectOne(namespace + "searchPw", map);
-			System.out.println("searchPw ok");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("searchPw error");
-		}
-		return res;
+	// 비밀번호찾기 : 전화번호
+	public LoginDto searchPwByPhone(Map<String, String> map) {
+		return dao.searchPwByPhone(map);
 	}
 
+	
+	// 비밀번호찾기 : 이메일
+	public LoginDto searchPwByEmail(Map<String, String> map) {
+		return dao.searchPwByEmail(map);
+	}
+
+		
 	// 회원정보 업데이트
 	public int infoUpdate(LoginDto dto) {
 		return dao.infoUpdate(dto);
 	}
 
+	
 	// 회원등급조정(y->n)
 	public int enableUpdate(LoginDto dto) {
 		return dao.enableUpdate(dto);

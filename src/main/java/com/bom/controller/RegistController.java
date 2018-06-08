@@ -1,5 +1,8 @@
 package com.bom.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,7 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.bom.biz.RegistBiz;
 import com.bom.dao.RegistDao;
@@ -27,89 +32,59 @@ public class RegistController {
 	}
 
 	
-	// 회원추가
+	// 회원정보 입력
 	@RequestMapping(value = "insertUser.do")
-	public String insertUser(Model model, 
-			@RequestParam("member_id") String member_id,
-			@RequestParam("member_pw") String member_pw, 
-			@RequestParam("member_pw2") String member_pw2,
-			@RequestParam("member_name") String member_name, 
-			@RequestParam("member_email") String member_email,
-			@RequestParam("member_phone") String member_phone) {
-		
-		if ((member_pw).equals(member_pw2)) {
-			RegistDto dto = new RegistDto(0, member_id, member_pw, 
+	@ResponseBody
+	public int insertUser(Model model, 
+			@RequestParam String member_id,
+			@RequestParam String member_pw, 
+			@RequestParam String member_name, 
+			@RequestParam String member_email,
+			@RequestParam String member_phone) {
+		System.out.println("rest");
+		   int res=0;
+			RegistDto dto = new RegistDto(0, member_id, member_pw,
 					member_name, member_email, member_phone, "Y", "USER");
 			
-			int res = biz.insertUser(dto);
-			
+			res = biz.insertUser(dto);
+			System.out.println("res:"+res);
+			System.out.println("test-member_email:"+member_email);
+			System.out.println("test-member_id:"+member_id);
 			if (res > 0) {
 				System.out.println("가입 완료");
-				return "Regist_ok";
+				
 			} else {
 				System.out.println("가입 실패");
-				return "Login_start";
+				
 			}
-		}else {
-			System.out.println("비밀번호를 다시 입력해 주세요.");
-			return "Login_start";
+			return res;
 		}
-	}
 	
-	//가입완료-로그인화면으로 
-	@RequestMapping(value="userMain.do")
-	public String userMain(Model model) {
-		return "Login_start";
-	}
-	
+
 
 	// id 중복체크
-	@RequestMapping(value = "idChk.do")
-	public String idChk(Model model, @RequestParam("member_id") String member_id) {
+	@RequestMapping(value = "idChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public Map<String,Boolean> idChk(Model model, 
+			@RequestParam("member_id") String member_id) {
 		
 		RegistDto idChkDto = biz.idChk(member_id);
+		boolean idNotUsed = true;	
 	
-		boolean idNotUsed = true;
-		// 객체 자체가 null이면 null.getId()는 불가능!
-		System.out.println("test3");
-		if (idChkDto != null) {
+		 if (idChkDto !=null) {
 			idNotUsed = false;
 		}
+		
+		Map<String,Boolean> map=new HashMap<String,Boolean>();
+		map.put("idNotUsed", idNotUsed); 
+		
+		model.addAttribute("idNotUsed",idNotUsed);
 		System.out.println("test-idNotUsed:"+idNotUsed);
 		System.out.println("test-member_id:"+member_id);
-		// controller에서 idNotUsed를 못넘겨준다. 여기부터 할것.
-		return "Regist_idchk? idNotUsed="+idNotUsed;
-	}
-
+		return map;
+	}	
 	
-	// phone 중복체크
-	@RequestMapping(value = "phoneChk.do")
-	public String phoneChk(Model model, @RequestParam("member_phone") String member_phone) {
-		RegistDto phoneChkDto = biz.phoneChk(member_phone);
-		boolean phoneNotUsed = true;
-
-		// 객체 자체가 null이면 null.getphone()는 불가능!
-		if (phoneChkDto != null) {
-			phoneNotUsed = false;
-		}
-		return "redirect: phoneChk.do?phoneNotUsed=" + phoneNotUsed;
-	}
-
-	
-	// email 중복체크
-	@RequestMapping(value = "emailChk.do")
-	public String emailChk(Model model, @RequestParam("member_email") String member_email) {
-		RegistDto emailChkDto = biz.idChk(member_email);
-		boolean emailNotUsed = true;
-
-		// 객체 자체가 null이면 null.getId()는 불가능!
-		if (emailChkDto != null) {
-			emailNotUsed = false;
-		}
-		return "redirect: emailChk.do?emailNotUsed=" + emailNotUsed;
-	}
-	
-	
+	//가입완료
 	@RequestMapping(value="login")
 	public String login(Model model) {
 	return "Login_start";

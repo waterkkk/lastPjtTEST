@@ -30,23 +30,13 @@
 		'USER')
 	</insert>
 
-	<select id="idChk" parameterType="map" resultType="String">
-		SELECT MEMBER_ID 
+	<select id="idChk" parameterType="String" resultType="RegistDto">
+		SELECT *
 		FROM MEMBER 
 		WHERE MEMBER_ID=#{member_id}
 	</select>
 	
-	<select id="emailChk" parameterType="map" resultType="String">
-		SELECT MEMBER_EMAIL 
-		FROM MEMBER 
-		WHERE MEMBER_EMAIL=#{member_email}
-	</select>
-	
-	<select id="phoneChk" parameterType="map" resultType="String">
-		SELECT MEMBER_PHONE 
-		FROM MEMBER 
-		WHERE MEMBER_PHONE=#{member_phone}
-	</select>
+
 	
 	
 

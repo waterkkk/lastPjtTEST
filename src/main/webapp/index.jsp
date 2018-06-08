@@ -32,7 +32,7 @@ a { text-decoration:none }
             <div class="dropdown-menu">
               <a class="dropdown-item" href="#">온라인</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">오프라인</a>
+              <a class="dropdown-item" href="eduoffList.do">오프라인</a>
             </div>
           </div>
           <div class="btn-group">

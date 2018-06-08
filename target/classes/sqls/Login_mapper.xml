@@ -17,47 +17,63 @@
 	</resultMap>
 
 	<select id="login" parameterType="map" resultType="LoginDto">
-		SELECT * 
-		FROM MEMBER
-		WHERE MEMBER_ID=#{member_id}
+	SELECT * 
+	FROM MEMBER
+	WHERE MEMBER_ID=#{member_id}
 		AND
 		MEMBER_PW=#{member_pw}
 		AND 
 		MEMBER_ENABLED='Y'
 	</select>
 
-	<!-- 기존방법 해보고 전화번호 추가하는 방법 생각할것. -->
-	<select id="searchId" parameterType="String" resultType="String">
-	SELECT MEMBER_ID 
+	<!-- id찾기 -->
+	<select id="searchIdByPhone" parameterType="String" resultType="LoginDto">
+	SELECT *
 	FROM MEMBER 
-	WHERE MEMBER_EMAIL=#{member_email}
+	WHERE MEMBER_PHONE=#{member_phone}
+	</select>
+	
+	<select id="searchIdByEmail" parameterType="String" resultType="LoginDto">
+	SELECT * 
+	FROM MEMBER 
+	WHERE MEMBER_EMAIL=#{member_email} 
 	</select>
 
-	<select id="searchPw" parameterType="map" resultType="LoginDto">
-		SELECT
-		MEMBER_PW
-		FROM MEMBER
-		WHERE MEMBER_NAME=#{member_name}
-		AND
-		MEMBER_EMAIL=#{member_email}
-		AND MEMBER_ID=#{member_id}
+	<!-- 비밀번호찾기 -->
+	<select id="searchPwByPhone" parameterType="map" resultType="LoginDto">
+	SELECT * 
+	FROM MEMBER 
+	WHERE 
+		MEMBER_ID=#{member_id}
+		AND	
+		MEMBER_PHONE=#{member_phone}
 	</select>
-
+	
+	
+	<select id="searchPwByEmail" parameterType="map" resultType="LoginDto">
+	SELECT * 
+	FROM MEMBER 
+	WHERE 
+		MEMBER_ID=#{member_id}
+		AND	
+		MEMBER_EMAIL=#{member_email} 
+	</select>
+	
 	<update id="infoUpdate" parameterType="LoginDto">
-		UPDATE MEMBER
-		SET
+	UPDATE MEMBER
+	SET
 		MEMBER_PW=#member_pw}
-		AND MEMBER_EMAIL=#{member_email}
+		AND 
+		MEMBER_EMAIL=#{member_email}
 		AND
 		MEMBER_PHONE=#{member_phone}
-		WHERE MEMBER_NO=#{member_no}
+	WHERE MEMBER_NO=#{member_no}
 	</update>
 
 	<update id="enabledUpdate" parameterType="LoginDto">
-		UPDATE MEMBER
-		SET
-		MEMBER_ENABLED='N'
-		WHERE MEMBER_NO=#{member_no}
+	UPDATE MEMBER
+	SET	MEMBER_ENABLED='N'
+	WHERE MEMBER_NO=#{member_no}
 	</update>
 
 

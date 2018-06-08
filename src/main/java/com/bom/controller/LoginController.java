@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.print.DocFlavor.STRING;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.ibatis.session.SqlSession;
@@ -25,91 +26,132 @@ import com.bom.dto.LoginDto;
 
 @Controller
 public class LoginController {
-	
-	
+
 	@Autowired
-	private LoginBiz biz;	
+	private LoginBiz biz;
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
 
-	
-	@RequestMapping(value="loginStart.do")
-	public String start(Model model) {		
+	// 로그인-1
+	@RequestMapping(value = "loginStart.do")
+	public String start(Model model) {
 		return "Login_start";
 	}
-	
-	@RequestMapping(value="loginAjax.do")
+
+	// 로그인-2
+	@RequestMapping(value = "loginAjax.do", method = RequestMethod.POST)
 	@ResponseBody
 	// return되는 값을 일반적인 경로로 가는 것이 아니라 (view resolver-view로 가는 것이 아니라)
-	// 서버로 간 뒤  바로 ajax로 response되는애의 객체 body에 rMap을 담아서 보내준다. 
-	//->ajax 쓸때는  @ResponseBody가 붙음!
-	
-	public Map<String,Boolean> loginAjax(HttpSession session, 
-			@RequestParam("member_id") String member_id, 
-			@RequestParam ("member_pw") String member_pw ){ 
+	// 서버로 간 뒤 바로 ajax로 response되는애의 객체 body에 rMap을 담아서 보내준다.
+	// ->ajax 쓸때는 @ResponseBody가 붙음!
 
-		LoginDto dto =new LoginDto(member_id, member_pw);
-		LoginDto mapRes =biz.login(dto);
-			
-		boolean lc=false;
-		if(mapRes!=null) {
-			lc=true;
+	public Map<String, Boolean> loginAjax(HttpSession session, @RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw) {
+
+		LoginDto dto = new LoginDto(member_id, member_pw);
+		LoginDto mapRes = biz.login(dto);
+
+		boolean lc = false;
+		if (mapRes != null) {
+			lc = true;
 			session.setAttribute("dto", mapRes);
 		}
 
-		Map<String, Boolean> rMap= new HashMap<String, Boolean>();
+		Map<String, Boolean> rMap = new HashMap<String, Boolean>();
 		rMap.put("lc", lc);
-			System.out.println("lc:"+lc);
+		System.out.println("lc:" + lc);
 		return rMap;
 	}
-	
-	
+
+	// 로그인-3
 	@RequestMapping("loginRes.do")
-	public String loginRes(Model model, @RequestParam("member_id") 
-	String member_id, @RequestParam("member_pw") String member_pw) {
-		String res=null;	
-	
-		LoginDto parame= new LoginDto(member_id, member_pw);
-		LoginDto dto=biz.login(parame);
-		
-		System.out.println("dto.getMember_role(): "+dto.getMember_role());
-		System.out.println("dto.getMember_pw(): "+ dto.getMember_pw());
-		
+	public String loginRes(Model model, @RequestParam("member_id") String member_id,
+			@RequestParam("member_pw") String member_pw) {
+		String res = null;
+
+		LoginDto parame = new LoginDto(member_id, member_pw);
+		LoginDto dto = biz.login(parame);
+
+		System.out.println("dto.getMember_role(): " + dto.getMember_role());
+		System.out.println("dto.getMember_pw(): " + dto.getMember_pw());
+
 		if (dto.getMember_id() != null || dto.getMember_pw() != null) {
 			model.addAttribute("dto", dto);
-		
-		if (dto.getMember_role().equals("USER")) {
-				res= "Login_userMain";		
-			}else if (dto.getMember_role().equals("ADMIN")) {
-				res= "Login_adminMain";			
-				}
-		} 
+
+			if (dto.getMember_role().equals("USER")) {
+				res = "Login_userMain";
+			} else if (dto.getMember_role().equals("ADMIN")) {
+				res = "Login_adminMain";
+			}
+		}
 		return res;
 	}
-		
-	
-	
-	
-	@RequestMapping(value="searchId.do")
+
+	// 아이디 찾기 :1.메인
+	@RequestMapping(value = "searchId.do")
 	public String searchId(Model model) {
 		return "Login_searchId";
-	}	
-	
-	
-	@RequestMapping(value="searchIdx.do")
-	@ResponseBody
-	public String searchIdx(Model model, @ModelAttribute LoginDto dto) {
-		System.out.println(dto.toString());
-		
-		ArrayList<String> emailList =biz.searchId(dto);
-		System.out.println(emailList.toString());
-		System.out.println(emailList.get(0));
-		String findEmail="{\"member_email\":\""+emailList+"\"}";
-		System.out.println(findEmail);
-				return findEmail;
 	}
-	
+
+	// 아이디 찾기:2-1.전화번호로 찾기
+	@RequestMapping(value = "searchIdByPhone.do")
+	@ResponseBody
+	public LoginDto searchByPhone(HttpSession session, @RequestParam String member_phone) {
+		LoginDto res = new LoginDto();
+		res = biz.searchIdByPhone(member_phone);
+		System.out.println("member_id:" + res.getMember_id());
+
+		return res;
+	}
+
+	// 아이디 찾기:2-2.이메일로 찾기
+	@RequestMapping(value = "searchIdByEmail.do")
+	@ResponseBody
+	public LoginDto searchByEmail(HttpSession session, @RequestParam String member_email) {
+		LoginDto res = new LoginDto();
+		res = biz.searchIdByEmail(member_email);
+		System.out.println("member_id:" + res.getMember_id());
+
+		return res;
+	}
+
+	// 비밀번호 찾기: 1. 메인
 	@RequestMapping("searchPw.do")
 	public String searchPw(Model model) {
 		return "Login_searchPw";
-	}	
+	}
+
+	// 비밀번호 찾기:2-1.전화번호로 찾기
+	@RequestMapping(value = "searchPwByPhone.do")
+	@ResponseBody
+	public LoginDto searchPwByPhone(HttpSession session, @RequestParam String member_id,
+			@RequestParam String member_phone) {
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		map.put("member_phone", member_phone);
+
+		LoginDto mapRes2 = biz.searchPwByPhone(map);
+		session.setAttribute("member_pw", mapRes2.getMember_pw());
+		return mapRes2;
+	}
+
+	// 비밀번호 찾기:2-2.이메일로 찾기
+	@RequestMapping(value = "searchPwByEmail.do")
+	@ResponseBody
+	public LoginDto searchPwByEmail(HttpSession session, @RequestParam String member_id,
+			@RequestParam String member_email) {
+		System.out.println("member_id:" + member_id);
+		System.out.println("member_email:" + member_email);
+
+		Map<String, String> map = new HashMap<String, String>();
+		map.put("member_id", member_id);
+		map.put("member_email", member_email);
+
+		LoginDto mapRes2 = biz.searchPwByEmail(map);
+		System.out.println("member_pw: " + mapRes2.getMember_pw());
+		session.setAttribute("member_pw", mapRes2.getMember_pw());
+
+		return mapRes2;
+	}
+
 }

@@ -37,6 +37,19 @@ public class RegistDao {
 		return res;
 	}
 	
+	// id 중복체크
+		public RegistDto idChk(String member_id) {
+			RegistDto res=new RegistDto();
+			try { 
+				res = sqlSession.selectOne(namespace + "idChk", member_id);
+				System.out.println("idChk ok");
+			} catch (Exception e) {
+				System.out.println("idChk error");
+				e.printStackTrace();
+			}
+			return res;
+		}
+	
 	
 		
 	

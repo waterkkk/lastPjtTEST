@@ -19,6 +19,14 @@ public class LoginDto {
 	
 	
 	
+	public LoginDto(String member_id, String member_pw) {
+		super();
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+	}
+
+
+
 	public LoginDto(int member_no, String member_id, String member_pw, String member_name, String member_email,
 			String member_phone, String member_enabled, String member_role) {
 		super();
@@ -35,11 +43,13 @@ public class LoginDto {
 	
 	
 	
-	public LoginDto(String member_id, String member_pw) {
-		super();
-		this.member_id = member_id;
-		this.member_pw = member_pw;
-	}
+	
+	
+	
+
+
+
+
 
 
 

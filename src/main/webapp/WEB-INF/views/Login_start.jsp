@@ -22,31 +22,42 @@
 		var pwVal = $("#member_pw").val();
 
 		if (idVal == null || idVal == "") {
-			alert("아이디를 입력해 주세요.");
-			
+			document.getElementById("commLogin").innerHTML = "아이디를 입력해 주세요.";
+		
+		}else if(idVal.length<6||idVal.length>12){
+			document.getElementById("commLogin").innerHTML = "아이디를 6~12자까지 입력해 주세요.";
+			 	document.getElementbyId("member_id").focus();
+			 	document.getElementbyId("member_id").select();	
+			 	
 		} else if (pwVal == null || pwVal == "") {
-			alert("패스워드를 입력해 주세요.");
+			alert("비밀번호를 입력해 주세요.");
+			
+		}else if(pwVal.length<9){
+			document.getElementById("commLogin").innerHTML = "비밀번호를 9자 이상 입력해 주세요.";
+			 	document.getElementbyId("member_pw").focus();
+			 	document.getElementbyId("member_pw").select();		 	
 			
 		} else {
 			$.ajax({
+						method: "post",
 						url : "loginAjax.do",
 						data : "member_id=" + idVal + "&member_pw=" + pwVal,
-						success : function(msg) {
-							
+						success : function(msg) {							
 							if (msg.lc) {
 								location.href = "loginRes.do?member_id="
 										+ idVal + "&member_pw=" + pwVal;
-
 							} else {
-								document.getElementById("commLogin").innerHTML = "아이디, 비밀번호를 모두 입력해 주세요.";
+								document.getElementById("commLogin").innerHTML = "비밀번호가 맞지 않습니다. 다시 입력해 주세요";
 							}
 						},
 						error : function(statusCode) {
 							alert("error:" + statusCode.status);
-						}
-					});
+				}
+			});
 		}
 	}
+	
+
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -88,10 +99,7 @@
 							<tr>
 								<td><input type="button" class="btn btn-primary"
 									value="로그인" onclick="login();"></td>
-							</tr>
-							<tr>
-								<td colspan="2" align="center" id="commLogin"></td>
-							</tr>
+							</tr>		
 						</table>
 					</div>
 
@@ -100,6 +108,8 @@
 						<a href="searchId.do" style="color:white">아이디 찾기</a>
 						<a href="searchPw.do" style="color:white">비밀번호 찾기</a>
 					</div>
+					<br><br>
+					<div align="center" id="commLogin"></div>
 
 
 				</div>
