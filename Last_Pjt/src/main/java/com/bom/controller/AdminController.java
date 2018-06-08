@@ -1,11 +1,9 @@
 package com.bom.controller;
 
 import java.io.BufferedReader;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
@@ -17,8 +15,6 @@ import java.util.Locale;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,20 +24,16 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
 
 import com.bom.biz.AdminBiz;
 import com.bom.biz.NoticeBoardBiz;
 import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
 import com.bom.dto.NoticeBoardDto;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 
 @Controller
 public class AdminController {
@@ -55,7 +47,7 @@ public class AdminController {
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-		return "Admin_home";
+		return "Admin_Home";
 	}
 
 	/* 목록 */
@@ -205,7 +197,7 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("admin_list", list);
 		
-		return "Admin_list";
+		return "Admin_List";
 	}
 
 	/* 상세 */
@@ -215,13 +207,13 @@ public class AdminController {
 
 		AdminDto dto = biz.selectOne(member_id);
 		model.addAttribute("admin_dto", dto);
-		return "Admin_detail";
+		return "Admin_Detail";
 	}
 
 	/* 입력페이지로 이동 */
 	@RequestMapping("Admin_write.do")
 	public String writeForm(Model model) {
-		return "Admin_insert";
+		return "Admin_Insert";
 	}
 
 	/* 입력후 저장 */
@@ -359,7 +351,7 @@ public class AdminController {
 		model.addAttribute("admin_list", res);
 		System.out.println("입력 : " + Admin_search);
 		System.out.println("검색 : " + Admin_keyword);
-		return "Admin_list";
+		return "Admin_List";
 	}
 
 	/* 등급조정 */
@@ -385,7 +377,7 @@ public class AdminController {
 		System.out.println("코스 입력 : " + COURSE_CATEGORY_NM);
 		System.out.println("코스 검색 : " + Admin_keywordload);
 
-		  return "Admin_list";
+		  return "Admin_List";
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -461,11 +453,12 @@ public class AdminController {
 	/*걷기 게시판*/
 	@RequestMapping("Exercise_walk.do")
 	public String Exercise_walk(Model model) {
-		return "Exercise_walk";
+		System.out.println("test");
+		return "Exercise_Walk";
 	}
 	
 	/*길찾기*/
-	@RequestMapping("Exercise_search.do")
+	@RequestMapping("Exercise_Search.do")
 	public String Exercise_search(Model model) {
 		
 		return "Exercise_Search";
@@ -473,9 +466,9 @@ public class AdminController {
 	
 	/*등산 게시판*/
 	@RequestMapping("Exercise_hiking.do")
-	public String Exercise_hiking(Model model) throws IOException {
+	public String Exercise_hiking(Model model) {
        
-        return "Exercise_hiking";
+        return "Exercise_Hiking";
 	}
 	
 	@RequestMapping("Exercise_hiking1.do")
@@ -542,15 +535,20 @@ public class AdminController {
 		model.addAttribute("hiking_keyword", hiking_keyword);
         model.addAttribute("abc", abc);
 		
-		return "Exercise_hiking";
+		return "Exercise_Hiking";
 	}
 	
 	/*문화행사 게시판*/
 	@RequestMapping("Freetime_Culture.do")
 	public String Freetime_Culture(Model model) {
 		
-		
         return "Freetime_Culture";
+	}
+	/*도서관 게시판*/
+	@RequestMapping(" Freetime_Library.do")
+	public String  Freetime_Library(Model model) {
+		
+		return " Freetime_Library";
 	}
 
 }

@@ -73,9 +73,9 @@ $.ajax({
           <div class="btn-group">
             <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">여가</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">문화행사</a>
+              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">도서관</a>
+              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
            <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">공원</a>
             <div class="dropdown-divider"></div>
@@ -94,7 +94,6 @@ $.ajax({
 	</div>
 
 <div class="container">
-<button onclick="testtest();" class="btn btn-dark" >abc</button>
 <form class="form-inline m-0" action="Exercise_hiking1.do" method="post">
 <input type="text" name="hiking_keyword" id="hiking_keyword">
 <input type="submit" class="btn btn-dark" value="검색" placeholder="ex)제주, 서울"/>
@@ -102,7 +101,7 @@ $.ajax({
 	<table>
 		<c:choose>
 			<c:when test="${empty abc }">
-				<h3>******회원정보가 없습니다.*******</h3>
+			
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${requestScope.abc }" var="abc">

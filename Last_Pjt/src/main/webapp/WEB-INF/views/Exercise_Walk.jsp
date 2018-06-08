@@ -4,12 +4,11 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <% response.setContentType("text/html; charset=UTF-8"); %>
     
+    
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
- 
-
 <title>걷기게시판</title>
 <style type="text/css">
 @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
@@ -20,13 +19,14 @@
 }
 
 </style>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 function test1(){
 	var searchAPI = $("#searchAPI").val();
 			alert(searchAPI);
 			
-	$.ajax({        
+	$.ajax({
         url: "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5/"+searchAPI,
         type: "get",
         dataType: "html",
@@ -34,16 +34,16 @@ function test1(){
         	alert("성공"); 
         /* 	$("body").append(api); */  
         $(api).find("row").each(function(){
-        	var course_category_nm = " <h4> " + $(this).find("COURSE_CATEGORY_NM").text()+"</h4>";
-        	var course_name = " <h4> " + $(this).find("COURSE_NAME").text()+"</h4>";
-        	var detail_course = "<h4>" + $(this).find("DETAIL_COURSE").text()+"</h4>";
-        	var cpi_name = "<h4>" + $(this).find("CPI_NAME").text()+"</h4>";
-        	var area_gu = "<h4>" + $(this).find("AREA_GU").text()+"</h4>";
-        	var distance = "<h4>" + $(this).find("DISTANCE").text()+"</h4>";
-        	var lead_time = "<h4> " + $(this).find("LEAD_TIME").text()+"</h4>";
-        	var course_level = "<h4>" + $(this).find("COURSE_LEVEL").text()+"</h4>";
-        	var traffic_info = "<h4>" + $(this).find("TRAFFIC_INFO").text()+"</h4>";
-        	var content = "<h4> " + $(this).find("CONTENT").text()+"</h4>";
+        	var course_category_nm =$(this).find("COURSE_CATEGORY_NM").text();
+        	var course_name = $(this).find("COURSE_NAME").text();
+        	var detail_course =  $(this).find("DETAIL_COURSE").text();
+        	var cpi_name =  $(this).find("CPI_NAME").text();
+        	var area_gu =  $(this).find("AREA_GU").text();
+        	var distance = $(this).find("DISTANCE").text();
+        	var lead_time = $(this).find("LEAD_TIME").text();
+        	var course_level =  $(this).find("COURSE_LEVEL").text();
+        	var traffic_info = $(this).find("TRAFFIC_INFO").text();
+        	var content = $(this).find("CONTENT").text()+"</h4>";
         	var out = course_category_nm + course_name + detail_course + cpi_name + area_gu + distance + lead_time + course_level + traffic_info + content;
         	$("#apiList").append("<tr><th>유형</th><th>코스</th><th>상세코스</th><th>주요지점</th><th>지역</th><th>거리</th><th>소요시간</th><th>난이도</th><th>교통</th><th>설명</th></tr><tr><td>" + course_category_nm +"</td><td> " +  course_name +"</td><td> "+ detail_course +"</td><td> " + cpi_name +"</td><td> " + area_gu +"</td><td> " + distance +"</td><td> " + lead_time + "</td><td> " + course_level +"</td><td> " + traffic_info +"</td><td> " + content + "</td></tr>");
         });
@@ -101,9 +101,9 @@ $("select").click(function() {
           <div class="btn-group">
             <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 여가</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">문화행사</a>
+              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">도서관</a>
+              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">공원</a>
               <div class="dropdown-divider"></div>
@@ -132,7 +132,7 @@ $("select").click(function() {
 						</form>
 					<div style="float: right;">
 						<label for="course_name">상세 검색</label>
-						<input type="text" class="form-control" id="searchAPI" placeholder="ex)관악산, 도림천길" style="width:200px; "/>
+						<input type="text" class="form-control mr-2" id="searchAPI" placeholder="ex)관악산, 도림천길" style="width:200px; "/>
 						<button onclick="test1();" class="btn btn-dark" >검색</button>
 					</div><br/><br/><br/>
 					</div>

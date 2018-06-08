@@ -22,36 +22,6 @@
 </style> 
 <script type="text/javascript">
 
-function test1(){
-	var searchAPI = $("#searchAPI").val();
-			alert(searchAPI);
-			
-	$.ajax({        
-        url: "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5/"+searchAPI,
-        type: "get",
-        dataType: "html",
-        success:function(api){
-        	alert("성공"); 
-        /* 	$("body").append(api); */  
-        $(api).find("row").each(function(){
-        	var course_category_nm = " <h4> 유형 : " + $(this).find("COURSE_CATEGORY_NM").text()+"</h4>";
-        	var detail_course = "<h4> 상세코스 : " + $(this).find("DETAIL_COURSE").text()+"</h4>";
-        	var cpi_name = "<h4> 주요 지점 : " + $(this).find("CPI_NAME").text()+"</h4>";
-        	var area_gu = "<h4> 지역 : " + $(this).find("AREA_GU").text()+"</h4>";
-        	var distance = "<h4> 거리 : " + $(this).find("DISTANCE").text()+"</h4>";
-        	var lead_time = "<h4> 소요시간 : " + $(this).find("LEAD_TIME").text()+"</h4>";
-        	var course_level = "<h4> 난이도 : " + $(this).find("COURSE_LEVEL").text()+"</h4>";
-        	var traffic_info = "<h4> 교통 : " + $(this).find("TRAFFIC_INFO").text()+"</h4>";
-        	var content = "<h4> 설명 : " + $(this).find("CONTENT").text()+"</h4>";
-        	var out = course_category_nm + detail_course + cpi_name + area_gu + distance + lead_time + course_level + traffic_info + content;
-        	$("body").append(out+"<br/>");
-        });
-	},				
-		error:function(){								
-			alert("실패"); 
-	}
-});
-	}
 </script>
 </head>
 <body>

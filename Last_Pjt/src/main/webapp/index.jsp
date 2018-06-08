@@ -61,7 +61,7 @@ a { text-decoration:none }
             <div class="dropdown-menu">
               <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">도서관</a>
+              <a class="dropdown-item" href=" Freetime_Library.do">도서관</a>
            <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">공원</a>
             <div class="dropdown-divider"></div>
