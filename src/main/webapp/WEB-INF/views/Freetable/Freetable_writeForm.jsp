@@ -4,6 +4,7 @@
 <%@ page import="com.bom.dto.FreetableDto"%>
 <%@ page import="com.bom.dao.FreetableDao"%>
 <%@ page import="com.bom.biz.FreetableBiz"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -23,7 +24,7 @@
 
 			<tr>
 				<th>작성자</th>
-<%-- 				<td><input type="text" style='border:none' name="id" value="${dto.freetable_id }" readonly="readonly"></td> --%>
+<%-- 				<td><input type="text" style='border:none' name="member_id" value="${dto.member_id}" readonly="readonly"></td> --%>
 					<td><input type="text" name="freetable_id" /></td>
 			</tr>
 			<tr>

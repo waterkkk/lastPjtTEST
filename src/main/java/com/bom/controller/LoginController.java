@@ -34,7 +34,7 @@ public class LoginController {
 	// 로그인-1
 	@RequestMapping(value = "loginStart.do")
 	public String start(Model model) {
-		return "Login_start";
+		return "Login/Login_start";
 	}
 
 	// 로그인-2
@@ -78,9 +78,9 @@ public class LoginController {
 			model.addAttribute("dto", dto);
 
 			if (dto.getMember_role().equals("USER")) {
-				res = "Login_userMain";
+				res = "Login/Login_userMain";
 			} else if (dto.getMember_role().equals("ADMIN")) {
-				res = "Login_adminMain";
+				res = "Login/Login_adminMain";
 			}
 		}
 		return res;
@@ -89,7 +89,7 @@ public class LoginController {
 	// 아이디 찾기 :1.메인
 	@RequestMapping(value = "searchId.do")
 	public String searchId(Model model) {
-		return "Login_searchId";
+		return "Login/Login_searchId";
 	}
 
 	// 아이디 찾기:2-1.전화번호로 찾기
@@ -117,7 +117,7 @@ public class LoginController {
 	// 비밀번호 찾기: 1. 메인
 	@RequestMapping("searchPw.do")
 	public String searchPw(Model model) {
-		return "Login_searchPw";
+		return "Login/Login_searchPw";
 	}
 
 	// 비밀번호 찾기:2-1.전화번호로 찾기

@@ -6,6 +6,7 @@
 <%@ page import="com.bom.biz.FreetableBiz"%>
 <%@ page import="com.bom.dto.FreecommDto"%>
 <%@ page import="com.bom.dao.FreecommDao"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <!DOCTYPE html>
 <html>

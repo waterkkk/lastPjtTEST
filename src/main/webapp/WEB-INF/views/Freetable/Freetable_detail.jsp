@@ -49,7 +49,6 @@
 <body>
 
 	<div class="content">
-
 		<div id="DetailForm">
 			<h1 style="margin-left: 25%;">상세글 보기</h1>
 			<form action="delete.do" method="get">
@@ -59,11 +58,14 @@
 					<col width="670">
 					<tr>
 						<th id="titleth">작성자</th>
-						<td><input type="text" name="freetable_id" value="${detail.freetable_id }"/></td>
+						<td><input type="text" name="freetable_id" style='border: none' readonly="readonly" 
+						value="${detail.freetable_id }"/></td>
 					</tr>
+										
 					<tr>
 						<th id="titleth">제목</th>
-						<td><input type="text" name="freetable_title" value="${detail.freetable_title}"/></td>
+						<td><input type="text" name="freetable_title" style='border: none' readonly="readonly" 
+						value="${detail.freetable_title}"/></td>
 					</tr>
 					<tr>
 						<th id="titleth">내용</th>
@@ -73,12 +75,20 @@
 						<td colspan="2" align="right">
 						<input type="button" value="답글"	onclick="FreetableReply();"> 
 						<input type="button"value="목록" onclick="location.href='board.do?nowPage=1'"> 
+<%-- 						<c:if test="${dto.member_id ==detail.freetable_id}"> --%>
 						<input	type="button" value="수정" onclick="FreetableUpdate();"> 
 						<input	type="submit" value="삭제"></td>
+<%-- 						</c:if> --%>
+						
+<%-- 						 <c:if test="${dto.member_role eq'ADMIN' }"> --%>
+<!-- 						 <input type="submit" value="삭제">  -->
+<%--                			</c:if> --%>						
 					</tr>
 				</table>
 			</form>
-			
+	
+	
+<!-- 댓글시작  -->			
 			
 		<br>
 		<br>
@@ -86,28 +96,29 @@
 				<col width="100">
 				<col width="250">
 				<col width="200">
-				<tr id="titleth">
-					<th>작성자</th>
-					<th>내용</th>
-					<th>작성일</th>
-				</tr>
+					<tr id="titleth">
+						<th>작성자</th>
+						<th>내용</th>
+						<th>작성일</th>
+					</tr>
 				<c:choose>
 					<c:when test="${empty list }">
 						<tr>
 							<td colspan="4">-----댓글이 없습니다----</td>
 						</tr>
 					</c:when>
-					<c:otherwise>
+				<c:otherwise>
 						<c:forEach items="${list }" var="list">
-							<tr>
-								<td align="center">${list.freecomm_id }</td>
-								<td align="center">
-								<c:forEach begin="1" end="${list.freecomm_titleTab }">
+						<tr>
+							<td align="center">${list_freetable_id }</td>
+							<td align="center">
+							<c:forEach begin="1" end="${list.freecomm_titleTab }">
 								 RE:
-						        </c:forEach> 
+					        </c:forEach> 
 						        <a href="commRe.do?freetable_no=${list.freetable_no}
-									&freecomm_id=${list.freecomm_id}&freecomm_no=${list.freecomm_no}
-									&freecomm_groupNo=${list.freecomm_groupNo}&freecomm_step=${list.freecomm_step}">${list.freecomm_content}</a></td>
+									&freetable_id=${list.freetable_id}&freecomm_no=${list.freecomm_no}
+									&freecomm_groupNo=${list.freecomm_groupNo}
+									&freecomm_step=${list.freecomm_step}">${list.freecomm_content}</a></td>
 								<td align="center">${list.freecomm_regDate }</td>
 							</tr>
 						</c:forEach>
@@ -117,7 +128,7 @@
 
 			<form action="commInsert.do" method="get">
 			<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
-<%-- 			<input type="hidden" name="member_id" value="${detail.member_id }"> --%>
+			<input type="hidden" name="member_id" value="${dto.member_id }">
 				<table align="center">
 					<br>
 					<tr>
@@ -131,7 +142,7 @@
 		</div>
 
 
-
+<!-- 댓글끝  -->	
 
 
 

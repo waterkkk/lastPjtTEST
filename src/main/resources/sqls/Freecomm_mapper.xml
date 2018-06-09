@@ -32,12 +32,12 @@
 	</select>
 
 	
-	<insert id="commInsert" parameterType="FreecommDto" >
+	<insert id="commInsert" parameterType="map">
 	INSERT INTO FREECOMM
 	VALUES(
 		#{freetable_no},
 		FREECOMM_NO_SEQ.NEXTVAL,
-		#{freecomm_id},
+		#{member_id},
 		#{freecomm_content},
 		SYSDATE,
 		FREECOMM_GROUPNO_SEQ.NEXTVAL,
@@ -45,6 +45,21 @@
 		0
 	)
 	</insert>
+	
+	
+<!-- 	<insert id="commInsert" parameterType="FreecommDto" > -->
+<!-- 	INSERT INTO FREECOMM -->
+<!-- 	VALUES( -->
+<!-- 		#{freetable_no}, -->
+<!-- 		FREECOMM_NO_SEQ.NEXTVAL, -->
+<!-- 		#{freecomm_id}, -->
+<!-- 		#{freecomm_content}, -->
+<!-- 		SYSDATE, -->
+<!-- 		FREECOMM_GROUPNO_SEQ.NEXTVAL, -->
+<!-- 		1, -->
+<!-- 		0 -->
+<!-- 	) -->
+<!-- 	</insert> -->
 	
 	
 	<insert id="insertReply2" >

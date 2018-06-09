@@ -1,6 +1,7 @@
 package com.bom.biz;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,6 +22,8 @@ public class FreecommBiz {
 	public FreecommDto commSelectOne(int freetable_no) {
 		return dao.commSelectOne(freetable_no);
 	}
+	
+
 	
 	public int commInsert(FreecommDto dto) {
 		return dao.commInsert(dto);

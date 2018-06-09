@@ -1,5 +1,6 @@
 package com.bom.dao;
 
+import com.bom.biz.*;
 import com.bom.dto.*;
 
 import java.util.ArrayList;
@@ -43,6 +44,11 @@ public class FreecommDao {
 		return res;
 	}
 
+	
+	
+
+	
+	
 	// 댓글입력
 	public int commInsert(FreecommDto dto) {
 		int res = 0;

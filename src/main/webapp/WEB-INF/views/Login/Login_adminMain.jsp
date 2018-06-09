@@ -21,7 +21,7 @@
 	type="text/css">
 </head>
 <body>
-
+ <form action="main.do" method="post">
 	<div class="py-5 text-white opaque-overlay"
 		style="background-image: url('images/good.jpg'); background-size: 100% 100%">
 		<div class="container">
@@ -36,10 +36,9 @@
 
 
 					<div align="center">
-						<input type="button" class="btn btn-primary" value="메인화면" 
-						 	onclick="location.href='index.jsp'">
-						<input type="button" class="btn btn-primary" value="개인페이지" 
-						 	onclick="location.href='indi.do'">
+						<input type="submit" class="btn btn-primary" value="메인화면" >
+						<input type="button" class="btn btn-primary" value="관리자페이지" 
+						 	onclick="location.href='Admin_list.do'">
 						 	</div>
 					</div>
 
@@ -53,7 +52,7 @@
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-
+</form>
 </body>
 </html>
 

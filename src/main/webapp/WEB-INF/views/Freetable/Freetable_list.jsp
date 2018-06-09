@@ -1,11 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-<%
-	response.setContentType("text/html; charset=UTF-8");
-%>
+<%	request.setCharacterEncoding("UTF-8");%>
+<%	response.setContentType("text/html; charset=UTF-8");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.sql.*,java.text.SimpleDateFormat"%>
 <%@ page import="java.util.Date"%>
@@ -17,37 +13,25 @@
 <html>
 <head>
 
-
-
 <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-<script type="text/javascript">
-
-
-
-</script>
+<script type="text/javascript"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Freetable_list</title>
-
-
 </head>
-
 <body>
-
-
-
 	<div class="content" id="ListForm">
 		<h1 style="margin-left: 3%;">자유게시판</h1>
 
-		<%-- 	<c:if test="${empty login.member_id }"> --%>
-		<!-- 	  <div id="loginAlert"> -->
-		<!-- 	  	게시판을 보기 위해서는 <a id="doLogin" href="loginPage.jsp">로그인</a>이 필요합니다 -->
-		<!-- 		<br><br><br><br> -->
-		<!-- 	  </div> -->
-		<%-- 	</c:if> --%>
+<%-- 			<c:if test="${empty login.member_id }"> --%>
+<!-- 			  <div id="loginAlert"> -->
+<!-- 			  	게시판을 보기 위해서는 <a id="doLogin" href="loginStart.do">로그인</a>이 필요합니다 -->
+<!-- 				<br><br><br><br> -->
+<!-- 			  </div> -->
+<%-- 			</c:if> --%>
 
-		<%-- 	<c:if test="${login.member_id != null}"> --%>
-
+<%-- 		<c:if test="${dto.member_id != null}"> --%>
+        <c:if test="${empty map.keyword }">
 		<div align="center" id="selectAllLista">
 			<table border="1">
 				<col width="50">
@@ -130,23 +114,10 @@
 				</tr>
 			</table>
 		</div>
-
+        </c:if>
+        
 <!-- 검색 -->
-		<div align="center" >
-			<form action="search.do" method="get">
-				<select name="searching" id="searching">
-					<option value="freetable_id">작성자</option>
-					<option value="freetable_title">글 제목</option>
-					<option value="freetable_content">글 내용</option>
-					<option value="freetable_no">글 번호</option>
-				</select> <input name="keyword" value="${map.keyword}"> <input
-					type="submit" id ="result"   value="검색"  >
-			</form>
-		</div>
-		<br> <br>
-
-
-<!-- 검색결과 -->
+			<c:if test="${map.keyword != null}">
 		<div align="center" id="ResultForm">
 			<table border="1" width="600px">
 				<tr>
@@ -160,22 +131,35 @@
 					<tr align="center">
 						<td>${row.freetable_no}</td>
 						<td>${row.freetable_id}</td>
-						<td><a
-							href="${path}/commRe.do?freetable_no=${row.freetable_no}">${row.freetable_title}</a></td>
+						<td>
+						<a href="detail.do?freetable_no=${row.freetable_no}">${row.freetable_title}</a>
+						</td>
 						<td>${row.freetable_regDate}</td>
 						<td>${row.freetable_readCount}</td>
 					</tr>
 				</c:forEach>
 			</table>
 		</div>
-		<%-- 	</c:if> --%>
+		</c:if>
+
+		<div align="center" >
+			<form action="search.do" method="get">
+				<select name="searching" id="searching">
+					<option value="freetable_id">작성자</option>
+					<option value="freetable_title">글 제목</option>
+					<option value="freetable_content">글 내용</option>
+					<option value="freetable_no">글 번호</option>
+				</select> 
+				
+				<input name="keyword" value="${map.keyword}"> 
+				<input type="submit" id ="result"   value="검색" >
+			</form>
+		</div>
+		<br> <br>
+
+<%-- 			</c:if> --%>
 
 	</div>
-	</div>
-
-
-
-
 
 </body>
 
