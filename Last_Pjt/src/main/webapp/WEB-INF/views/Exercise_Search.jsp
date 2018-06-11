@@ -57,7 +57,7 @@
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">공원</a>
+              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">노인교실/경로당</a>
             </div>

@@ -544,11 +544,19 @@ public class AdminController {
 		
         return "Freetime_Culture";
 	}
+	
 	/*도서관 게시판*/
-	@RequestMapping(" Freetime_Library.do")
+	@RequestMapping("Freetime_Library.do")
 	public String  Freetime_Library(Model model) {
 		
-		return " Freetime_Library";
+		return "Freetime_Library";
+	}
+	
+	/*공원 게시판*/
+	@RequestMapping("Freetime_Park.do")
+	public String  Freetime_Park(Model model) {
+		
+		return "Freetime_Park";
 	}
 
 }

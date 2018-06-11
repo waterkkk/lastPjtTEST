@@ -31,21 +31,18 @@ function test1(){
         type: "get",
         dataType: "html",
         success:function(api){
-        	alert("성공"); 
         /* 	$("body").append(api); */  
         $(api).find("row").each(function(){
-        	var course_category_nm =$(this).find("COURSE_CATEGORY_NM").text();
         	var course_name = $(this).find("COURSE_NAME").text();
         	var detail_course =  $(this).find("DETAIL_COURSE").text();
-        	var cpi_name =  $(this).find("CPI_NAME").text();
         	var area_gu =  $(this).find("AREA_GU").text();
         	var distance = $(this).find("DISTANCE").text();
         	var lead_time = $(this).find("LEAD_TIME").text();
         	var course_level =  $(this).find("COURSE_LEVEL").text();
         	var traffic_info = $(this).find("TRAFFIC_INFO").text();
         	var content = $(this).find("CONTENT").text()+"</h4>";
-        	var out = course_category_nm + course_name + detail_course + cpi_name + area_gu + distance + lead_time + course_level + traffic_info + content;
-        	$("#apiList").append("<tr><th>유형</th><th>코스</th><th>상세코스</th><th>주요지점</th><th>지역</th><th>거리</th><th>소요시간</th><th>난이도</th><th>교통</th><th>설명</th></tr><tr><td>" + course_category_nm +"</td><td> " +  course_name +"</td><td> "+ detail_course +"</td><td> " + cpi_name +"</td><td> " + area_gu +"</td><td> " + distance +"</td><td> " + lead_time + "</td><td> " + course_level +"</td><td> " + traffic_info +"</td><td> " + content + "</td></tr>");
+        	var out = course_name + detail_course + area_gu + distance + lead_time + course_level + traffic_info + content;
+        	$("#apiList").append("<tr><th>코스</th><th>상세코스</th><th>지역</th><th>거리</th><th>소요시간</th><th>난이도</th><th>교통</th><th>설명</th></tr><br/><tr><td> " +  course_name +"</td><td> "+ detail_course +"</td><td> " + area_gu +"</td><td> " + distance +"</td><td> " + lead_time + "</td><td> " + course_level +"</td><td><br/> " + traffic_info +"<br/></td><td><br/> " + content + "</td></tr><br/>");
         });
 	},		
 		error:function(){								
@@ -83,8 +80,6 @@ $("select").click(function() {
           <div class="btn-group">
             <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 운동</button>
             <div class="dropdown-menu">
-              <a class="dropdown-item" href="Exercise_search.do">길찾기</a>
-               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
@@ -105,7 +100,7 @@ $("select").click(function() {
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">공원</a>
+              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">노인교실/경로당</a>
             </div>
@@ -114,13 +109,14 @@ $("select").click(function() {
         </div>
       </div>
     </div>
+    
   </div><br/><br/><br/>
-<br/><br/><br/><br/><br/>
 	<div class="col-md-12" >
 		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
-	</div>
+	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
+	</div> <br/><br/><br/>
 <div class="container">
-		<h3>코스 검색</h3><br/><br/><br/><br/><br/>
+		<h3>코스 검색</h3><br/>
 		<form class="form-inline m-0" method="post">
 			<label for="se01" class="label01" class="form-control">유형별</label>&nbsp;&nbsp;
 			<select id="select" class="form-control" onchange="window.location.href=this.value;">
@@ -132,10 +128,10 @@ $("select").click(function() {
 						</form>
 					<div style="float: right;">
 						<label for="course_name">상세 검색</label>
-						<input type="text" class="form-control mr-2" id="searchAPI" placeholder="ex)관악산, 도림천길" style="width:200px; "/>
+						<input type="text" class="form-control" id="searchAPI" placeholder="ex) 관악산, 안양천" style="width:200px;"/>
 						<button onclick="test1();" class="btn btn-dark" >검색</button>
 					</div><br/><br/><br/>
-					</div>
+					</div><br/><br/>
 					
 					
 	<div class="container">			

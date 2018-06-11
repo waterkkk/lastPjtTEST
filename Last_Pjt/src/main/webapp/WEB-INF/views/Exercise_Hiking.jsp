@@ -8,13 +8,28 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>등산로</title>
+<style type="text/css">
+* {
+	font-family: 'Nanum Gothic Coding';
+ 	text-align: center; 
+}
+
+input{
+text-align: center; 
+}
+
+p{
+ text-align: center;"
+}
+
+</style>
 <script type="text/javascript">
 
-function test3(){
+/* function test3(){
 	var xhr = new XMLHttpRequest();
 	var url = 'http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI'; /*URL*/
-	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D'; /*Service Key*/
-	queryParams += '&' + encodeURIComponent('searchArNm') + '=' + encodeURIComponent('강원'); /*2619990400*/
+	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D';
+	queryParams += '&' + encodeURIComponent('searchArNm') + '=' + encodeURIComponent('강원'); 
 	xhr.open('GET', url + queryParams);
 	xhr.onreadystatechange = function () {
 	    if (this.readyState == 4) {
@@ -23,7 +38,7 @@ function test3(){
 	    }
 	};
 	xhr.send('');
-	}
+	} */
 	
 function testtest(){
 	
@@ -77,7 +92,7 @@ $.ajax({
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
            <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">공원</a>
+              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
             <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="#">노인교실/경로당</a>
             </div>
@@ -89,15 +104,19 @@ $.ajax({
         </div>
         </div><br/><br/><br/>
         
-    <div class="col-md-12" style="margin:0 auto;">
-		<img alt="등산" src="http://admin.brainworld.com/Library/FileDown.aspx?filename=sshutterstock_111970076.jpg&filepath=BrainHealth" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
+    <div class="col-md-12">
+		<p><img alt="등산" src="http://admin.brainworld.com/Library/FileDown.aspx?filename=sshutterstock_111970076.jpg&filepath=BrainHealth" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"></p>
+	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a><br/><br/><br/>
 	</div>
 
 <div class="container">
 <form class="form-inline m-0" action="Exercise_hiking1.do" method="post">
-<input type="text" name="hiking_keyword" id="hiking_keyword">
-<input type="submit" class="btn btn-dark" value="검색" placeholder="ex)제주, 서울"/>
+<input type="text" name="hiking_keyword" id="hiking_keyword" placeholder="ex)제주, 서울"/>
+<input type="submit" class="btn btn-dark" value="검색" />
 </form>
+</div>
+
+<div class="container">
 	<table>
 		<c:choose>
 			<c:when test="${empty abc }">
