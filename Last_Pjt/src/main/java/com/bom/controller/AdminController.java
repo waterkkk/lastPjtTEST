@@ -1,6 +1,8 @@
 package com.bom.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,12 +11,18 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.net.URLEncoder;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +45,7 @@ import com.bom.dto.NoticeBoardDto;
 
 @Controller
 public class AdminController {
+	
 
 	@Autowired
 	AdminBiz biz;
@@ -557,6 +566,55 @@ public class AdminController {
 	public String  Freetime_Park(Model model) {
 		
 		return "Freetime_Park";
+	}
+	/*경로당 게시판*/
+	@RequestMapping("Freetime_Center.do")
+	public String  Freetime_Center(Model model) throws IOException {
+		
+	/*	// xlsx 파일 스트림
+		FileInputStream file = new FileInputStream(new File("D:\\center.xlsx"));
+		System.out.println("test1");
+
+		// 파일 스트림을 XSSFWorkbook 객체로 생성
+		XSSFWorkbook workbook = new XSSFWorkbook(file);
+		System.out.println("test2");
+
+		// XSSFWorkbook 의 첫번째 시트를 가져옴
+		XSSFSheet sheet = workbook.getSheetAt(0);
+		System.out.println("test3");
+
+		// 시트의 row
+		Iterator<Row> rowIterator = sheet.iterator();
+		System.out.println("test4");
+
+		// row 수 만큼
+		while (rowIterator.hasNext()) {
+		    Row row = rowIterator.next();
+
+		    // row 의 cell들
+		    Iterator<Cell> cellIterator = row.cellIterator();
+
+		    // cell 수 만큼
+		    while (cellIterator.hasNext()) {
+		        Cell cell = cellIterator.next();
+		        
+		        String value = null;
+
+		        switch (cell.getCellType()) {
+		            // cell 타입이 숫자
+		            case Cell.CELL_TYPE_NUMERIC:
+		            	value += cell.getNumericCellValue();
+		                break;
+		            // cell 타입이 스트링
+		            case Cell.CELL_TYPE_STRING:
+		            	value += cell.getStringCellValue();
+		                break;
+		        }
+		        model.addAttribute("value", value);
+		    }
+		}*/
+		
+		return "Freetime_Center";
 	}
 
 }

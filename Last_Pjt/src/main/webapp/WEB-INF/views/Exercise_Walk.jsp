@@ -15,10 +15,15 @@
 
 * {
 	font-family: 'Nanum Gothic Coding';
- 	text-align: center; 
+}
+
+p{
+ text-align: center;"
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
@@ -102,7 +107,7 @@ $("select").click(function() {
               <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Freetime_Park.do">공원</a>
               <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">노인교실/경로당</a>
+              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
             </div>
           </div>
           <a class="btn btn-dark" href="#">자유게시판</a>
@@ -110,10 +115,21 @@ $("select").click(function() {
       </div>
     </div>
     
+       <div class="py-5 text-white" style="background-image: url(&quot;https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-04295.jpg&quot;);" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h1 class="text-gray-dark">걷기</h1>
+          <h4></h4><br/><br/><br/><br/><br/>
+        </div>
+      </div>
+    </div>
+  </div>
+    
   </div><br/><br/><br/>
 	<div class="col-md-12" >
-		<img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
-	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
+		<p><img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
+	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a></p>
 	</div> <br/><br/><br/>
 <div class="container">
 		<h3>코스 검색</h3><br/>

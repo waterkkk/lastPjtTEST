@@ -11,7 +11,6 @@
 <style type="text/css">
 
 a { text-decoration:none }
-
      @import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
 
 * {
@@ -31,7 +30,7 @@ a { text-decoration:none }
  <div class="py-3 bg-dark" >
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
-          <a href="#" class="btn btn-lg mx-1 btn-dark">HOME</a>
+          <a href="index.jsp" class="btn btn-lg mx-1 btn-dark">HOME</a>
           <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-dark">공지사항</a>
             <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">교육</button>
             <div class="dropdown-menu">
@@ -65,7 +64,7 @@ a { text-decoration:none }
            <div class="dropdown-divider"></div>
               <a class="dropdown-item" href="Freetime_Park.do">공원</a>
             <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">노인교실/경로당</a>
+              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
             </div>
           </div>
           <div class="btn-group">
@@ -81,7 +80,7 @@ a { text-decoration:none }
         </div>
         </div>
         
-          <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_restaurant.jpg&quot;);" >
+    <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://pingendo.github.io/templates/sections/assets/cover_restaurant.jpg&quot;);" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
