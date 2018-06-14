@@ -89,13 +89,79 @@ function searchIdByEmail2(){
 #searchIdbyEmail {
 	display: none;
 }
+
+
+
+@font-face {
+  font-family: 'Godo';
+  font-style: normal;
+  font-weight: 300;
+  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+}
+
+ @font-face { 
+   font-family: 'Godo'; 
+   font-style: normal; 
+   font-weight: 600; 
+   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
+ } 
+
+.godo * {
+ font-family: 'Godo', sans-serif;
+}
+
+/** 이하는 공통 **/
+.normal {
+ font-style: normal;
+}
+
+.w250 {
+ font-weight: 250;
+}
+
+.w300 {
+ font-weight: 300;
+}
+
+.w350 {
+ font-weight: 350;
+}
+
+.w400 {
+ font-weight: 400;
+}
+
+.w500 {
+ font-weight: 500;
+}
+
+.w700 {
+ font-weight: 700;
+}
+
+.w800 {
+ font-weight: 800;
+}
+
+.w900 {
+ font-weight: 900;
+}
+
+li span {
+ line-height: 1.8;
+ font-size: 1.3em;
+}
+
+body, table, div, p, h1, h2, h5, h4 {
+font-family:'Godo';
+}
 </style>
 
 
 <body>
 <div id="searchIdMain">
 	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/good.jpg'); background-size: 100% 100%">
+		style="background-image: url('images/blackwood.png'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
@@ -118,7 +184,7 @@ function searchIdByEmail2(){
 
 <div id="searchIdbyPhone">
 	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/good.jpg'); background-size: 100% 100%">
+		style="background-image: url('images/blackwood.png'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
@@ -146,7 +212,7 @@ function searchIdByEmail2(){
 
 <div id="searchIdbyEmail">
 	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/good.jpg'); background-size: 100% 100%">
+		style="background-image: url('images/blackwood.png'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">

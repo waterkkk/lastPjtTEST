@@ -28,7 +28,7 @@ public class RegistController {
 	// 회원가입화면으로 이동
 	@RequestMapping(value = "regiStart.do")
 	public String regiStart(Model model) {
-		return "Regist_start";
+		return "Regist/Regist_start";
 	}
 
 	
@@ -87,6 +87,6 @@ public class RegistController {
 	//가입완료
 	@RequestMapping(value="login")
 	public String login(Model model) {
-	return "Login_start";
+	return "Login/Login_start";
 	}
 }

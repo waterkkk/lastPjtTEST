@@ -62,11 +62,11 @@
 </select>
 
 
-<insert id="insert" parameterType="FreetableDto">
+<insert id="insert" parameterType="map">
 	INSERT INTO	FREETABLE 
 	VALUES
 		(FREETABLE_NO_SEQ.NEXTVAL,
-		#{freetable_id}, 
+		#{member_id}, 
 		#{freetable_title}, 
 		#{freetable_content},
 		SYSDATE,
@@ -86,9 +86,9 @@
 	WHERE FREETABLE_NO = #{freetable_no}
 </update>
 
-<delete id="delete" parameterType="String">
+<delete id="delete" parameterType="int">
 	DELETE FROM FREETABLE 
-	WHERE FREETABLE_ID=#{freetable_id}
+	WHERE FREETABLE_NO=#{freetable_no}
 </delete>
 
 
@@ -96,7 +96,7 @@
 
 <!-- 답글 -->
 <!-- 두번째답글달기전에 기존답글 step밀어주기 -->
-<update id="updateStep" parameterType="int">
+<update id="updateStep" parameterType="int"> 
 	UPDATE FREETABLE 
 	SET FREETABLE_STEP=FREETABLE_STEP+1 
 	WHERE 
@@ -104,6 +104,7 @@
 		 AND FREETABLE_STEP>#{freetable_step}
 </update>
 
+	<!-- 답글-2 : 새로운 답글 insert 넣기 -->
 <insert id="insertReply" parameterType="FreetableDto">
 	INSERT INTO FREETABLE 
 	VALUES

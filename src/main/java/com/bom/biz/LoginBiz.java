@@ -41,6 +41,7 @@ public class LoginBiz {
 		}
 		return res;
 	}
+	
 
 	
 	// 아이디찾기 : 전화번호
@@ -72,8 +73,9 @@ public class LoginBiz {
 	}
 
 	
-	// 회원등급조정(y->n)
-	public int enableUpdate(LoginDto dto) {
-		return dao.enableUpdate(dto);
+	//가입여부조정  	y->n(확인)
+	public int changeEnabled(String member_id) {
+		return dao.changeEnabled(member_id);
 	}
+	
 }

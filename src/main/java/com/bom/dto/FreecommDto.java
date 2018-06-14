@@ -29,6 +29,8 @@ public class FreecommDto {
 		this.freecomm_step = freecomm_step;
 		this.freecomm_titleTab = freecomm_titleTab;
 	}
+	
+	
 
 	public int getFreetable_no() {
 		return freetable_no;

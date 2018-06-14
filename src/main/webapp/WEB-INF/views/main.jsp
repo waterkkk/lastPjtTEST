@@ -25,9 +25,9 @@ a { text-decoration:none }
 <title>Insert title here</title>
 </head>
 <body>
-<div id="header">
-		<%@ include file="form/Header.jsp"%>
-</div>
+<!-- <div id="header"> -->
+<%-- 		<%@ include file="Form/Header.jsp"%> --%>
+<!-- </div> -->
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
           <a href="#" class="btn btn-lg mx-1 btn-secondary">HOME</a>
@@ -79,7 +79,7 @@ a { text-decoration:none }
           <p align="right"><a href="loginStart.do" class="btn btn-lg mx-1 btn-secondary">로그인</a><br/></p>
           	</c:if>
           	<c:if test="${dto.member_id != null}"> 
-          <p align="right"><a href="logout.do" class="btn btn-lg mx-1 btn-secondary">로그아웃</a><br/></p>
+          <p align="right"><a href="logout.do?member_id=${dto.member_id}" class="btn btn-lg mx-1 btn-secondary">로그아웃</a><br/></p>
           	</c:if>
           <p align="right"><a href="regiStart.do" class="btn btn-lg mx-1 btn-secondary">회원가입</a></p><br/><br/>
         </div>

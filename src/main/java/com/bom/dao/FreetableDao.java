@@ -73,10 +73,12 @@ public class FreetableDao {
 		return res;
 	}
 
-	public boolean insert(FreetableDto dto) {
+	
+	
+	public boolean insert(Map<String,String> map) {
 		int res = 0;
 		try {
-			res = sqlSession.insert(namespace + "insert", dto);
+			res = sqlSession.insert(namespace + "insert", map);
 		} catch (Exception e) {
 			System.out.println("insert error");
 			e.printStackTrace();
@@ -103,12 +105,10 @@ public class FreetableDao {
 		}
 	}
 
-	public boolean delete(String freetable_id) {
-		System.out.println("test1");
-
+	public boolean delete(int freetable_no) {
 		int res = 0;
 				try {
-			res = sqlSession.delete(namespace + "delete", freetable_id);
+			res = sqlSession.delete(namespace + "delete", freetable_no);
 		} catch (Exception e) {
 			System.out.println("delete error");
 			e.printStackTrace();

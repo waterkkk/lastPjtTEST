@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.print.DocFlavor.STRING;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.bom.biz.LoginBiz;
 import com.bom.dto.LoginDto;
@@ -39,14 +41,15 @@ public class LoginController {
 
 	// 로그인-2
 	@RequestMapping(value = "loginAjax.do", method = RequestMethod.POST)
-	@ResponseBody
-	// return되는 값을 일반적인 경로로 가는 것이 아니라 (view resolver-view로 가는 것이 아니라)
-	// 서버로 간 뒤 바로 ajax로 response되는애의 객체 body에 rMap을 담아서 보내준다.
-	// ->ajax 쓸때는 @ResponseBody가 붙음!
-
-	public Map<String, Boolean> loginAjax(HttpSession session, @RequestParam("member_id") String member_id,
+	@ResponseBody // ->ajax 쓸때 
+	// return되는 값을 일반적인 경로로 가는 것이 아니라 (view resolver->view로 가는 것이 아니라)
+	// 서버로 간 뒤 바로 ajax로 response되는 객체 body에 결과를 담아서 보내준다.
+	
+	public Map<String, Boolean> loginAjax(HttpSession session, 
+			@RequestParam("member_id") String member_id,
 			@RequestParam("member_pw") String member_pw) {
-
+			System.out.println("member_id: "+member_id);
+			System.out.println("member_pw: "+member_pw);
 		LoginDto dto = new LoginDto(member_id, member_pw);
 		LoginDto mapRes = biz.login(dto);
 
@@ -84,6 +87,15 @@ public class LoginController {
 			}
 		}
 		return res;
+	}
+	
+	
+	//로그아웃
+	@RequestMapping("logout.do")
+	public ModelAndView logout(HttpServletRequest request) throws Exception{
+		request.getSession().removeAttribute("dto");
+		ModelAndView mav=new ModelAndView("main");	
+		return mav;
 	}
 
 	// 아이디 찾기 :1.메인
@@ -154,4 +166,21 @@ public class LoginController {
 		return mapRes2;
 	}
 
+	//가입여부조정  	y->n(확인)
+	@RequestMapping(value="changeEnabled.do")
+	public String changeEnabled(Model model, 
+			@RequestParam("member_id") String member_id) {
+		System.out.println("member_id : "+member_id);
+		int res=0;
+		String res2=null;
+		res=biz.changeEnabled(member_id);
+		if(res>0) {
+			System.out.println("[controller]logout ok");
+			res2="main";
+		}else {
+			System.out.println("[controller]logout error");
+			res2="main";
+		}
+		return res2;
+	}
 }

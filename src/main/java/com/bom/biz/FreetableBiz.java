@@ -3,6 +3,8 @@ package com.bom.biz;
 import com.bom.dto.*;
 import com.bom.dao.FreetableDao;
 import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -39,8 +41,10 @@ public class FreetableBiz {
 	}
 	
 
-	public boolean insert(FreetableDto dto) {
-		return dao.insert(dto);
+
+	
+	public boolean insert(Map<String,String> map) {
+		return dao.insert(map);
 	}
 
 	
@@ -49,8 +53,8 @@ public class FreetableBiz {
 	}
 
 	
-	public boolean delete(String freetable_id) {
-		return dao.delete(freetable_id);
+	public boolean delete(int freetable_no) {
+		return dao.delete(freetable_no);
 	}
 
 	

@@ -17,35 +17,13 @@ public class LoginDao {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 
-	// 회원정보 업데이트
-	public int infoUpdate(LoginDto dto) {
-		int res = 0;
+	
+	
+	
 
-		try {
-			res = sqlSession.update(namespace + "infoUpdate", dto);
-			System.out.println("info updated.");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("error:info not updated.");
-		}
-		return res;
-	}
+	
 
-	// 회원등급조정(y->n)
-	public int enableUpdate(LoginDto dto) {
-		int res = 0;
-
-		try {
-			res = sqlSession.update(namespace + "enabledUpdate", dto);
-			System.out.println("enabled updated.");
-		} catch (Exception e) {
-			e.printStackTrace();
-			System.out.println("error:enabled not updated.");
-		}
-		return res;
-	}
-
-	// 아이디찾기: 전화번호
+	// 아이디 찾기:전화번호로 찾기
 	public LoginDto searchIdByPhone(String member_phone) {
 		System.out.println("member_phone: " + member_phone);
 		LoginDto res = new LoginDto();
@@ -59,7 +37,7 @@ public class LoginDao {
 		return res;
 	}
 
-	// 아이디찾기: 이메일
+	// 아이디 찾기:이메일로 찾기
 	public LoginDto searchIdByEmail(String member_email) {
 		System.out.println("member_email: " + member_email);
 		LoginDto res = new LoginDto();
@@ -73,7 +51,7 @@ public class LoginDao {
 		return res;
 	}
 
-	// 비밀번호찾기: 전화번호
+	// 비밀번호 찾기:전화번호로 찾기
 	public LoginDto searchPwByPhone(Map<String, String> map) {
 		LoginDto res = new LoginDto();
 				try {
@@ -84,13 +62,40 @@ public class LoginDao {
 		return res;
 	}
 
-	// 비밀번호찾기: 이메일
+	// 비밀번호 찾기:이메일로 찾기
 	public LoginDto searchPwByEmail(Map<String, String> map) {
 		LoginDto res = new LoginDto();
 		try {
 			res = sqlSession.selectOne(namespace + "searchPwByEmail", map);
 		} catch (Exception e) {
 			e.printStackTrace();
+		}
+		return res;
+	}
+	
+	// 회원정보 업데이트(확인)
+	public int infoUpdate(LoginDto dto) {
+		int res = 0;
+
+		try {
+			res = sqlSession.update(namespace + "infoUpdate", dto);
+			System.out.println("info updated.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("error:info not updated.");
+		}
+		return res;
+	}
+
+	//가입여부조정  	y->n(확인)
+	public int changeEnabled(String member_id) {
+		int res = 0;
+		try {
+			res = sqlSession.update(namespace + "changeEnabled", member_id);
+			System.out.println("[Dao]changeEnabled ok.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("[Dao]changeEnabled error.");
 		}
 		return res;
 	}

@@ -20,24 +20,26 @@
   
   
     <select id="commSelectAll"  parameterType="int"  resultMap="FreecommDtoMap">
-	SELECT * FROM FREECOMM
+	SELECT * 
+	FROM FREECOMM
 	WHERE FREETABLE_NO=#{freetable_no}
 	ORDER BY FREECOMM_GROUPNO DESC, FREECOMM_STEP
 	</select>
 
-
+	<!-- 댓글 -->
 	<select id="commSelectOne" parameterType="int" resultMap="FreecommDtoMap">
-	SELECT * FROM FREECOMM
+	SELECT * 
+	FROM FREECOMM
 	WHERE FREECOMM_NO=#{freecomm_no}
 	</select>
 
-	
-	<insert id="commInsert" parameterType="map">
+	<!-- 댓글 -->
+	<insert id="commInsert" parameterType="FreecommDto">
 	INSERT INTO FREECOMM
 	VALUES(
 		#{freetable_no},
 		FREECOMM_NO_SEQ.NEXTVAL,
-		#{member_id},
+		#{freecomm_id},
 		#{freecomm_content},
 		SYSDATE,
 		FREECOMM_GROUPNO_SEQ.NEXTVAL,
@@ -46,23 +48,24 @@
 	)
 	</insert>
 	
+	<!-- 댓글삭제 -->
+	<delete id="delReply" parameterType="int">
+	DELETE FROM FREECOMM 
+	WHERE FREECOMM_NO=#{freecomm_no}
+	</delete>
 	
-<!-- 	<insert id="commInsert" parameterType="FreecommDto" > -->
-<!-- 	INSERT INTO FREECOMM -->
-<!-- 	VALUES( -->
-<!-- 		#{freetable_no}, -->
-<!-- 		FREECOMM_NO_SEQ.NEXTVAL, -->
-<!-- 		#{freecomm_id}, -->
-<!-- 		#{freecomm_content}, -->
-<!-- 		SYSDATE, -->
-<!-- 		FREECOMM_GROUPNO_SEQ.NEXTVAL, -->
-<!-- 		1, -->
-<!-- 		0 -->
-<!-- 	) -->
-<!-- 	</insert> -->
+	<!-- 대댓글: 두번째대댓글달기전에 기존 대댓글 step밀어주기  -->
+	<update id="updateStep2" parameterType="int">  
+		UPDATE FREECOMM 
+		SET FREECOMM_STEP=FREECOMM_STEP+1
+		WHERE 
+			FREECOMM_GROUPNO=#{freecomm_groupNo}
+		    AND FREECOMM_STEP>#{freecomm_step}	
+	</update>
+
 	
-	
-	<insert id="insertReply2" >
+	<!-- 대댓글-2 : 새로운 대댓글 insert 넣기 -->
+	<insert id="insertReply2" parameterType="FreecommDto">
 	INSERT INTO FREECOMM
 	VALUES(
 		#{freetable_no},
@@ -75,13 +78,7 @@
 		#{freecomm_titleTab})
 	</insert>
 
-<!-- 기존의 대댓글 미뤄주기 : 원글 parent와 groupNo가 같고 step이 더 큰 대댓글의 step+1    -->
-	<update id="stepUpdate" parameterType="map">
-	UPDATE FREECOMM 
-	SET FREECOMM_STEP=FREECOMM_STEP+1
-	WHERE FREECOMM_GROUPNO=#{freecomm_groupNo} 
-	AND FREECOMM_STEP>#{freecomm_step} 
-	</update>
+
 	
 
 	

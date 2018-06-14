@@ -16,6 +16,7 @@
 		<result column="MEMBER_ROLE" property="member_role" />
 	</resultMap>
 
+	<!-- 로그인 -->
 	<select id="login" parameterType="map" resultType="LoginDto">
 	SELECT * 
 	FROM MEMBER
@@ -25,7 +26,8 @@
 		AND 
 		MEMBER_ENABLED='Y'
 	</select>
-
+	
+	
 	<!-- id찾기 -->
 	<select id="searchIdByPhone" parameterType="String" resultType="LoginDto">
 	SELECT *
@@ -62,7 +64,7 @@
 	<update id="infoUpdate" parameterType="LoginDto">
 	UPDATE MEMBER
 	SET
-		MEMBER_PW=#member_pw}
+		MEMBER_PW=#{member_pw}
 		AND 
 		MEMBER_EMAIL=#{member_email}
 		AND
@@ -70,11 +72,13 @@
 	WHERE MEMBER_NO=#{member_no}
 	</update>
 
-	<update id="enabledUpdate" parameterType="LoginDto">
+	<!--가입여부조정  	y->n(확인) -->
+	<update id="changeEnabled" parameterType="String">
 	UPDATE MEMBER
 	SET	MEMBER_ENABLED='N'
-	WHERE MEMBER_NO=#{member_no}
+	WHERE MEMBER_ID=#{member_id}
 	</update>
+	
 
 
 

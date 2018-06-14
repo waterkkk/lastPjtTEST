@@ -27,5 +27,8 @@ a { text-decoration:none }
  
 <input type="button" onclick="location.href='main.do'" value="메인화면으로">
 
+<input type="button" onclick="location.href='test.do'" value="테스트">
+
+
 </body>
 </html>

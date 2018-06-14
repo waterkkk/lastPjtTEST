@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="Eduoff_mapper">
+
+<resultMap type="com.bom.dto.EduoffDto" id="EduoffDtoMap">
+<result column="COURSE_ID" property="course_id"/>
+<result column="COURSE_NM" property="course_nm"/>
+<result column="COURSE_GUBUN" property="course_gubun"/>
+<result column="COURSE_REQUEST_STR_DT" property="course_request_str_dt"/>
+<result column="COURSE_REQUEST_END_DT" property="course_request_end_dt"/>
+<result column="COURSE_STR_DT" property="course_str_dt"/>
+<result column="COURSE_END_DT" property="course_end_dt"/>
+<result column="COURSE_TARGET" property="course_target"/>
+<result column="CAPACITY" property="capacity"/>
+<result column="COURSE_APPLY_URL" property="course_apply_url"/>
+</resultMap>
+
+<select id="selectAll" resultMap="EduoffDtoMap">
+	SELECT 
+			COURSE_NM,
+			COURSE_REQUEST_STR_DT, 
+			COURSE_REQUEST_END_DT,
+			COURSE_STR_DT, 
+			COURSE_END_DT,
+			CAPACITY, 
+			COURSE_APPLY_URL
+	FROM EDUOFF
+</select>
+
+
+
+<delete id="delete">
+DELETE *
+FROM EDUOFF
+</delete>
+
+<insert id="insert" parameterType="EduoffDto" >
+INSERT INTO EDUOFF
+VALUES(
+	#{course_id},
+	#{course_nm},
+	#{course_gubun},
+	#{course_request_str_dt},
+	#{course_request_end_dt},
+	#{course_str_dt},
+	#{course_end_dt},
+	#{course_target},
+	#{capacity},
+	#{course_apply_url})
+</insert>
+
+
+<!--  검색--> 
+<select id="searchList" parameterType="map" resultMap="EduoffDtoMap">
+SELECT 
+	COURSE_NM,
+	COURSE_REQUEST_STR_DT, 
+	COURSE_REQUEST_END_DT,
+	COURSE_STR_DT, 
+	COURSE_END_DT,
+	CAPACITY, 
+	COURSE_APPLY_URL 
+FROM EDUOFF
+WHERE ${searching2} LIKE '%'||#{keyword2}||'%'
+</select>
+
+<!-- 페이징 -->
+<select id="paging" parameterType="map" resultMap="EduoffDtoMap">
+	SELECT *
+		FROM (SELECT ROWNUM AS "RW", A.* 
+		FROM (SELECT * FROM EDUOFF ) A)
+	WHERE RW BETWEEN #{startPost} AND #{endPost}
+</select>
+
+<select id="selectFTAll" parameterType="map" resultMap="EduoffDtoMap">
+	<![CDATA[
+	SELECT *  
+		FROM(SELECT ROWNUM AS RNUM,B.* 
+		FROM(SELECT * FROM EDUOFF)B) 
+	WHERE RNUM>=#{startPost} 
+      AND RNUM<=#{endPost} 
+	]]>
+</select>
+
+<select id="getTotalCnt" resultType="Integer">
+	SELECT NVL(COUNT(*),0)AS CNT
+	FROM(SELECT * FROM EDUOFF)
+</select>
+
+</mapper>

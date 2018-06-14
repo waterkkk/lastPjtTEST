@@ -21,6 +21,15 @@
 		</repository>
 	</repositories>
 	<dependencies>
+	
+	<!-- json -->
+	<!-- https://mvnrepository.com/artifact/org.json/json -->
+<dependency>
+    <groupId>org.json</groupId>
+    <artifactId>json</artifactId>
+    <version>20160810</version>
+</dependency>
+	
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>

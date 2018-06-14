@@ -120,7 +120,7 @@ CREATE TABLE FREECOMM(
    FREECOMM_REGDATE VARCHAR2(500) NOT NULL,     --작성일
    FREECOMM_GROUPNO NUMBER NOT NULL,            --그룹번호
    FREECOMM_STEP NUMBER NOT NULL,               --그룹순서(1부터)
-   FREECOMM_TITLETAB NUMBER NOT NULL           --제목탭(0부터)
+   FREECOMM_TITLETAB NUMBER NOT NULL           --제목탭(0부터)  
    );
    
   
