@@ -46,13 +46,13 @@ function testtest(){
 	            	var abc = $("#searchAPI").val();
 	            	for(var i = 0; i < list.length; i++){
 	            		var str = list[i];
-	            		
-	            		 var strify = JSON.stringify(data);
-					     var test = JSON.parse(strify);
-						var aa = str.split(" ");
-							alert(aa);
+	            	/* 	 var strify = JSON.stringify(data);
+					     var test = JSON.parse(strify); */
+							var aa = str.addr_old;
+							var word = aa.replace(/(\s*)/g,"");
+							var word1 = aa.indexOf(abc);
 					      
-	            		if (abc==str.addr_old) {
+	            		if (aa.indexOf(abc) != -1) {
 	            		$("tbody").append(
 								"<tr><td>"+str.nm+"</td>"+
 								"<td>"+str.addr_old+"</td>"+
@@ -146,7 +146,6 @@ function testtest(){
 	<table>
 		<c:choose>
 			<c:when test="${empty value }">
-			<h4>**내용이 없습니다***</h4>
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${requestScope.value }" var="abc">

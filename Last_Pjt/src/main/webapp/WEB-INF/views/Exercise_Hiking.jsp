@@ -24,11 +24,6 @@ p{
 </style>
 <script type="text/javascript">
 
-function testing () { 
-    var str = ${abc}; 
-    var change = str.replace( "<BR>", "<br/>" ); 
-    document.write(change); 
-} 
 	
 function testtest(){
 	
@@ -116,7 +111,6 @@ $.ajax({
 <input type="submit" class="btn btn-dark" value="검색" />
 </form>
 </div>
-<button onclick="testing();">test</button>
 
 <div class="container">
 	<table>
