@@ -24,20 +24,11 @@ p{
 </style>
 <script type="text/javascript">
 
-/* function test3(){
-	var xhr = new XMLHttpRequest();
-	var url = 'http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI'; /*URL*/
-	var queryParams = '?' + encodeURIComponent('ServiceKey') + '='+'lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D';
-	queryParams += '&' + encodeURIComponent('searchArNm') + '=' + encodeURIComponent('강원'); 
-	xhr.open('GET', url + queryParams);
-	xhr.onreadystatechange = function () {
-	    if (this.readyState == 4) {
-	    	alert(xhr);
-	        alert('Status: '+this.status+' Headers: '+JSON.stringify(this.getAllResponseHeaders())+' Body: '+this.responseText);
-	    }
-	};
-	xhr.send('');
-	} */
+function testing () { 
+    var str = ${abc}; 
+    var change = str.replace( "<BR>", "<br/>" ); 
+    document.write(change); 
+} 
 	
 function testtest(){
 	
@@ -125,6 +116,7 @@ $.ajax({
 <input type="submit" class="btn btn-dark" value="검색" />
 </form>
 </div>
+<button onclick="testing();">test</button>
 
 <div class="container">
 	<table>

@@ -503,6 +503,15 @@ public class AdminController {
         StringBuilder sb = new StringBuilder();
         String line;
         while ((line = rd.readLine()) != null) {
+        	System.out.println("line :" + line);
+        	String text = line;
+        	line = text.replace("00", " ");
+        	line = text.replace("NORMAL", "테스트");
+        	line = text.replace("&amp;lt;", "&amp;&lt;");
+        	line = text.replace("&amp;gt;", "&>");
+        	line = text.replace("<resultCode>", "");
+        	
+        	line = text.replace("&lt;BR&gt;", "<br/>");
             sb.append(line);
         }
         rd.close();
@@ -510,35 +519,8 @@ public class AdminController {
         System.out.println(sb.toString());
         
         String abc  = sb.toString();
+			
 		System.out.println(sb.toString().matches(".*aeatreason.*"));
-		
-		/*DocumentBuilderFactory t_dbf = null;
-        DocumentBuilder t_db = null;
-        Document t_doc = null;
-        NodeList t_nodes = null;
-        Node t_node = null;
-        Element t_element = null;
-        InputSource t_is = new InputSource();
- 
-        try
-        {
-            t_dbf = DocumentBuilderFactory.newInstance();
-            t_db = t_dbf.newDocumentBuilder();
-            t_is = new InputSource();
-            t_is.setCharacterStream(new StringReader(abc));
-            t_doc = t_db.parse(t_is);
-            t_nodes = t_doc.getElementsByTagName("item");
- 
-            for (int i = 0, t_len = t_nodes.getLength(); i < t_len; i ++){
-                t_element = (Element)t_nodes.item(i);
- 
-                System.out.println(t_element.getAttribute("aeatreason"));
-            }
-        }
-        catch (Exception e)
-        {
-            e.printStackTrace();
-        }*/
         
 		System.out.println("검색 단어 : " + hiking_keyword);
 		model.addAttribute("hiking_keyword", hiking_keyword);
