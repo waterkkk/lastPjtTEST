@@ -93,22 +93,21 @@ $.ajax({
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-gray-dark">등산로</h1>
+          <h3 class="text-gray-dark">등산로</h3>
           <h4></h4><br/><br/><br/><br/><br/>
         </div>
       </div>
     </div>
   </div><br/><br/><br/>
         
-    <div class="col-md-12">
-		<p><img alt="등산" src="http://admin.brainworld.com/Library/FileDown.aspx?filename=sshutterstock_111970076.jpg&filepath=BrainHealth" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"></p>
-	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a><br/><br/><br/>
-	</div>
+     <div class="col-md-12">
+	</div> 
 
 <div class="container">
 <form class="form-inline m-0" action="Exercise_hiking1.do" method="post">
 <input type="text" name="hiking_keyword" id="hiking_keyword" placeholder="ex)제주, 서울"/>
-<input type="submit" class="btn btn-dark" value="검색" />
+<input type="submit" class="btn btn-dark" value="검색" />&nbsp;
+<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
 </form>
 </div>
 
@@ -116,7 +115,6 @@ $.ajax({
 	<table>
 		<c:choose>
 			<c:when test="${empty abc }">
-			
 			</c:when>
 			<c:otherwise>
 				<c:forEach items="${requestScope.abc }" var="abc">

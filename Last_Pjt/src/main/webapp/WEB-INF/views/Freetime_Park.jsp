@@ -102,11 +102,22 @@ function testtest(){
           </div>
         </div>
         </div>
-        </div><br/><br/><br/>
+        </div>
         
-        <div class="container">
-        	<p><img alt="공원" src="http://img.etoday.co.kr/pto_db/2015/11/20151113093448_752102_600_400.jpg" width="700px;" height="400px;" style="border: 2px solid black;"></p>
-        </div><br/>
+    <div class="py-5 text-black opaque-overlay" style="background-image: url(&quot;https://cdn.pixabay.com/photo/2014/02/27/16/10/spring-276014_960_720.jpg&quot;); background-size: cover;" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-gray-dark">공원</h3>
+          <h4></h4><br/><br/><br/><br/><br/>
+        </div>
+      </div>
+    </div>
+  </div><br/><br/><br/>
+        
+        <!-- <div class="container">
+        	<p><img alt="공원" src="http://mblogthumb2.phinf.naver.net/20130604_77/nkj2001_1370350381112Gw7uT_JPEG/img_3730.after.jpg?type=w2" width="700px;" height="400px;" style="border: 2px solid black;"></p>
+        </div> --><br/>
 
 <div class="container">
 <input type="text" class="form-control" id="searchAPI" placeholder="ex) 마포구, 종로구" style="width:200px;"/>

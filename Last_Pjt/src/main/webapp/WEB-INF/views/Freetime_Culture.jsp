@@ -110,15 +110,25 @@ p{
           </div>
         </div>
         </div>
-        </div><br/><br/><br/>
-
+        </div>
+        
+        <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;./resources/img/img-3.jpg&quot;); " >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-gray-white">문화행사</h3><br/>
+          <h4></h4><br/><br/><br/><br/>
+        </div>
+      </div>
+    </div>
+  </div><br/><br/><br/>
 	<div class="container">
-		<div class="col-md-12" style="margin: 0 auto;">
+	<!-- 	<div class="col-md-12" style="margin: 0 auto;">
 			<p><img alt="미술관" src="http://tour.busan.go.kr/upload_data/manage_img//139658027137712.jpg" width="400px;" height="300px;" style="border: 2px solid black; float: left;">
 			<img alt="공연장" src="http://art.boseong.go.kr/theme/bsart/img/sub0301_img01.jpg" width="400px;" height="300px;" style="border: 2px solid black; float: center;"></p><br />
 			<br />
 			<br />
-		</div>
+		</div> -->
 		</div><br/><br/>
 		<div class="container">
 		<select class="form-control" id="searchAPI" style="width: 150px;">

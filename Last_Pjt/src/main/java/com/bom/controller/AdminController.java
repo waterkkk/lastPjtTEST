@@ -505,15 +505,19 @@ public class AdminController {
         while ((line = rd.readLine()) != null) {
         	System.out.println("line :" + line);
         	String text = line;
-        	line = text.replace("00", " ");
-        	line = text.replace("NORMAL", "테스트");
-        	line = text.replace("&amp;lt;", "&amp;&lt;");
-        	line = text.replace("&amp;gt;", "&>");
-        	line = text.replace("<resultCode>", "");
-        	
-        	line = text.replace("&lt;BR&gt;", "<br/>");
-            sb.append(line);
-        }
+			line = text.replace("00", " ").replace("NORMAL SERVICE.", "<br/>")
+					.replace("<aeatreason>", "<aeatreason><br/>♡♡안내♡♡<br/>").replace("&amp;lt;", "<")
+					.replace("&amp;gt;", ">").replace("&lt;BR&gt;", "<br/>")
+					.replace("<mntheight>", "<br/><br/><mntheight> ● 해발 : ")
+					.replace("</mntheight>", " m</mntheight><br/>").replace("<mntncd>", "<mntncd> ● 산코드 : ")
+					.replace("</mntncd>", "</mntncd><br/><br/> ").replace("<tourisminf>", "<br/><tourisminf><br/>")
+					.replace("<areanm>", "<br/><areanm><br/> ● 위치 :").replace("<details>", "<br/><details>")
+					.replace("<numOfRows>10</numOfRows>", " ").replace("<pageNo>1</pageNo>", " ")
+					.replace("</transport>", "<br/></transport><br/>")
+					.replace("<totalCount>", "<totalCount><br/> ● 해당 지역의 명산  갯수 : ");
+
+			sb.append(line);
+		}
         rd.close();
         conn.disconnect();
         System.out.println(sb.toString());

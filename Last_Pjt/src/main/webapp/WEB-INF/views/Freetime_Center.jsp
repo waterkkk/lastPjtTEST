@@ -119,18 +119,19 @@ function testtest(){
         </div>
         </div>
         
-     <div class="py-5" style="background-image: url(&quot;https://www.splitshire.com/wp-content/uploads/2017/07/SplitShire-3307.jpg&quot;);" >
+     <div class="py-5 text-dark opaque-overlay" style="background-image: url(&quot;./resources/img/Freetime_Center.jpg&quot;);" >
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h1 class="text-gray-dark"><b>경로당</b></h1><br/>
-          <h4><b>노인들이 모여 여가를 선용할 수 있도록 지어 놓은 집</b></h4><br/><br/><br/><br/>
+        <div class="col-md-12"><br/>
+          <h3 class="text-gray-white" align="left">&nbsp;&nbsp;&nbsp;&nbsp;경로당</h3><br/>
+          <h4></h4><br/><br/><br/>
         </div>
       </div>
     </div>
   </div><br/><br/><br/>
   
   <div class="container">
+ <label>원하는 지역으로 검색할 수 있습니다.</label><br/>
 <input type="text" class="form-control" id="searchAPI" placeholder="ex) 마포구, 종로구" style="width:250px;"/>
 <button onclick="testtest();" class="btn btn-dark" style="float: center;">검색</button>
 </div><br/><br/><br/>

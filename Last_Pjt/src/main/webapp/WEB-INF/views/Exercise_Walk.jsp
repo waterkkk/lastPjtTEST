@@ -68,8 +68,13 @@ $("select").click(function() {
 </script>
 </head>
 <body>
-  <div class="py-5" >
-    <div class="container">
+<%-- <div id="header"> 
+<%@ include file="Form/Header4.jsp"%> 
+</div> --%>
+ 
+
+  <div class="py-5" style="background-color: black;">
+    <div class="container" >
       <div class="row">
         <div class="col-md-12">
           <a class="btn btn-dark" href="index.jsp">HOME</a>
@@ -114,28 +119,29 @@ $("select").click(function() {
         </div>
       </div>
     </div>
-    
-       <div class="py-5 text-white" style="background-image: url(&quot;https://www.splitshire.com/wp-content/uploads/2017/08/SplitShire-04295.jpg&quot;);" >
+    </div>
+       <div class="py-5 text-white" style="background-image: url(&quot;./resources/img/Exercise_walk.jpg&quot;);" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-gray-dark">걷기</h1>
+          <h3 class="text-gray-white">걷기</h3>
           <h4></h4><br/><br/><br/><br/><br/>
         </div>
       </div>
     </div>
   </div>
     
-  </div><br/><br/><br/>
+ <!--  </div><br/><br/><br/>
 	<div class="col-md-12" >
 		<p><img alt="둘레길" src="https://t1.daumcdn.net/cfile/tistory/252531355791A62307" width="800px;" height="600px;" style="border:2px solid black; margin:0 auto;"><br/><br/><br/>
-	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a></p>
-	</div> <br/><br/><br/>
+	</div> --> <br/><br/><br/>
+	
 <div class="container">
-		<h3>코스 검색</h3><br/>
+		<h4>코스로 검색할 수 있습니다</h4><br/>
 		<form class="form-inline m-0" method="post">
 			<label for="se01" class="label01" class="form-control">유형별</label>&nbsp;&nbsp;
 			<select id="select" class="form-control" onchange="window.location.href=this.value;">
+				<option value="">선택하세요</option>
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LBTL">서울둘레길</option>
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LARf">근교산자락길</option>
 				<option value="http://seoulcitywall.seoul.go.kr/front/kor/sub01/course_all.do">한양도성길</option>
@@ -143,9 +149,10 @@ $("select").click(function() {
 					</select> 
 						</form>
 					<div style="float: right;">
-						<label for="course_name">상세 검색</label>
-						<input type="text" class="form-control" id="searchAPI" placeholder="ex) 관악산, 안양천" style="width:200px;"/>
+						<label for="course_name">직접 입력할 수 있습니다</label>
+						<input type="text" class="form-control" id="searchAPI" placeholder="ex) 관악산, 안양천" style="width:200px;"/><br/>
 						<button onclick="test1();" class="btn btn-dark" >검색</button>
+	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
 					</div><br/><br/><br/>
 					</div><br/><br/>
 					
@@ -155,6 +162,10 @@ $("select").click(function() {
 	</table>
 	</div>	
 	<br/><br/><br/>
+	
+<%-- 	<div id="footer"> 
+<%@ include file="Form/Footer4.jsp"%> 
+</div> --%>
 <%@ include file="bootstrap.jsp" %>
 </body>
 </html>

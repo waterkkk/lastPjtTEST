@@ -27,6 +27,7 @@ a { text-decoration:none }
 <title>메인</title>
 </head>
 <body>
+
  <div class="py-3 bg-dark" >
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >

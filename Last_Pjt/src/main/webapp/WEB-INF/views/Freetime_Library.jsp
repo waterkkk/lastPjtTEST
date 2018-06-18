@@ -106,12 +106,25 @@ function testtest(){
           </div>
         </div>
         </div>
-        </div><br/><br/><br/>
-        <div class="container">
+        </div>
+        
+        <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://cdn.pixabay.com/photo/2018/04/16/10/44/literature-3324242_960_720.jpg&quot;); background-size: cover;" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <h3 class="text-gray-white">도서관</h3>
+          <h4></h4><br/><br/><br/><br/><br/>
+        </div>
+      </div>
+    </div>
+  </div><br/><br/><br/>
+        
+       <!--  <div class="container">
         	<p><img alt="도서관" src="./resources/img/Library.jpg" width="600px;" height="400px;" style="border: 2px solid black;"></p>
-        </div><br/>
+        </div><br/> -->
         
         <div class="container">
+        <label>원하는 지역으로 찾을 수 있습니다.</label>
 		<select class="form-control" id="searchAPI" style="width: 150px;">
 		<option value="">선택하세요</option>
 		<option value="강남구">강남구</option>
