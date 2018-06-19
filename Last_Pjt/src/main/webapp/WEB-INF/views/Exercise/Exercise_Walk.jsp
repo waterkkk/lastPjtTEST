@@ -4,19 +4,26 @@
     <% request.setCharacterEncoding("UTF-8"); %>
     <% response.setContentType("text/html; charset=UTF-8"); %>
     
-    
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>걷기게시판</title>
 <style type="text/css">
+@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+
+* {
+	font-family: 'Nanum Gothic Coding';
+}
 
 p{
  text-align: center;"
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 function test1(){
@@ -62,55 +69,7 @@ $("select").click(function() {
 <body>
   <div id="header"> 
 <%@ include file="../Form/Header4.jsp"%> 
-</div>
-
-<!--   <div class="py-5" style="background-color: black;">
-    <div class="container" >
-      <div class="row">
-        <div class="col-md-12">
-          <a class="btn btn-dark" href="index.jsp">HOME</a>
-          <a class="btn btn-dark" href="NoticeBoard_list.do">공지사항</a>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 교육</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">온라인</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">오프라인</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 운동</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">건강식단</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">맛집</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 여가</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
-            </div>
-          </div>
-          <a class="btn btn-dark" href="#">자유게시판</a>
-        </div>
-      </div>
-    </div>
-    </div> -->
+	</div>
        <div class="py-5 text-white" style="background-image: url(&quot;./resources/img/Exercise_walk.jpg&quot;);" >
     <div class="container">
       <div class="row">
@@ -170,8 +129,8 @@ $("select").click(function() {
 	</div>	
 	<br/><br/><br/>
 	
- 	<div id="footer"> 
-<%@ include file="../Form/Footer4.jsp"%> </div> 
-<%-- <%@ include file="../bootstrap.jsp" %> --%>
+<%--  	<div id="footer"> 
+<%@ include file="../Form/Footer4.jsp"%> 
+</div> --%>  
 </body>
 </html>

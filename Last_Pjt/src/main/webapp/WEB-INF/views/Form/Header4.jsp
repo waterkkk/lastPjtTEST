@@ -6,7 +6,6 @@
 <!DOCTYPE html >
 <html>
 
-
 <head>
 <style type="text/css">
 
@@ -75,6 +74,11 @@ li span {
 	color:white;
 }
 
+#nav{
+margin: 0 auto;
+padding: 0;
+
+}
 
 </style>
 <script type="text/javascript">
@@ -100,13 +104,13 @@ function zooms(){
 
 </script>
 <!--jquery와 bootstrap.js파일 같이 연결해줘야 dropdown창이 실행됨-->
+<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"	type="text/css">
+<link rel="stylesheet"	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"	type="text/css">
 <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-<link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"	type="text/css">
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<link rel="stylesheet"	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"	type="text/css">
-<link rel="stylesheet" href="css/bootstrap4.css">
-<link rel="stylesheet" href="css/codingBooster4.css">
+<link rel="stylesheet" href="./resources/css/bootstrap4.css">
+<link rel="stylesheet" href="./resources/css/codingBooster4.css">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -114,13 +118,12 @@ function zooms(){
 <body>
 
 <!--내비게이션 바-->
-	<nav class="navbar navbar-default navbar-expand-sm "style="background-color: black;" >
-		<div class="container-fluid">
+	<nav class="navbar navbar-default navbar-expand-sm" id="nav" background-color: black;" >
+		<div class="container-fluid" style="background-color: black;">
 			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 				<div class="navbar-header">
 					<button type="button" class="btn-lg btn-modify" onclick="location.href='index.jsp'">제2의인생</button>
 				</div>
-				
 				
 				<div class="nav navbar-nav">
 					<button type="button" class="btn-lg btn-modify" onclick="location.href='notice.do?currentPage=1'">공지사항</button>
@@ -167,7 +170,7 @@ function zooms(){
 				
 				<div class="nav-item">
 					<button type="button" class="btn-lg btn-modify" onclick="location.href='list.do'">자유게시판</button>
-				</div>
+				</div>&nbsp;&nbsp;&nbsp;
 				
 				<div>
 					<a class="btn btn-lg btn-do">화면 크기 조절</a>

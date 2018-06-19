@@ -104,7 +104,7 @@ function testtest(){
         </div>
         </div>
         
-    <div class="py-5 text-black opaque-overlay" style="background-image: url(&quot;https://cdn.pixabay.com/photo/2014/02/27/16/10/spring-276014_960_720.jpg&quot;); background-size: cover;" >
+     <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;./resources/img/Freetime_Park.jpg&quot;); background-size: cover;" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">
@@ -120,6 +120,7 @@ function testtest(){
         </div> --><br/>
 
 <div class="container">
+<label>원하는 지역으로 찾을 수 있습니다.</label>
 <input type="text" class="form-control" id="searchAPI" placeholder="ex) 마포구, 종로구" style="width:200px;"/>
 <button onclick="testtest();" class="btn btn-dark" style="float: center;">검색</button>
 </div><br/><br/><br/>

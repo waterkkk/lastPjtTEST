@@ -108,7 +108,7 @@ function testtest(){
         </div>
         </div>
         
-        <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://cdn.pixabay.com/photo/2018/04/16/10/44/literature-3324242_960_720.jpg&quot;); background-size: cover;" >
+        <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;./resources/img/Freetime_Library.jpg&quot;); background-size: cover;" >
     <div class="container">
       <div class="row">
         <div class="col-md-12">

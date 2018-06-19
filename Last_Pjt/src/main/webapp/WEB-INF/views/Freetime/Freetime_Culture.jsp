@@ -131,6 +131,7 @@ p{
 		</div> -->
 		</div><br/><br/>
 		<div class="container">
+		<label>원하는 장르로 찾을 수 있습니다.</label>
 		<select class="form-control" id="searchAPI" style="width: 150px;">
 		<option value="">선택하세요</option>
 		<option value="영화">영화</option>
@@ -146,7 +147,7 @@ p{
 		<option value="축제">축제</option>
 		<option value="문화·예술 ">문화·예술 </option>
 		</select>
-		<button onclick="testtest();" class="btn btn-dark" >test</button>
+		<button onclick="testtest();" class="btn btn-dark" >검색</button>
 		</div><br />
 		
    	<div class="container">			
