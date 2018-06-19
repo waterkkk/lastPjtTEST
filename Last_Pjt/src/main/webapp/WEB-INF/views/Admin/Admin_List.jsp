@@ -157,7 +157,7 @@
     </c:if>
 	
 	</div>
-<%@ include file="bootstrap.jsp" %>
+<%@ include file="../bootstrap.jsp" %>
 <br/><br/><br/><br/>
 
 </body>

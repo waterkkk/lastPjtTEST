@@ -105,6 +105,7 @@ $.ajax({
 
 <div class="container">
 <form class="form-inline m-0" action="Exercise_hiking1.do" method="post">
+<label>찾을 지역을 입력하세요 </label><br/>
 <input type="text" name="hiking_keyword" id="hiking_keyword" placeholder="ex)제주, 서울"/>
 <input type="submit" class="btn btn-dark" value="검색" />&nbsp;
 <a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
@@ -125,6 +126,6 @@ $.ajax({
 		</table>
 		</div><br/><br/><br/>
 
-	<%@ include file="bootstrap.jsp" %>
+	<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

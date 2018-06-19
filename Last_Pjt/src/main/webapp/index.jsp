@@ -28,6 +28,7 @@ a { text-decoration:none }
 </head>
 <body>
 
+
  <div class="py-3 bg-dark" >
  <div class="col-md-20" draggable="true" >
           <div class="btn-group" >
@@ -85,20 +86,24 @@ a { text-decoration:none }
     <div class="container">
       <div class="row">
         <div class="col-md-12">
-          <h1 class="text-gray-dark">제 2의 인생</h1>
+          <h1 class="text-gray-dark">제 2의 인생</h1><br/>
+          <h3>평균수명 100세 시대, 절반의 행복을 이 사이트 하나로 만날 수 있습니다.</h3>
         </div>
       </div>
     </div>
   </div>
-  <div class="py-5 bg-light" >
+  <div class="py-5 bg-white" >
     <div class="container">
       <div class="row">
-           <div class="py-5 col-md-3" >
+          <div class="py-5 col-md-3" >
           <div class="row">
             <div class="col-8 col-md-12">
               <h5 class="mb-3 text-primary">배우는 기쁨</h5>
-              <p class="my-1">- </p>
+              <p class="my-1">평생학습, 배우는 즐거움.<br/> 나를 찾는 기쁨을 한껏 누려보세요. 검색하기 번거로우신가요? 제 2의 인생이 도와드립니다. </p>
             </div>
+          </div><br/>
+           <div class="btn-group">
+            <a href="#" class="btn btn-lg mx-1 btn-dark">교육게시판</a>
           </div>
         </div>
         <div class="py-5 col-md-3">
@@ -107,8 +112,11 @@ a { text-decoration:none }
               <h5 class="mb-3 text-primary">
                 <b>움직이는 희열</b>
               </h5>
-              <p class="my-1">- </p>
+              <p class="my-1">걷기 좋은 길, 등산로, 주변의 문화센터 등 즐겁게 운동하며 건강까지 지킬 수 있는 방법이 많이 있습니다. 제 2의 인생에서 간편하게 찾아보세요. </p>
             </div>
+            </div><br/>
+           <div class="btn-group">
+            <a href="#" class="btn btn-lg mx-1 btn-dark">운동게시판</a>
           </div>
         </div>
         <div class="py-5 col-md-3">
@@ -117,8 +125,11 @@ a { text-decoration:none }
               <h5 class="mb-3 text-primary">
                 <b>맛있는 즐거움</b>
               </h5>
-              <p class="my-1">- </p>
+              <p class="my-1">운동 후 맛집에서 먹는 맥주 한 잔과 치킨! <br/> 평소에 건강하게 먹으면 그 정도는 괜찮아요. 제 2의 인생에서 건강 정보도 함께하실 수 있습니다. </p>
             </div>
+            </div><br/>
+           <div class="btn-group">
+            <a href="#" class="btn btn-lg mx-1 btn-dark">음식게시판</a>
           </div>
         </div>
         <div class="py-5 col-md-3">
@@ -127,10 +138,13 @@ a { text-decoration:none }
               <h5 class="mb-3 text-primary">
                 <b>즐기는 기쁨</b>
               </h5>
-              <p class="my-1">-
+              <p class="my-1">주변의 문화행사, 도서관, 공원, 재미있는 영상, 노인교실 등을 찾아보세요. 세상에는 재미있는 것이 참 많아요.
                 <br>
                 <br> </p>
             </div>
+            </div><br/>
+           <div class="btn-group">
+            <a href="#" class="btn btn-lg mx-1 btn-dark">여가게시판</a>
           </div>
         </div>
     </div>
@@ -139,28 +153,38 @@ a { text-decoration:none }
 <div class="py-5 text-black bg-white" >
     <div class="container">
       <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6" >
+   <h5 class="mb-3 text-primary">공지사항</h5>
           <div class="list-group" style="opacity: 1.0;">
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">공지사항</h5>
-                <small>3 days ago</small>
-              </div>
+                <h5 class="mb-1"><b>공지사항</b></h5>
+                <small>2018.6.19</small>
+              </div><br/>
               <p class="mb-1">우측 상단의 +를 누르면 화면이 커집니다.</p>
-              <small>버튼을 눌러 확인해보세요.</small>
+              <small class="text-muted">버튼을 눌러 사용해보세요.</small><br/>
             </a>
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">공지사항</h5>
-                <small class="text-muted">3 days ago</small>
-              </div>
+                <h5 class="mb-1"><b>공지사항</b></h5>
+                <small class="text-muted">2018.6.18</small>
+              </div><br/>
               <p class="mb-1">자유게시판의 글이 새롭게 등록되었습니다.</p>
-              <small class="text-muted">버튼을 눌러 확인해보세요.</small>
+              <small class="text-muted">새로운 글을 확인해보세요.<br/></small>
+            </a>
+            <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1"><b>공지사항</b></h5>
+                <small class="text-muted">2018.6.9</small>
+              </div><br/>
+              <p class="mb-1">서버 점검 안내</p>
+              <small class="text-muted">점검시간 : 2018년 6월 9일 오전 7시~ 10일 오전 7시<br/></small>
             </a>
           </div>
         </div>
-        <div class="col-md-6">
-          <div class="embed-responsive embed-responsive-4by3  rounded">
+        <div class="col-md-6" style="float: right;">
+        <h5 class="mb-3 text-primary">재미있는 영상</h5>
+          <div class="embed-responsive embed-responsive-4by3 rounded">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/i__1Z5a9Sak?autoplay=0" allowfullscreen=""> </iframe>
           </div>
         </div>

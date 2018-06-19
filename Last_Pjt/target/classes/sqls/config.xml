@@ -4,12 +4,10 @@
 	
 	<typeAliases>
 		<typeAlias type="com.bom.dto.AdminDto" alias="AdminDto"/>
-		<typeAlias type="com.bom.dto.NoticeBoardDto" alias="noticeBoardDto"/>
 	</typeAliases>
 	
 	<mappers>
 		<mapper resource="/sqls/Admin_mapper.xml"/>
-		<mapper resource="/sqls/NoticeBoard_mapper.xml"/>
 	</mappers>
 
 </configuration>

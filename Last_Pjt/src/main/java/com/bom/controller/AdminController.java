@@ -38,10 +38,8 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.bom.biz.AdminBiz;
-import com.bom.biz.NoticeBoardBiz;
 import com.bom.dto.APItest;
 import com.bom.dto.AdminDto;
-import com.bom.dto.NoticeBoardDto;
 
 @Controller
 public class AdminController {
@@ -56,7 +54,7 @@ public class AdminController {
 	@RequestMapping(value = "home.do", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 
-		return "Admin_Home";
+		return "/Admin/Admin_Home";
 	}
 
 	/* 목록 */
@@ -206,7 +204,7 @@ public class AdminController {
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("admin_list", list);
 		
-		return "Admin_List";
+		return "/Admin/Admin_List";
 	}
 
 	/* 상세 */
@@ -216,13 +214,13 @@ public class AdminController {
 
 		AdminDto dto = biz.selectOne(member_id);
 		model.addAttribute("admin_dto", dto);
-		return "Admin_Detail";
+		return "/Admin/Admin_Detail";
 	}
 
 	/* 입력페이지로 이동 */
 	@RequestMapping("Admin_write.do")
 	public String writeForm(Model model) {
-		return "Admin_Insert";
+		return "/Admin/Admin_Insert";
 	}
 
 	/* 입력후 저장 */
@@ -360,7 +358,7 @@ public class AdminController {
 		model.addAttribute("admin_list", res);
 		System.out.println("입력 : " + Admin_search);
 		System.out.println("검색 : " + Admin_keyword);
-		return "Admin_List";
+		return "/Admin/Admin_List";
 	}
 
 	/* 등급조정 */
@@ -386,98 +384,30 @@ public class AdminController {
 		System.out.println("코스 입력 : " + COURSE_CATEGORY_NM);
 		System.out.println("코스 검색 : " + Admin_keywordload);
 
-		  return "Admin_List";
+		  return "/Admin/Admin_List";
 	}
 
-	////////////////////////////////////////////////////////////////////////////////////////////////////
-	/* NoticeBoard */
-
-	@Autowired
-	NoticeBoardBiz NoticeBoardbiz;
-
-	/**/
-	@RequestMapping(value = "NoticeBoard_list.do")
-	public String NoticeBoardlist(Model model) {
-		List<NoticeBoardDto> list = NoticeBoardbiz.selectAll();
-		model.addAttribute("NoticeBoard_list", list);
-
-		return "NoticeBoard_list";
-	}
-
-	@RequestMapping(value = "NoticeBoard_detail.do")
-	public String NoticeBoardDetail(Model model, @RequestParam("noticeboard_no") int noticeboard_no) {
-		// @RequestParam("seq") jsp파일에서 넘어오는 seq를 int seq에 넣어주겠다
-		NoticeBoardbiz.readCount(noticeboard_no);
-		NoticeBoardDto dto = NoticeBoardbiz.selectOne(noticeboard_no);
-		model.addAttribute("NoticeBoard_dto", dto);
-		return "NoticeBoard_detail";
-	}
-
-	@RequestMapping("NoticeBoard_write.do")
-	public String NoticeBoardwriteForm(Model model) {
-		System.out.println("[NoticeBoard - insert 페이지로 이동]");
-		return "NoticeBoard_insert";
-	}
-
-	@RequestMapping(value = "NoticeBoard_insert.do", method = RequestMethod.POST)
-	public String NoticeBoardinsetRes(Model model, @ModelAttribute NoticeBoardDto dto) {
-
-		int res = NoticeBoardbiz.insert(dto);
-		model.addAttribute("NoticeBoard_list", NoticeBoardbiz.selectAll());
-		if (res > 0) {
-			// return "/WEB-INF/view/boardList.jsp";
-			// 위처럼 하면 새로고침할때 마다 글이 추가되기 때문에
-			return "redirect:/NoticeBoard_list.do";
-		} else {
-			return "NoticeBoard_list";
-		}
-	}
-
-	@RequestMapping("NoticeBoard_update.do")
-	public String NoticeBoardupdateRes(Model model, @ModelAttribute NoticeBoardDto dto) {
-		// @ModelAttribute는 form 태그에서 sumit으로 jsp에서 컨트롤로
-		// 보내준것을 알아서 dto에 담겨서 가지고 온다
-		int res = NoticeBoardbiz.update(dto);
-		if (res > 0) {
-			model.addAttribute("NoticeBoard_dto", NoticeBoardbiz.selectOne(dto.getNoticeboard_no()));
-			return "forward:NoticeBoard_list.do";
-		} else {
-			model.addAttribute("NoticeBoard_dto", NoticeBoardbiz.selectOne(dto.getNoticeboard_no()));
-		}
-		return "forward:NoticeBoard_list.do";
-	}
-
-	@RequestMapping(value = "NoticeBoard_delete.do")
-	public String deleteRes(Model model, @RequestParam("noticeboard_no") int noticeboard_no) {
-		// jsp에서 submit으로 보냈지만 id만 필요해서 id만 받기위해
-		// @RequestParam("id") 사용
-		int res = NoticeBoardbiz.delete(noticeboard_no);
-		if (res > 0) {
-			model.addAttribute("NoticeBoard_list", NoticeBoardbiz.selectAll());
-		}
-		return "NoticeBoard_list";
-	}
 	
 	//////////////////////////////////////////////////////////////////////////////////////////////
 	/*걷기 게시판*/
 	@RequestMapping("Exercise_walk.do")
 	public String Exercise_walk(Model model) {
 		System.out.println("test");
-		return "Exercise_Walk";
+		return "/Exercise/Exercise_Walk";
 	}
 	
 	/*길찾기*/
 	@RequestMapping("Exercise_Search.do")
 	public String Exercise_search(Model model) {
 		
-		return "Exercise_Search";
+		return "/Exercise/Exercise_Search";
 	}
 	
 	/*등산 게시판*/
 	@RequestMapping("Exercise_hiking.do")
 	public String Exercise_hiking(Model model) {
        
-        return "Exercise_Hiking";
+        return "/Exercise/Exercise_Hiking";
 	}
 	
 	@RequestMapping("Exercise_hiking1.do")
@@ -530,28 +460,28 @@ public class AdminController {
 		model.addAttribute("hiking_keyword", hiking_keyword);
         model.addAttribute("abc", abc);
 		
-		return "Exercise_Hiking";
+		return "/Exercise/Exercise_Hiking";
 	}
 	
 	/*문화행사 게시판*/
 	@RequestMapping("Freetime_Culture.do")
 	public String Freetime_Culture(Model model) {
 		
-        return "Freetime_Culture";
+        return "/Freetime/Freetime_Culture";
 	}
 	
 	/*도서관 게시판*/
 	@RequestMapping("Freetime_Library.do")
 	public String  Freetime_Library(Model model) {
 		
-		return "Freetime_Library";
+		return "/Freetime/Freetime_Library";
 	}
 	
 	/*공원 게시판*/
 	@RequestMapping("Freetime_Park.do")
 	public String  Freetime_Park(Model model) {
 		
-		return "Freetime_Park";
+		return "/Freetime/Freetime_Park";
 	}
 	/*경로당 게시판*/
 	@RequestMapping("Freetime_Center.do")
@@ -600,7 +530,7 @@ public class AdminController {
 		    }
 		}*/
 		
-		return "Freetime_Center";
+		return "/Freetime/Freetime_Center";
 	}
 
 }

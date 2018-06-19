@@ -66,27 +66,31 @@
         </div>
       </div>
     </div>
+  </div>
+  
+    <div class="py-5 text-black" style="background-image: url(&quot;./resources/img/Exercise_Search.jpg&quot;);" >
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12"><br/><br/><br/><br/><br/><br/><br/>
+          <h3 class="text-gray-white">길찾기/지도</h3>
+          <h4></h4><br/><br/><br/>
+        </div>
+      </div>
+    </div>
   </div><br/><br/><br/>
-
-<h3>길찾기 게시판</h3>
-<div class="container">
-<br/><br/><br/><br/><br/><br/><br/>
 	
 	<div class="container">
-	<div style="float: right;">
+ 	<div style="float: right;">
 	<form onsubmit="keyword1(); return false;" >
 		<input class="form-control" id="keyword" placeholder="입력하세요." style="width:200px; vertical-align: bottom;"/>
 		<button onclick="keyword1();" class="btn btn-dark">검색</button><br/><br/>
-	 <a class="btn btn-dark" href="Exercise_hiking.do">등산로</a>
+	 <a class="btn btn-dark" href="Exercise_hiking.do">등산로 게시판</a><br/><br/>
+	 <a class="btn btn-dark" href="Exercise_walk.do">걷기 게시판</a>
 	</form>
-	</div>
+	</div> 
 	
 	
 <div id="map" style="width:800px; height:700px; border:2px solid black; margin:0 auto;"></div><br/><br/>
-
-<script type="text/javascript">
-
-</script>
 
 <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=7860e07925e3692715c72048890bd002&libraries=services"></script>
 <script>
@@ -160,6 +164,6 @@ function displayMarker(place) {
 <button class="btn btn-dark" onclick="location.href='http://map.seoul.go.kr/smgis/webs/theme/themeMapCopy.do?mode=themeMapCopy&thm_theme_id=100362&map_type=1&xpoint=126.978509&ypoint=37.566611&level=9&oldmap=&tp=0.7&maptile=BASEMAP_NAVER&order=0&utid=&copy_mode=theme#'">서울의 산과 공원 안내</button>
 	</div>
 	
-	<%@ include file="bootstrap.jsp" %>
+	<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

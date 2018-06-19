@@ -112,12 +112,12 @@ p{
         </div>
         </div>
         
-        <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;./resources/img/img-3.jpg&quot;); " >
+        <div class="py-5" style="background-image: url(&quot;./resources/img/Freetime_Culture.jpg&quot;); background-size: cover;" >
     <div class="container">
       <div class="row">
-        <div class="col-md-12">
-          <h3 class="text-gray-white">문화행사</h3><br/>
-          <h4></h4><br/><br/><br/><br/>
+        <div class="col-md-12"><br/><br/><br/><br/>
+          <h3 style="color: #bfa100; text-align: center;">문화행사</h3><br/>
+          <h4></h4>
         </div>
       </div>
     </div>
@@ -156,6 +156,6 @@ p{
 	</table>
 	</div>	
 
-		<%@ include file="bootstrap.jsp"%>
+		<%@ include file="../bootstrap.jsp"%>
 </body>
 </html>

@@ -115,6 +115,6 @@ a { text-decoration:none }
 				<button type="submit" class="btn btn-primary">저장</button>
 	</form>
 	</div>
-<%@ include file="bootstrap.jsp" %>
+<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

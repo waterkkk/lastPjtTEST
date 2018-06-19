@@ -11,20 +11,12 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>걷기게시판</title>
 <style type="text/css">
-@import url(//fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
-
-* {
-	font-family: 'Nanum Gothic Coding';
-}
 
 p{
  text-align: center;"
 }
 
 </style>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
-<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
-<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 
 function test1(){
@@ -68,12 +60,11 @@ $("select").click(function() {
 </script>
 </head>
 <body>
-<%-- <div id="header"> 
-<%@ include file="Form/Header4.jsp"%> 
-</div> --%>
- 
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
 
-  <div class="py-5" style="background-color: black;">
+<!--   <div class="py-5" style="background-color: black;">
     <div class="container" >
       <div class="row">
         <div class="col-md-12">
@@ -119,7 +110,7 @@ $("select").click(function() {
         </div>
       </div>
     </div>
-    </div>
+    </div> -->
        <div class="py-5 text-white" style="background-image: url(&quot;./resources/img/Exercise_walk.jpg&quot;);" >
     <div class="container">
       <div class="row">
@@ -137,6 +128,7 @@ $("select").click(function() {
 	</div> --> <br/><br/><br/>
 	
 <div class="container">
+<div class="container" style="float: left;">
 		<h4>코스로 검색할 수 있습니다</h4><br/>
 		<form class="form-inline m-0" method="post">
 			<label for="se01" class="label01" class="form-control">유형별</label>&nbsp;&nbsp;
@@ -146,15 +138,30 @@ $("select").click(function() {
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LARf">근교산자락길</option>
 				<option value="http://seoulcitywall.seoul.go.kr/front/kor/sub01/course_all.do">한양도성길</option>
 				<option value="http://map.seoul.go.kr/smgis/short.jsp?p=6LFiq">서울 봄꽃길</option>
-					</select> 
-						</form>
-					<div style="float: right;">
-						<label for="course_name">직접 입력할 수 있습니다</label>
+			</select> 
+		</form>
+		</div>
+		
+		
+	<%-- 	<!--로그인-->
+      <c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
+      </c:if> --%>
+				<div style="float: right;">
+					<label for="course_name">직접 입력할 수 있습니다</label>
 						<input type="text" class="form-control" id="searchAPI" placeholder="ex) 관악산, 안양천" style="width:200px;"/><br/>
 						<button onclick="test1();" class="btn btn-dark" >검색</button>
-	<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
-					</div><br/><br/><br/>
-					</div><br/><br/>
+					<a class="btn btn-dark" href="Exercise_Search.do">길찾기/지도</a>
+				</div><br/><br/><br/>
+	</div><br/><br/>
 					
 					
 	<div class="container">			
@@ -163,9 +170,8 @@ $("select").click(function() {
 	</div>	
 	<br/><br/><br/>
 	
-<%-- 	<div id="footer"> 
-<%@ include file="Form/Footer4.jsp"%> 
-</div> --%>
-<%@ include file="bootstrap.jsp" %>
+ 	<div id="footer"> 
+<%@ include file="../Form/Footer4.jsp"%> </div> 
+<%-- <%@ include file="../bootstrap.jsp" %> --%>
 </body>
 </html>
