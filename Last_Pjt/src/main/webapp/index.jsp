@@ -86,6 +86,7 @@ function zooms(){
 
 </head>
 <body>
+<a href= "Admin_list.do">abc</a>
 
 <!--내비게이션 바-->
 	<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top" id="nav" style="background-color: black;" >
@@ -110,8 +111,8 @@ function zooms(){
 					<button type="button" class="btn-lg btn-modify dropdown-toggle"
 						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">운동</button>
 					<div class="dropdown-menu">
-						<a class="dropdown-item" href="Exercise_walk.do">걷기</a> 
-						<a class="dropdown-item" href="Exercise_hiking.do">등산</a> 
+						<a class="dropdown-item" href="Exercise_Walk.do">걷기</a> 
+						<a class="dropdown-item" href="Exercise_Hiking.do">등산</a> 
 					</div>
 				</div>
 
@@ -207,8 +208,8 @@ function zooms(){
           <div class="py-5 col-md-3" >
           <div class="row">
             <div class="col-8 col-md-12">
-              <h5 class="mb-3 text-primary">배우는 기쁨</h5>
-              <p class="my-1">&nbsp;평생학습, 배우는 즐거움.<br/> 나를 찾는 기쁨을 한껏 누려보세요.<br/> 검색하기 번거로우신가요? <br/>제 2의 인생이 도와드립니다. </p>
+              <h3 class="mb-3 text-primary">배우는 기쁨</h3>
+              <p class="my-1" style="color: black;">&nbsp;평생학습, 배우는 즐거움.<br/> 나를 찾는 기쁨을 한껏 누려보세요.<br/> 검색하기 번거로우신가요? <br/>제 2의 인생이 도와드립니다. </p>
             </div>
           </div><br/>
            <div class="btn-group">
@@ -218,23 +219,19 @@ function zooms(){
         <div class="py-5 col-md-3">
           <div class="row">
             <div class="col-8 col-md-12">
-              <h5 class="mb-3 text-primary">
-                <b>움직이는 희열</b>
-              </h5>
-              <p class="my-1">&nbsp;걷기 좋은 길,등산로 등 지도를 이용해 즐겁게 운동하며 건강까지 지킬 수 있는 방법이 많이 있습니다.<br/> 제 2의 인생에서 간편하게 찾아보세요. </p>
+              <h3 class="mb-3 text-primary" >움직이는 희열</h3>
+              <p class="my-1" style="color: black;">&nbsp;걷기 좋은 길,등산로 등 지도를 이용해 즐겁게 운동하며 건강까지 지킬 수 있는 방법이 많이 있습니다.<br/> 제 2의 인생에서 간편하게 찾아보세요. </p>
             </div>
             </div><br/>
            <div class="btn-group">
-            <a href="Exercise_walk.do" class="btn btn-lg mx-1 btn-dark">운동게시판</a>
+            <a href="Exercise_Walk.do" class="btn btn-lg mx-1 btn-dark">운동게시판</a>
           </div>
         </div>
         <div class="py-5 col-md-3">
           <div class="row">
             <div class="col-8 col-md-12">
-              <h5 class="mb-3 text-primary">
-                <b>맛있는 즐거움</b>
-              </h5>
-              <p class="my-1">&nbsp;운동 후 맛집에서 먹는 치킨과 시원한 맥주 한 잔! <br/> 평소에 건강하게 드시면 가끔 그 정도는 괜찮아요.<br/> 제 2의 인생에서 건강 정보도 함께하실 수 있습니다. </p>
+              <h3 class="mb-3 text-primary">맛있는 즐거움</h3>
+              <p class="my-1" style="color: black;">&nbsp;운동 후 맛집에서 먹는 치킨과 시원한 맥주 한 잔! <br/> 평소에 건강하게 드시면 가끔 그 정도는 괜찮아요.<br/> 제 2의 인생에서 건강 정보도 함께하실 수 있습니다. </p>
             </div>
             </div><br/>
            <div class="btn-group">
@@ -244,10 +241,8 @@ function zooms(){
         <div class="py-5 col-md-3">
           <div class="row">
             <div class="col-8 col-md-12">
-              <h5 class="mb-3 text-primary">
-                <b>즐기는 기쁨</b>
-              </h5>
-              <p class="my-1">&nbsp;주변의 문화행사(뮤지컬 / 미술 / 전시회 / 영화 / 연극 / 무용 등), 도서관, 공원, 경로당을 찾아보세요. <br/>세상에는 재미있는 것이 참 많아요.
+              <h3 class="mb-3 text-primary">즐기는 기쁨</h3>
+              <p class="my-1" style="color: black;">&nbsp;주변의 문화행사(뮤지컬 / 미술 / 전시회 / 영화 / 연극 / 무용 등), 도서관, 공원, 경로당을 찾아보세요. <br/>세상에는 재미있는 것이 참 많아요.
                 <br> </p>
             </div>
             </div><br/>
@@ -261,37 +256,33 @@ function zooms(){
 <div class="py-5 text-black bg-white" >
     <div class="container">
       <div class="row">
-        <div class="col-md-6" >
-   <h5 class="mb-3 text-primary">공지사항</h5>
-          <div class="list-group" style="opacity: 1.0;">
+        <div class="col-md-6" style="float: left;">
+   <h3 class="mb-3 text-primary">공지사항</h3>
+          <div class="list-group" style="opacity: 1.0;" >
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><b>공지사항</b></h5>
-                <small>2018.6.19</small>
+              <div class="d-flex w-100 justify-content-between" >
+                <h3 class="mb-1"><b style="color: black;">맨 위의 +를 누르면 화면이 커집니다.</b></h3>
               </div><br/>
-              <p class="mb-1">우측 상단의 +를 누르면 화면이 커집니다.</p>
-              <small class="text-muted">버튼을 눌러 사용해보세요.</small><br/>
+              <p class="mb-1" style="color: black;">우측 상단의 +를 누르면 화면이 커집니다.</p>
+              <br/>
             </a>
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><b>공지사항</b></h5>
-                <small class="text-muted">2018.6.18</small>
+                <h3 class="mb-1"><b style="color: black;">자유게시판에 새 글이 등록되었습니다.</b></h3>
               </div><br/>
-              <p class="mb-1">자유게시판의 글이 새롭게 등록되었습니다.</p>
-              <small class="text-muted">새로운 글을 확인해보세요.<br/></small>
+              <p class="mb-1" style="color: black;">새로운 글을 확인해보세요.</p>
             </a>
             <a href="#" class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1"><b>공지사항</b></h5>
-                <small class="text-muted">2018.6.9</small>
+                <h3 class="mb-1"><b style="color: black;">서버 점검 안내</b></h3>
               </div><br/>
-              <p class="mb-1">서버 점검 안내</p>
-              <small class="text-muted">점검시간 : 2018년 6월 9일 오전 7시~ 10일 오전 7시<br/></small>
+              <p class="mb-1" style="color: black;">점검시간 : 2018년 6월 9일 오전 7시~ 10일 오전 7시</p>
             </a>
           </div>
         </div>
+        
         <div class="col-md-6" style="float: right;">
-        <h5 class="mb-3 text-primary">재미있는 영상</h5>
+        <h3 class="mb-3 text-primary">재미있는 영상</h3>
           <div class="embed-responsive embed-responsive-4by3 rounded">
             <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/i__1Z5a9Sak?autoplay=0" allowfullscreen=""> </iframe>
           </div>

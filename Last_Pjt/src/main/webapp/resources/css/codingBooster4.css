@@ -4,71 +4,65 @@
 
 *{
 	color:darkpink;
-	text-decoration: none; /* 밑줄없이 */
+   text-decoration: none; /* 밑줄없이 */
 }
 
-*:hover{
-	color: gray;
-	text-decoration: none;
-	cursor: pointer; /* 현재 선택하고 있는 것이 링크라고 알려줌 */
-}
 
 
 
 /*내비게이션 영역*/
 
 .navbar-default{ /*배경 색상*/
-	background-color: black;
-	border-color: black;
+   background-color: black;
+   border-color: black;
 }
 
 .navbar-default .navbar-brand { /*내비게이션 제목 색상*/
-	color: #ffffff;
+   color: #ffffff;
 }
 
 .navbar-default .navbar-brand:hover,
 .navbar-default .navbar-brand:focus { /*내비게이션 제목에 마우스를 올렸을 때 */
-	background-color: transparent;
-	color:lightcoral;
+   background-color: transparent;
+   color:lightcoral;
 }
 
 
 .navbar-default .navbar-nav > .active >a,
 .navbar-default .navbar-nav > .active >a:hover,
 .navbar-default .navbar-nav > .active >a:focus { /* 현재 선택된 내비게이션 색상 이벤트*/
-	color: white;
-	background-color: black;
+   color: white;`
+   background-color: black;
 }
-
 
 
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus { /* 내비게이션의 글자에 마우스를 올렸을 때 해당 내비게이션 색상 이벤트*/
-		color: lightcoral;
-	background-color: black;
+      color: lightcoral;
+   background-color: black;
 }
 
 .navbar-default .navbar-nav > .open >a,
 .navbar-default .navbar-nav > .open >a:hover,
 .navbar-default .navbar-nav > .open >a:focus { /* dropdown이 열렸을 때 마우스 색상 이벤트*/
-	color: white;
-	background-color: lightcoral;
-	text-decoration: none;
+   color: white;
+   background-color: lightcoral;
+   text-decoration: none;
 }
 
 
 
 .navbar-default .navbar-nav > li > a { /* 내비게이션 글자 기본 색상 */
-	color: white;
+   color: white;
 }
 
 @media(max-width: 767px){ /*해상도가 작을 때 드랍다운 아이템에 마우스를 올렸을 때 */
-	.navbar-default .navbar-nav .dropdown-menu >li > a{
-		color: #ffffff;
-	}
+   .navbar-default .navbar-nav .dropdown-menu >li > a{
+      color: #ffffff;
+   }
 
-	.navbar-default .navbar-nav .dropdown-menu >li > a:hover,
-	.navbar-default .navbar-nav .dropdown-menu >li > a:focus{
-		color: #bbbbbb;
-	}
+   .navbar-default .navbar-nav .dropdown-menu >li > a:hover,
+   .navbar-default .navbar-nav .dropdown-menu >li > a:focus{
+      color: #bbbbbb;
+   }
  }

@@ -17,77 +17,39 @@
 }
 
 </style>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 </head>
 <body>
-<div class="py-5" >
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <a class="btn btn-dark" href="index.jsp">HOME</a>
-          <a class="btn btn-dark" href="NoticeBoard_list.do">공지사항</a>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 교육</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">온라인</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">오프라인</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 운동</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">건강식단</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">맛집</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-dark dropdown-toggle" data-toggle="dropdown"> 여가</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
-            </div>
-          </div>
-          <a class="btn btn-dark" href="#">자유게시판</a>
-        </div>
-      </div>
-    </div>
-  </div>
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+	</div>
   
-    <div class="py-5 text-black" style="background-image: url(&quot;./resources/img/Exercise_Search.jpg&quot;);" >
+    <div class="py-5 text-black" style="background-image: url(&quot;./resources/img/Exercise_search.jpg&quot;);" >
     <div class="container">
       <div class="row">
         <div class="col-md-12"><br/><br/><br/><br/><br/><br/><br/>
           <h3 class="text-gray-white">길찾기/지도</h3>
-          <h4></h4><br/><br/><br/>
+          <h4></h4><br/>
         </div>
       </div>
     </div>
   </div><br/><br/><br/>
 	
-	<div class="container">
- 	<div style="float: right;">
-	<form onsubmit="keyword1(); return false;" >
-		<input class="form-control" id="keyword" placeholder="입력하세요." style="width:200px; vertical-align: bottom;"/>
+ 	<div class="container">
+  <div style="float: right;">
+	<form onsubmit="keyword1(); return false;" style="display: flex;" >
+		<input class="form-control" id="keyword" placeholder="입력하세요." style="width:200px; vertical-align: bottom;"/>&nbsp;
 		<button onclick="keyword1();" class="btn btn-dark">검색</button><br/><br/>
-	 <a class="btn btn-dark" href="Exercise_hiking.do">등산로 게시판</a><br/><br/>
-	 <a class="btn btn-dark" href="Exercise_walk.do">걷기 게시판</a>
 	</form>
-	</div> 
+	</div> <br/><br/><br/>
+	<div class="container"> 
+    <div style="float: right;">
+	 <a class="btn btn-dark" href="Exercise_Walk.do">걷기 게시판</a>
+	 <a class="btn btn-dark" href="Exercise_Hiking.do">등산로 게시판</a>
+	</div>
+  </div><br/><br/><br/>
 	
 	
 <div id="map" style="width:800px; height:700px; border:2px solid black; margin:0 auto;"></div><br/><br/>
@@ -159,11 +121,11 @@ function displayMarker(place) {
 }
 </script>
 </div>
+<div>
 <table id="apiList" border="1"></table>
 
 <button class="btn btn-dark" onclick="location.href='http://map.seoul.go.kr/smgis/webs/theme/themeMapCopy.do?mode=themeMapCopy&thm_theme_id=100362&map_type=1&xpoint=126.978509&ypoint=37.566611&level=9&oldmap=&tp=0.7&maptile=BASEMAP_NAVER&order=0&utid=&copy_mode=theme#'">서울의 산과 공원 안내</button>
 	</div>
 	
-	<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

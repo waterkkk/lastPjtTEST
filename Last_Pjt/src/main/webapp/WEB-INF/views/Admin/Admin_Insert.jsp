@@ -16,9 +16,13 @@ a { text-decoration:none }
 <title>insert.jsp</title>
 </head>
 <body>
-<h3>관리자-회원추가(테스트)</h3>
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+	</div><br/><br/><br/>
+	
 
     <div class="container">
+<h3>관리자-회원추가(테스트)</h3>
    <form action="Admin_insert.do" method="post">
     <div class="form-group">
 				<label>ID</label>
@@ -52,6 +56,5 @@ a { text-decoration:none }
 		</form>
 	</div>
 
-<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

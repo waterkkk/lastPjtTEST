@@ -43,7 +43,6 @@ import com.bom.dto.AdminDto;
 
 @Controller
 public class AdminController {
-	
 
 	@Autowired
 	AdminBiz biz;
@@ -99,111 +98,13 @@ public class AdminController {
 		// 예를 들어 전체 작성된 글의 수가 40개(totalA = 40) 이라면 전체 페이지 수는 8페이지가 되고(totalP = 8)
 		// 내가 7페이지를 보고 있다면(currentPage =7) [7] [8] [9] 가 보여지게 되는데,
 		// [9]페이지는 존재하지 않으므로 전체 페이지수(totalP)를 마지막 페이지(endPage)에 넣어주면 된다 (endPage = totalP)
-		
-		List<APItest> listapi = new ArrayList<APItest>();
-		APItest api = new APItest();
-		
-		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5";
-		  
-		  try {
-		   URL url  = new URL(urlString);   
-		   URLConnection URLconnection = url.openConnection();
-		   HttpURLConnection httpConnection = (HttpURLConnection)URLconnection;
-		   int responseCode = httpConnection.getResponseCode();
-		   if (responseCode== HttpURLConnection.HTTP_OK)
-		   {
-		    InputStream in = httpConnection.getInputStream();
-		    
-		    DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-		    DocumentBuilder db = fac.newDocumentBuilder();
-		    Document doc = db.parse(in);
-		
-		    // 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
-		    // NodeList와 Node 인 경우로 나누어서 처리해야 한다.
-		    // 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
-		    Element el = doc.getDocumentElement();
-		    NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
-		    
-		    for (int row_idx=0; row_idx<row_List.getLength(); row_idx++){
-		     Node row_Node = row_List.item(row_idx);
-		     NodeList rowList = row_Node.getChildNodes();
-		     
-		     String COURSE_CATEGORY_NM = "";
-		     String COURSE_NAME = "";
-		     String AREA_GU = "";
-		     String DISTANCE = "";
-		     String LEAD_TIME = "";
-		     String TRAFFIC_INFO = "";
-		     String CONTENT = "";
-		     String COURSE_LEVEL = "";
-		     String DETAIL_COURSE = "";
-		     String CPI_IDX = "";
-		     
-		     for (int cd_idx=0; cd_idx<rowList.getLength(); cd_idx++)
-		     {
-		      Node childNode = rowList.item(cd_idx);
-		      if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
-		    	  COURSE_CATEGORY_NM = childNode.getTextContent();
-		      api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
-		      if (childNode.getNodeName().equals("COURSE_NAME"))
-		    	  COURSE_NAME = childNode.getTextContent();
-		      api.setCOURSE_NAME(COURSE_NAME);
-		      if (childNode.getNodeName().equals("AREA_GU"))
-		    	  AREA_GU = childNode.getTextContent();
-		      api.setAREA_GU(AREA_GU);
-		      if (childNode.getNodeName().equals("DISTANCE"))
-		    	  DISTANCE = childNode.getTextContent();
-		      api.setDISTANCE(DISTANCE);
-		      if (childNode.getNodeName().equals("LEAD_TIME"))
-		    	  LEAD_TIME = childNode.getTextContent();
-		      api.setLEAD_TIME(LEAD_TIME);
-		      if (childNode.getNodeName().equals("TRAFFIC_INFO"))
-		    	  TRAFFIC_INFO = childNode.getTextContent();
-		      api.setTRAFFIC_INFO(TRAFFIC_INFO);
-		      if (childNode.getNodeName().equals("CONTENT"))
-		    	  CONTENT = childNode.getTextContent();
-		      api.setCONTENT(CONTENT);
-		      if (childNode.getNodeName().equals("COURSE_LEVEL"))
-		    	  COURSE_LEVEL = childNode.getTextContent();
-		      api.setCOURSE_LEVEL(COURSE_LEVEL);
-		      if (childNode.getNodeName().equals("DETAIL_COURSE"))
-		    	  DETAIL_COURSE = childNode.getTextContent();
-		      api.setDETAIL_COURSE(DETAIL_COURSE);
-		      if (childNode.getNodeName().equals("CPI_IDX"))
-		    	  CPI_IDX = childNode.getTextContent();
-		      api.setCPI_IDX(CPI_IDX);
-		     }
-		     listapi.add(api);
-		     
-		    /* System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
-		     System.out.println("COURSE_NAME - " + COURSE_NAME);
-		     System.out.println("AREA_GU - " + AREA_GU);
-		     System.out.println("DISTANCE - " + DISTANCE);
-		     System.out.println("LEAD_TIME - " + LEAD_TIME);
-		     System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
-		     System.out.println("CONTENT - " + CONTENT);
-		     System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
-		     System.out.println("DETAIL_COURSE - " + DETAIL_COURSE);
-		     System.out.println("CPI_IDX - " + CPI_IDX);
-		     System.out.println("--------------------");*/
-		    }
-		   }
-		   else
-		   {
-		    System.out.println("HTTP connection response !=HTTP_OK");
-		   }
-		  } catch (Exception e)
-		  {
-		   e.printStackTrace();
-		  }
-		model.addAttribute("walk_api", listapi);  
-		
+
 		model.addAttribute("currentPage", currentPage);
 		model.addAttribute("totalP", totalP);// 페이징 처리를 위해 가져감
 		model.addAttribute("startPage", startPage);
 		model.addAttribute("endPage", endPage);
 		model.addAttribute("admin_list", list);
-		
+
 		return "/Admin/Admin_List";
 	}
 
@@ -270,90 +171,9 @@ public class AdminController {
 
 	/* 검색 */
 	@RequestMapping(value = "Admin_search.do")
-	public String AdminSearchRes(Model model, @RequestParam("Admin_search") String Admin_search, @RequestParam("Admin_keyword") String Admin_keyword) {
-		List<APItest> listapi = new ArrayList<APItest>();
-		APItest api = new APItest();
-		
-		String urlString = "http://openapi.seoul.go.kr:8088/427958685873776539364e63494a53/xml/SeoulGilWalkCourse/1/5";
-		  
-		try {
-			URL url = new URL(urlString);
-			URLConnection URLconnection = url.openConnection();
-			HttpURLConnection httpConnection = (HttpURLConnection) URLconnection;
-			int responseCode = httpConnection.getResponseCode();
-			if (responseCode == HttpURLConnection.HTTP_OK) {
-				InputStream in = httpConnection.getInputStream();
+	public String AdminSearchRes(Model model, @RequestParam("Admin_search") String Admin_search,
+			@RequestParam("Admin_keyword") String Admin_keyword) {
 
-				DocumentBuilderFactory fac = DocumentBuilderFactory.newInstance();
-				DocumentBuilder db = fac.newDocumentBuilder();
-				Document doc = db.parse(in);
-
-				// 자바스크립트로 처리할 때와 메소드명은 비슷하지만, 자바스크립트는 변수에 명시적인 타입을 주지 않기 때문에
-				// NodeList와 Node 인 경우로 나누어서 처리해야 한다.
-				// 또한 <TAG_NAME>TEXT</TAG_NAME> 식으로 구성된 TEXT를 얻어오려면 getTextContent()를 사용한다.
-				Element el = doc.getDocumentElement();
-				NodeList row_List = el.getElementsByTagName("row"); // CD Element를 찾는다.
-
-				for (int row_idx = 0; row_idx < row_List.getLength(); row_idx++) {
-					Node row_Node = row_List.item(row_idx);
-					NodeList rowList = row_Node.getChildNodes();
-
-					String COURSE_CATEGORY_NM = "";
-					String COURSE_NAME = "";
-					String AREA_GU = "";
-					String DISTANCE = "";
-					String LEAD_TIME = "";
-					String TRAFFIC_INFO = "";
-					String CONTENT = "";
-					String COURSE_LEVEL = "";
-
-					for (int cd_idx = 0; cd_idx < rowList.getLength(); cd_idx++) {
-						Node childNode = rowList.item(cd_idx);
-						if (childNode.getNodeName().equals("COURSE_CATEGORY_NM"))
-							COURSE_CATEGORY_NM = childNode.getTextContent();
-						api.setCOURSE_CATEGORY_NM(COURSE_CATEGORY_NM);
-						if (childNode.getNodeName().equals("COURSE_NAME"))
-							COURSE_NAME = childNode.getTextContent();
-						api.setCOURSE_NAME(COURSE_NAME);
-						if (childNode.getNodeName().equals("AREA_GU"))
-							AREA_GU = childNode.getTextContent();
-						api.setAREA_GU(AREA_GU);
-						if (childNode.getNodeName().equals("DISTANCE"))
-							DISTANCE = childNode.getTextContent();
-						api.setDISTANCE(DISTANCE);
-						if (childNode.getNodeName().equals("LEAD_TIME"))
-							LEAD_TIME = childNode.getTextContent();
-						api.setLEAD_TIME(LEAD_TIME);
-						if (childNode.getNodeName().equals("TRAFFIC_INFO"))
-							TRAFFIC_INFO = childNode.getTextContent();
-						api.setTRAFFIC_INFO(TRAFFIC_INFO);
-						if (childNode.getNodeName().equals("CONTENT"))
-							CONTENT = childNode.getTextContent();
-						api.setCONTENT(CONTENT);
-						if (childNode.getNodeName().equals("COURSE_LEVEL"))
-							COURSE_LEVEL = childNode.getTextContent();
-						api.setCOURSE_LEVEL(COURSE_LEVEL);
-					}
-					listapi.add(api);
-
-					System.out.println("COURSE_CATEGORY_NM - " + COURSE_CATEGORY_NM);
-					System.out.println("SOUTH_NORTH_DIV_NM - " + COURSE_NAME);
-					System.out.println("AREA_GU - " + AREA_GU);
-					System.out.println("DISTANCE - " + DISTANCE);
-					System.out.println("LEAD_TIME - " + LEAD_TIME);
-					System.out.println("TRAFFIC_INFO - " + TRAFFIC_INFO);
-					System.out.println("CONTENT - " + CONTENT);
-					System.out.println("COURSE_LEVEL - " + COURSE_LEVEL);
-					System.out.println("--------------------");
-				}
-			} else {
-				System.out.println("HTTP connection response !=HTTP_OK");
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		model.addAttribute("api", listapi); 
-		
 		List<AdminDto> res = biz.searchList(Admin_search, Admin_keyword);
 		model.addAttribute("admin_list", res);
 		System.out.println("입력 : " + Admin_search);
@@ -374,9 +194,10 @@ public class AdminController {
 		}
 		return "forward:Admin_list.do";
 	}
-	
+
 	@RequestMapping(value = "Admin_searchload.do")
-	public String Api(Model model, @RequestParam("COURSE_CATEGORY_NM") String COURSE_CATEGORY_NM, @RequestParam("Admin_keywordload") String Admin_keywordload) {
+	public String Api(Model model, @RequestParam("COURSE_CATEGORY_NM") String COURSE_CATEGORY_NM,
+			@RequestParam("Admin_keywordload") String Admin_keywordload) {
 		System.out.println(COURSE_CATEGORY_NM);
 		System.out.println(Admin_keywordload);
 		List<APItest> res = biz.searchLoadList(COURSE_CATEGORY_NM, Admin_keywordload);
@@ -384,57 +205,60 @@ public class AdminController {
 		System.out.println("코스 입력 : " + COURSE_CATEGORY_NM);
 		System.out.println("코스 검색 : " + Admin_keywordload);
 
-		  return "/Admin/Admin_List";
+		return "/Admin/Admin_List";
 	}
 
-	
 	//////////////////////////////////////////////////////////////////////////////////////////////
-	/*걷기 게시판*/
-	@RequestMapping("Exercise_walk.do")
+	/* 걷기 게시판으로 이동 */
+	@RequestMapping("Exercise_Walk.do")
 	public String Exercise_walk(Model model) {
-		System.out.println("test");
 		return "/Exercise/Exercise_Walk";
 	}
-	
-	/*길찾기*/
+
+	/* 길찾기 */
 	@RequestMapping("Exercise_Search.do")
 	public String Exercise_search(Model model) {
-		
+
 		return "/Exercise/Exercise_Search";
 	}
-	
-	/*등산 게시판*/
-	@RequestMapping("Exercise_hiking.do")
+
+	/* 등산 게시판으로 이동 */
+	@RequestMapping("Exercise_Hiking.do")
 	public String Exercise_hiking(Model model) {
-       
-        return "/Exercise/Exercise_Hiking";
+
+		return "/Exercise/Exercise_Hiking";
 	}
-	
-	@RequestMapping("Exercise_hiking1.do")
-	public String Exercise_hiking1(Model model,  @RequestParam(required = false) String hiking_keyword) throws IOException {
-		
-	    StringBuilder urlBuilder = new StringBuilder("http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI"); /*URL*/
-        urlBuilder.append("?" + URLEncoder.encode("ServiceKey","UTF-8") + "=lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D"); /*Service Key*/
-        urlBuilder.append("&" + URLEncoder.encode("searchArNm","UTF-8") + "=" + URLEncoder.encode(hiking_keyword,"UTF-8") ); /*2619990400*/
-       // urlBuilder.append(hiking_keyword);
-        System.out.println(urlBuilder);
-        URL url = new URL(urlBuilder.toString());
-        HttpURLConnection conn = (HttpURLConnection) url.openConnection();
-        conn.setRequestMethod("GET");
-        conn.setRequestProperty("Content-type", "application/json");
-        System.out.println("Response code: " + conn.getResponseCode());
-        BufferedReader rd;
-        if(conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
-            rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
-        } else {
-            rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
-        }
-        
-        StringBuilder sb = new StringBuilder();
-        String line;
-        while ((line = rd.readLine()) != null) {
-        	System.out.println("line :" + line);
-        	String text = line;
+
+	/* 등산 게시판 검색 */
+	@RequestMapping("Exercise_Hiking_Page.do")
+	public String Exercise_hiking1(Model model, @RequestParam(required = false) String hiking_keyword)
+			throws IOException {
+
+		StringBuilder urlBuilder = new StringBuilder(
+				"http://openapi.forest.go.kr/openapi/service/cultureInfoService/gdTrailInfoOpenAPI"); /* URL */
+		urlBuilder.append("?" + URLEncoder.encode("ServiceKey", "UTF-8")
+				+ "=lgVtVTsJEuXKfNpq8RSVgdwFIDbku065dngPfBYOMYz4KauXQuCilV9aVwqZ2m2Z8kc9eGxiXmCY7zAWkV4m%2Bg%3D%3D"); /* Service Key */
+		urlBuilder.append("&" + URLEncoder.encode("searchArNm", "UTF-8") + "="
+				+ URLEncoder.encode(hiking_keyword, "UTF-8")); /* 검색 단어 */
+
+		System.out.println(urlBuilder);
+		URL url = new URL(urlBuilder.toString());
+		HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		conn.setRequestMethod("GET");
+		conn.setRequestProperty("Content-type", "application/json");
+		System.out.println("Response code: " + conn.getResponseCode());
+		BufferedReader rd;
+		if (conn.getResponseCode() >= 200 && conn.getResponseCode() <= 300) {
+			rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+		} else {
+			rd = new BufferedReader(new InputStreamReader(conn.getErrorStream()));
+		}
+
+		StringBuilder sb = new StringBuilder();
+		String line;
+		while ((line = rd.readLine()) != null) {
+			System.out.println("line :" + line);
+			String text = line;
 			line = text.replace("00", " ").replace("NORMAL SERVICE.", "<br/>")
 					.replace("<aeatreason>", "<aeatreason><br/>♡♡안내♡♡<br/>").replace("&amp;lt;", "<")
 					.replace("&amp;gt;", ">").replace("&lt;BR&gt;", "<br/>")
@@ -448,88 +272,44 @@ public class AdminController {
 
 			sb.append(line);
 		}
-        rd.close();
-        conn.disconnect();
-        System.out.println(sb.toString());
-        
-        String abc  = sb.toString();
-			
-		System.out.println(sb.toString().matches(".*aeatreason.*"));
-        
+		rd.close();
+		conn.disconnect();
+		System.out.println(sb.toString());
+
+		String abc = sb.toString();
+
 		System.out.println("검색 단어 : " + hiking_keyword);
 		model.addAttribute("hiking_keyword", hiking_keyword);
-        model.addAttribute("abc", abc);
-		
+		model.addAttribute("abc", abc);
+
 		return "/Exercise/Exercise_Hiking";
 	}
-	
-	/*문화행사 게시판*/
+
+	/* 문화행사 게시판 */
 	@RequestMapping("Freetime_Culture.do")
 	public String Freetime_Culture(Model model) {
-		
-        return "/Freetime/Freetime_Culture";
+
+		return "/Freetime/Freetime_Culture";
 	}
-	
-	/*도서관 게시판*/
+
+	/* 도서관 게시판 */
 	@RequestMapping("Freetime_Library.do")
-	public String  Freetime_Library(Model model) {
-		
+	public String Freetime_Library(Model model) {
+
 		return "/Freetime/Freetime_Library";
 	}
-	
-	/*공원 게시판*/
+
+	/* 공원 게시판 */
 	@RequestMapping("Freetime_Park.do")
-	public String  Freetime_Park(Model model) {
-		
+	public String Freetime_Park(Model model) {
+
 		return "/Freetime/Freetime_Park";
 	}
-	/*경로당 게시판*/
+
+	/* 경로당 게시판 */
 	@RequestMapping("Freetime_Center.do")
-	public String  Freetime_Center(Model model) throws IOException {
-		
-	/*	// xlsx 파일 스트림
-		FileInputStream file = new FileInputStream(new File("D:\\center.xlsx"));
-		System.out.println("test1");
+	public String Freetime_Center(Model model) throws IOException {
 
-		// 파일 스트림을 XSSFWorkbook 객체로 생성
-		XSSFWorkbook workbook = new XSSFWorkbook(file);
-		System.out.println("test2");
-
-		// XSSFWorkbook 의 첫번째 시트를 가져옴
-		XSSFSheet sheet = workbook.getSheetAt(0);
-		System.out.println("test3");
-
-		// 시트의 row
-		Iterator<Row> rowIterator = sheet.iterator();
-		System.out.println("test4");
-
-		// row 수 만큼
-		while (rowIterator.hasNext()) {
-		    Row row = rowIterator.next();
-
-		    // row 의 cell들
-		    Iterator<Cell> cellIterator = row.cellIterator();
-
-		    // cell 수 만큼
-		    while (cellIterator.hasNext()) {
-		        Cell cell = cellIterator.next();
-		        
-		        String value = null;
-
-		        switch (cell.getCellType()) {
-		            // cell 타입이 숫자
-		            case Cell.CELL_TYPE_NUMERIC:
-		            	value += cell.getNumericCellValue();
-		                break;
-		            // cell 타입이 스트링
-		            case Cell.CELL_TYPE_STRING:
-		            	value += cell.getStringCellValue();
-		                break;
-		        }
-		        model.addAttribute("value", value);
-		    }
-		}*/
-		
 		return "/Freetime/Freetime_Center";
 	}
 

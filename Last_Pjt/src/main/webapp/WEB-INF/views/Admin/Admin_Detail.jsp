@@ -30,6 +30,9 @@ a { text-decoration:none }
 </script>
 </head>
 <body>
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+	</div><br/><br/><br/>
 
 	<jsp:useBean id="admin_dto" class="com.bom.dto.AdminDto" scope="request"></jsp:useBean>
 	<div class="container">
@@ -115,6 +118,5 @@ a { text-decoration:none }
 				<button type="submit" class="btn btn-primary">저장</button>
 	</form>
 	</div>
-<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

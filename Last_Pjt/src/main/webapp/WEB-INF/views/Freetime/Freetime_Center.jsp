@@ -28,7 +28,6 @@ p{
 function testtest(){
 	
 	   $.getJSON("./resources/json/Center.json",function(data) {
-	      alert(data);
 	     
 	      var abc = "";
 	      $.each(data, function(key,val) {
@@ -71,53 +70,9 @@ function testtest(){
 </script>
 </head>
 <body>
-<div class="py-3 bg-dark" >
- <div class="col-md-20" draggable="true" >
-          <div class="btn-group" >
-          <a href="index.jsp" class="btn btn-lg mx-1 btn-dark">HOME</a>
-          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-dark">공지사항</a>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark" data-toggle="dropdown">교육</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">온라인</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">오프라인</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">운동</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">건강식단</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">맛집</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">여가</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
-           <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
-            <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <a href="#" class="btn btn-lg mx-1 btn-dark">자유게시판</a>
-          </div>
-        </div>
-        </div>
-        </div>
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+	</div>
         
      <div class="py-5 text-dark opaque-overlay" style="background-image: url(&quot;./resources/img/Freetime_Center.jpg&quot;);" >
     <div class="container">
@@ -130,10 +85,24 @@ function testtest(){
     </div>
   </div><br/><br/><br/>
   
+  	 <!--로그인-->
+      <c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}"> 
+  
   <div class="container">
- <label>원하는 지역으로 검색할 수 있습니다.</label><br/>
-<input type="text" class="form-control" id="searchAPI" placeholder="ex) 마포구, 종로구" style="width:250px;"/>
+ <label style="color: black;">원하는 지역으로 검색할 수 있습니다.</label><br/>
+ <div class="container" style="display: flex;">
+<input type="text" class="form-control" id="searchAPI" placeholder="ex) 마포구, 종로구" style="width:200px;"/>&nbsp;
 <button onclick="testtest();" class="btn btn-dark" style="float: center;">검색</button>
+</div>
 </div><br/><br/><br/>
 
   <div class="container">			
@@ -143,19 +112,9 @@ function testtest(){
 		</table>
 	</div>
 	
-	<div class="container">
-	<table>
-		<c:choose>
-			<c:when test="${empty value }">
-			</c:when>
-			<c:otherwise>
-				<c:forEach items="${requestScope.value }" var="abc">
-				</c:forEach>
-			</c:otherwise>
-		</c:choose>
-		</table>
-		</div>
+	
+		
+		</c:if>
 
-<%@ include file="../bootstrap.jsp" %>
 </body>
 </html>

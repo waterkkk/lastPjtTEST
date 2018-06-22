@@ -22,8 +22,10 @@ p{
 }
 
 </style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
+<link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> 
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
-
 	
 function testtest(){
 	
@@ -41,54 +43,10 @@ $.ajax({
 </script>
 </head>
 <body>
-<div class="py-3 bg-dark" >
- <div class="col-md-20" draggable="true" >
-          <div class="btn-group" >
-          <a href="index.jsp" class="btn btn-lg mx-1 btn-dark">HOME</a>
-          <a href="NoticeBoard_list.do" class="btn btn-lg mx-1 btn-dark">공지사항</a>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark" data-toggle="dropdown">교육</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">온라인</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">오프라인</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">운동</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Exercise_walk.do">걷기</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Exercise_hiking.do">등산</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">음식</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">건강식단</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">맛집</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <button class="btn btn-lg mx-1 btn-dark dropdown-toggle" data-toggle="dropdown">여가</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item" href="Freetime_Culture.do">문화행사</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Library.do">도서관</a>
-           <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Park.do">공원</a>
-            <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="Freetime_Center.do">노인교실/경로당</a>
-            </div>
-          </div>
-          <div class="btn-group">
-            <a href="#" class="btn btn-lg mx-1 btn-dark">자유게시판</a>
-          </div>
-        </div>
-        </div>
-        </div>
-        
+  <div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+	</div>
+  
      <div class="py-5 text-white opaque-overlay" style="background-image: url(&quot;https://www.splitshire.com/wp-content/uploads/2016/03/SplitShire-3080060.jpg&quot;);" >
     <div class="container">
       <div class="row">
@@ -99,18 +57,19 @@ $.ajax({
       </div>
     </div>
   </div><br/><br/><br/>
-        
-     <div class="col-md-12">
-	</div> 
+ 
 
+<div class="container" style="float: center;">
+<h4 style="color: black;">찾을 지역을 입력하세요 </h4><br/>
 <div class="container">
-<form class="form-inline m-0" action="Exercise_hiking1.do" method="post">
-<label>찾을 지역을 입력하세요 </label><br/>
-<input type="text" name="hiking_keyword" id="hiking_keyword" placeholder="ex)제주, 서울"/>
+<form class="form-inline m-0" action="Exercise_Hiking_Page.do" method="post">
+<input type="text" class="form-control" name="hiking_keyword" id="hiking_keyword" placeholder="ex) 제주, 서울"/>&nbsp;
 <input type="submit" class="btn btn-dark" value="검색" />&nbsp;
-<a class="btn btn-dark" href="Exercise_Search.do">길찾기</a>
+<a class="btn btn-dark" href="Exercise_Search.do">길찾기/지도</a>
 </form>
 </div>
+</div>
+
 
 <div class="container">
 	<table>
@@ -125,7 +84,9 @@ $.ajax({
 		</c:choose>
 		</table>
 		</div><br/><br/><br/>
-
-	<%@ include file="../bootstrap.jsp" %>
+		
+  <div id="footer"> 
+	<%@ include file="../Form/Footer4.jsp"%> 
+</div> 
 </body>
 </html>
