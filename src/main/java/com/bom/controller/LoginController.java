@@ -57,6 +57,7 @@ public class LoginController {
 		if (mapRes != null) {
 			lc = true;
 			session.setAttribute("dto", mapRes);
+			session.setAttribute("loginSuccess", mapRes);
 		}
 
 		Map<String, Boolean> rMap = new HashMap<String, Boolean>();

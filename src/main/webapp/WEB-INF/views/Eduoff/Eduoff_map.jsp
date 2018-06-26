@@ -1,11 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%
-	request.setCharacterEncoding("UTF-8");
-%>
-<%
-	response.setContentType("text/html; charset=UTF-8");
-%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%	request.setCharacterEncoding("UTF-8");%>
+<%	response.setContentType("text/html; charset=UTF-8");%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html >
 <html>
@@ -14,26 +9,19 @@
  <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css">
   <link rel="stylesheet" href="https://v40.pingendo.com/assets/4.0.0/default/theme.css" type="text/css"> </head> 
-  <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+  <script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <title>Insert title here</title>
 <style>
-@font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
-}
 
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 600;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
 
 /** 이하는 공통 **/
@@ -126,15 +114,23 @@ font-family:'Godo';
 
 <body>
 
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
+
 <div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/backtoschool.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/backtoschool.jpg'); background-size: 100% 100%">
     	<div class="container" >
      	 <div class="row">
         	<div class="col-md-12" >
-         	  <h1 class="text-gray-dark" align="right" style="font-family:'Godo';"><b>지도에서 교육기관 찾아보기</b></h1><br/>
+         	 	<div class="div">
+					<div class="jumbodiv">
+						<h1 class="text-right">지도에서 교육기관 찾아보기</h1>
+					</div>
+				</div>
          	    <h4 align="right" style="font-family:'Godo';"><b>교육기관의 위치와 연락처를 찾아보세요!</h4>
-         	  <br><h5 align="right" style="font-family:'Godo';">*왼쪽 검색창에서 원하는 기관을 찾아보세요.
-				<br>*마우스를 윗쪽으로 스크롤하면 지도가 확대됩니다.</h5>
+         	  <br><h4 align="right" style="font-family:'Godo';">*왼쪽 검색창에서 원하는 기관을 찾아보세요.
+				<br>*마우스를 윗쪽으로 스크롤하면 지도가 확대됩니다.</h4>
         	</div>
    	    </div>
    	    	<div class="col-md-12" align="right" >
@@ -143,6 +139,19 @@ font-family:'Godo';
 			</div>		
     	</div>
 	 </div>
+
+<br>
+<c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" style="height: 50px; font-size: 20px;" class="btn btn-dark" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
+    
 
 <br><br>
 <div class="map_wrap" align="left">
@@ -382,6 +391,31 @@ function removeAllChildNods(el) {
     }
 }
 </script>
+
+<!-- footer2 -->
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
+
+</c:if>
 </body>
 
 

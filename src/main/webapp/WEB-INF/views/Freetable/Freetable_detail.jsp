@@ -13,20 +13,20 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<link rel="stylesheet" href="editor/samples/css/samples.css">
-	<script src="editor/ckeditor.js"></script>
+	<link rel="stylesheet" href="resources/editor/samples/css/samples.css">
+	<script src="resources/editor/ckeditor.js"></script>
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
 	type="text/css">
 <link rel="stylesheet"
 	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"
 	type="text/css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 	
 	
 	<script type="text/javascript">
@@ -52,23 +52,17 @@
 	</script>
 
 <style>
+
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -112,9 +106,6 @@ li span {
  font-size: 1.3em;
 }
 
-body, table, div, p, h1, h2, h5, h4 {
-font-family:'Godo';
-}
 
 
 #UpdateForm {
@@ -143,13 +134,15 @@ textarea {
 	width: 100%;
 }
 
-th {
+
+.tableth {
 	padding: 5px;
 	text-align: center;
 	height: 30px;
 	background-color: #F5F5F5;
 	padding: 5px;
 }
+
 
 #tablebtn {
 	border: none;
@@ -166,18 +159,21 @@ th {
 </head>
 
 <body>
-	<!-- <div id="header"> -->
-	<%-- 	<%@ include file="Form/Header.jsp"%> --%>	
-	<!-- </div> -->
+	<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
 	
-	<!-- 점보트론 -->
+	
 	<div class="py-5"
-		style="background-image: url('images/nori.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/nori.jpg'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-gray-dark" align="left">
-						<b>자유게시판</b></h1>
+					<div class="div">
+        			 <div class="jumbodiv">
+        			    <h1 class="text-left">자유게시판</h1>
+      			   </div>
+    			  </div>
 					<br />
 					<h4 align="left">
 						<b>&nbsp;</b>
@@ -190,8 +186,19 @@ th {
 			</div>
 		</div>
 	</div>
+	      <c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" style="height: 50px; font-size: 20px;" class="btn btn-dark" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
 	
-	<br />
+	
+	
 	<div class="content">
 		<div id="DetailForm">
 			<br>
@@ -199,33 +206,35 @@ th {
 			<h2><b>상세글 보기</b></h2>
 			</div>
 			<br>		
-			<form action="delete.do" method="get">
+			<form action="freedelete.do" method="get">
 			<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
-				<table border="1" id="table1" width="80%";>
+				<table border="1" id="table1" width="80%">
 					<colgroup>
 						<col width="20%">
 						<col width="60%">
 					</colgroup>
 					<tr>
-						<th>작성자</th>
+						<th class="tableth">작성자</th>
 						<td><input type="text" name="freetable_id" style='border: none' 
 						readonly="readonly" value="${detail.freetable_id }"/></td>
 					</tr>
 										
 					<tr>
-						<th id="titleth">제목</th>
+						<th class="tableth">제목</th>
 						<td><input type="text" name="freetable_title" style='border: none' 
 						readonly="readonly" value="${detail.freetable_title}"/></td>
 					</tr>
 					
 					
 					<tr>
-						<th id="titleth">내용</th>
-						<td><textarea  name="freetable_content" id="freetable_content" 
-						rows="10" style='border: none'  readonly="readonly">${detail.freetable_content }</textarea>
+						<th class="tableth">내용</th>
+						<td><textarea  name="freetable_content" id="editor1"  class="ckeditor"
+						rows="10" style='border: none; width: 100%; height: 100%'  readonly="readonly">${detail.freetable_content }</textarea>
 						<script>CKEDITOR.instances.freetable_content.getDATA(freetable_content);</script></td>
 					</tr>
-					</table>
+					
+				</table>
+					
 					<br>
 					<table id="tablebtn">
 					<tr>
@@ -244,7 +253,7 @@ th {
 				
 					</tr>
 				</table>
-			</form><br><br><br>
+			</form><br>
 			
 <!-- 댓글입력  -->			
 			<form action="commInsert.do" method="get">
@@ -259,7 +268,7 @@ th {
 				</colgroup>				
 					<tr>
 						<th align="center">댓글</th>
-						<td colspan="3"><textarea rows="2"   name="freecomm_content"></textarea></td>
+						<td colspan="3"><textarea rows="3" cols="80%"  name="freecomm_content"></textarea></td>
 						<td align="center"><input type="submit" value="등록"></td>
 					</tr>
 				</table>
@@ -274,11 +283,11 @@ th {
 					<col width="15%">
 					<col width="10%">
 				</colgroup>
-					<tr >
-						<th>작성자</th>
-						<th>내용</th>
-						<th>작성일</th>
-						<th>&nbsp;</th>
+					<tr>
+						<th class="tableth">작성자</th>
+						<th class="tableth">내용</th>
+						<th class="tableth">작성일</th>
+						<th class="tableth">&nbsp;</th>
 					</tr>
 				<c:choose>
 					<c:when test="${empty list}">
@@ -299,7 +308,7 @@ th {
 										&freecomm_groupNo=${list.freecomm_groupNo}
 										&freecomm_step=${list.freecomm_step}"> ${list.freecomm_content}</a></td>
 								<td align="center">${list.freecomm_regDate }</td>			
-							<c:if test="${dto.member_id ==detail.freetable_id }">
+							<c:if test="${dto.member_id ==list.freecomm_id }">
 								<td align="center">
 								<input type="button" value="삭제"  style="font-size:13px"
 									onclick="location.href='delReply.do?freecomm_no=${list.freecomm_no}&freetable_no=${list.freetable_no}'"></td>
@@ -328,29 +337,30 @@ th {
 					<col width="100">
 					<col width="670">
 					<tr>
-						<th>작성자</th>
+						<th class="tableth">작성자</th>
 						<td><input type="text" name="freetable_id" style='border: none' 
 						readonly="readonly" value="${detail.freetable_id }"/></td>
 					</tr>
 
 					<tr>
-						<th>제목</th>
+						<th class="tableth">제목</th>
 						<td>
 						<input type="text"	name="freetable_title"  value="${detail.freetable_title }">
 						</td>
 					</tr>
-
-					<tr>
+           
+		            	<tr class="tableth">
 						<th>내용</th>
-						<td><textarea name="freetable_content" style="border-color: gray"  rows="10" cols="100" >${detail.freetable_content }</textarea></td>
-					</tr>
-			</table><br>
-			<table id="oktable">
-					<tr >
+						<td><textarea rows="10" cols="100" id="freetable_content" name="freetable_content" class="ckeditor">${detail.freetable_content }</textarea>	
+						<script>CKEDITOR.replace("freetable_content");</script></td>		
+						</tr>
+					
+			      		</table><br>
+							<table id="oktable">
+					<tr>
 						<td colspan="2" align="right">
 						<input type="submit"  value="수정완료"> 
-						<input type="button"  value="취소"
-							onclick="FreetableDetail();" /></td>
+						<input type="button"  value="취소" onclick="FreetableDetail();" /></td>
 					</tr>
 				</table>
 			</form>
@@ -366,28 +376,29 @@ th {
 			<h2><b>답글 달기</b></h2>
 			</div>
 			<br>
-			<form action="insertReply.do" method="get">
+			<form action="insertReply.do" method="post">
 				<input type="hidden" name="freetable_no" value="${detail.freetable_no }">
 				<table align="center">
 					<col width="100">
 					<col width="670">
 
 					<tr>
-						<th id="titleth">작성자</th>
+						<th class="tableth">작성자</th>
 						<td style="border: 1px gray solid;">
 						<input type="text"	style='border: none' readonly="readonly" name="freetable_id"
 							value="${dto.member_id }"></td>
 					</tr>
 
 					<tr>
-						<th id="titleth">제목</th>
+						<th class="tableth">제목</th>
 						<td style="border: 1px gray solid;"><input type="text"
 							name="freetable_title" value="RE:${detail.freetable_title}"></td>
 					</tr>
-
-					<tr>
-						<th id="titleth">내용</th>
-						<td><textarea rows="10" cols="100" name="freetable_content"> ${detail.freetable_content }</textarea></td>
+				            
+		            <tr>
+						<th class="tableth">내용</th>
+						<td><textarea rows="10" cols="100" id="freetable_content2" name="freetable_content" class="ckeditor">${detail.freetable_content }</textarea>	
+						<script>CKEDITOR.replace("freetable_content2");</script></td>								
 					</tr>
 
 					<tr>
@@ -399,8 +410,27 @@ th {
 		</div>
 	 </div>
 
-<!-- 	<div id="footer"> -->
-<%-- 	<%@ include file="Form/Footer.jsp"%> --%>
-<!--    </div> -->
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
+</c:if>
 </body>
 </html>

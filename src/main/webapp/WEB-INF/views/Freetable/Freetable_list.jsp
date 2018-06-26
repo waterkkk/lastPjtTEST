@@ -1,6 +1,11 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
-<%	request.setCharacterEncoding("UTF-8");%>
-<%	response.setContentType("text/html; charset=UTF-8");%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+%>
+<%
+	response.setContentType("text/html; charset=UTF-8");
+%>
 <%@ page import="com.bom.dto.FreetableDto"%>
 <%@ page import="com.bom.dao.FreetableDao"%>
 <%@ page import="com.bom.biz.FreetableBiz"%>
@@ -12,7 +17,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -20,76 +25,62 @@
 <link rel="stylesheet"
 	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"
 	type="text/css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
 <style type="text/css">
-
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+	font-family: "Godo";
+	src: url("resources/font/GodoB.ttf");
 }
 
-@font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 600;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff');
-}
-
-.godo * {
- font-family: 'Godo', sans-serif;
+* {
+	font-family: "Godo";
 }
 
 /** 이하는 공통 **/
 .normal {
- font-style: normal;
+	font-style: normal;
 }
 
 .w250 {
- font-weight: 250;
+	font-weight: 250;
 }
 
 .w300 {
- font-weight: 300;
+	font-weight: 300;
 }
 
 .w350 {
- font-weight: 350;
+	font-weight: 350;
 }
 
 .w400 {
- font-weight: 400;
+	font-weight: 400;
 }
 
 .w500 {
- font-weight: 500;
+	font-weight: 500;
 }
 
 .w700 {
- font-weight: 700;
+	font-weight: 700;
 }
 
 .w800 {
- font-weight: 800;
+	font-weight: 800;
 }
 
 .w900 {
- font-weight: 900;
+	font-weight: 900;
 }
 
 li span {
- line-height: 1.8;
- font-size: 1.3em;
+	line-height: 1.8;
+	font-size: 1.3em;
 }
 
 body, table, div, p {
-font-family:'Godo';
+	font-family: 'Godo';
 }
-
 
 table {
 	margin-left: auto;
@@ -104,7 +95,7 @@ table {
 	border-collapse: collapse;
 }
 
-th {
+.tableth {
 	padding: 5px;
 	text-align: center;
 	height: 30px;
@@ -112,9 +103,15 @@ th {
 	padding: 5px;
 }
 
+
+
 td {
 	padding: 5px;
+	text-align: center;
+	height: 30px;
+	padding: 5px;
 }
+
 
 .keyword {
 	height: 25px;
@@ -146,50 +143,53 @@ td {
 <body>
 
 	<!-- 헤더 -->
-	<!-- <div id="header"> -->
-	<%-- 	<%@ include file="Form/Header.jsp"%> --%>
-	<!-- </div> -->
+	<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
 
-	
+
 	<div class="py-5"
-		style="background-image: url('images/nori.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/nori.jpg'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-gray-dark" align="left"  style="font-family:'Godo';">
-						<b>자유게시판</b></h1>
+	<div class="div">
+         <div class="jumbodiv">
+            <h1 class="text-left">자유게시판</h1>
+         </div>
+      </div>
 					<br />
 					<h4 align="left">
 						<b>&nbsp;</b>
 					</h4>
-					<br />
-					<br />
-					<br />
-					<br />
+					<br /> <br /> <br /> <br />
 				</div>
 			</div>
 		</div>
 	</div>
 
 
-	
 
-	<br><br>
+
+	<br>
+	<br>
 	<div class="content">
 		<!--로그인-->
 		<c:if test="${empty dto.member_id }">
-			<div id="loginAlert" align="center">
-				로그인해주시면 게시판을 이용하실 수 있습니다.<br>
-				<br>
-			</div>
-			<div align="center">
-				<input type="button" onclick="location.href='loginStart.do'"
-					value="로그인"> <br> <br> <br>
-			</div>
-		</c:if>
-		<c:if test="${dto.member_id != null}">
-			<!---->
-			<c:if test="${empty map.keyword }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" style="height: 50px; font-size: 20px;" class="btn btn-dark" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
+		
+		
+		
+		<c:choose>
+			<c:when test="${empty map.keyword }">
 				<div>
 					<table border="1">
 						<colgroup>
@@ -201,11 +201,11 @@ td {
 						</colgroup>
 
 						<tr>
-							<th>No.</th>
-							<th>작성자</th>
-							<th>제 목</th>
-							<th>날 짜</th>
-							<th>조회수</th>
+							<th class="tableth">No.</th>
+							<th class="tableth">작성자</th>
+							<th class="tableth">제 목</th>
+							<th class="tableth">날 짜</th>
+							<th class="tableth">조회수</th>
 						</tr>
 
 						<c:choose>
@@ -230,7 +230,7 @@ td {
 												<td align="left" style="padding-left: 20px">
 													<!-- 타이틀탭 수에 따라 앞부분 공백주기 --> <c:forEach begin="1"
 														end="${dto.freetable_titleTab }">&nbsp;&nbsp;</c:forEach>
-													<a href="detail.do?freetable_no=${dto.freetable_no}">${dto.freetable_title}</a>
+													<a href="freedetail.do?freetable_no=${dto.freetable_no}">${dto.freetable_title}</a>
 												</td>
 												<td>${dto.freetable_regDate }</td>
 												<td>${dto.freetable_readCount }</td>
@@ -243,9 +243,9 @@ td {
 					</table>
 					<br>
 
-					<!-- 페이징 -->
-					<table id="paging1">
-
+					
+					<div align="center">
+					<table style="border:none">
 						<tr>
 							<td id="paging2" colspan="4" align="center"><c:choose>
 									<c:when test="${nowPage eq 1 }">◀</c:when>
@@ -265,40 +265,62 @@ td {
 								value="글쓰기" onclick="location.href='writeForm.do'"></td>
 						</tr>
 					</table>
+					</div>
 				</div>
 				<br>
-			</c:if>
+			</c:when>
 
 
-			<!-- 검색결과 -->
-			<c:if test="${map.keyword != null}">
+			
+			<c:otherwise>
 				<div>
 					<table border="1">
+						<colgroup>
+							<col width="10%">
+							<col width="15%">
+							<col width="40%">
+							<col width="15%">
+							<col width="10%">
+						</colgroup>
 						<tr>
-							<th>번호</th>
+							<th>No.</th>
 							<th>작성자</th>
 							<th>제 목</th>
 							<th>날 짜</th>
 							<th>조회수</th>
 						</tr>
-						<c:forEach items="${map.allList}" var="row">
-							<tr>
-								<td>${row.freetable_no}</td>
-								<td>${row.freetable_id}</td>
-								<td><a href="detail.do?freetable_no=${row.freetable_no}">${row.freetable_title}</a>
-								</td>
-								<td>${row.freetable_regDate}</td>
-								<td>${row.freetable_readCount}</td>
-							</tr>
-						</c:forEach>
+						<c:choose>
+							<c:when test="${empty allList}">
+								<tr>
+									<td colspan="7">─────── 글이 존재하지 않습니다.───────</td>
+								</tr>
+							</c:when>
+							<c:otherwise>
+								<c:forEach items="${map.allList}" var="row">
+									<tr>
+										<td>${row.freetable_no}</td>
+										<td>${row.freetable_id}</td>
+										<td><a href="freedetail.do?freetable_no=${row.freetable_no}">${row.freetable_title}</a>
+										</td>
+										<td>${row.freetable_regDate}</td>
+										<td>${row.freetable_readCount}</td>
+									</tr>
+								</c:forEach>
+							</c:otherwise>
+						</c:choose>
 					</table>
 				</div>
-			</c:if>
-
-			<!-- 검색 -->
+			
+			</c:otherwise>
+        </c:choose>
+     
+        
+        
+			
+			<br>
 			<div align="center">
 				<form action="search.do" method="get">
-					<select name="searching" id="searching">
+					<select name="searching" id="searching" style="height: 30px">
 						<option value="freetable_id">작성자</option>
 						<option value="freetable_title">글 제목</option>
 						<option value="freetable_content">글 내용</option>
@@ -310,13 +332,33 @@ td {
 			<br>
 			<br>
 
-		</c:if>
+		
 
 	</div>
-	<!-- 	<div id="footer"> -->
-	<%-- 	<%@ include file="Form/Footer.jsp"%> --%>
-	<!-- 	</div> -->
-
+	
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
+	
+	</c:if>
 </body>
 
 </html>

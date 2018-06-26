@@ -35,7 +35,13 @@ public class EduoffController  {
 	@Autowired
 	private EduoffBiz biz;
 	
-	
+	// 테스트
+		@RequestMapping(value = "test.do")
+		public String test(Model model) {
+			
+			return "test3";
+		}
+		
 
 	//교육게시판으로 이동
     @RequestMapping(value="eduoffList.do")

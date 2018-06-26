@@ -6,34 +6,26 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-</head>
-
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"	type="text/css">
 <link rel="stylesheet"	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"	type="text/css">
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<title>Insert title here</title>
 </head>
 
 <style type="text/css">
+
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -77,42 +69,38 @@ li span {
  font-size: 1.3em;
 }
 
-body, table, div, p, h1, h2, h5, h4 {
-font-family:'Godo';
-}
-
-
 table {
+
 	margin-left: auto;
 	margin-right: auto;
-	align:center;
-	text-align: center;
-	font-size: 17px;
+ 	align:center; 
+ 	text-align: center; 
+ 	font-size: 17px; 
 	width: 80%;
 	border-top: 1px solid #E1E6F6;
 	border-bottom: 1px solid #E1E6F6;
 	border-left: 1px solid white;
 	border-right: 1px solid white;
-	border-collapse: collapse;	
+ 	border-collapse: collapse;	 
 }
 
-#keytable{	
+.keytable {
+
 	margin-left: auto;
 	margin-right: auto;
+ 	align:center; 
+ 	text-align: center; 
+ 	font-size: 17px; 
 	width: 80%;
-	table-layout:auto;
-	align:center;
-	text-align: center;
-	font-size: 17px;
 	border-top: 1px solid #E1E6F6;
 	border-bottom: 1px solid #E1E6F6;
 	border-left: 1px solid white;
 	border-right: 1px solid white;
-	border-collapse: collapse;	
-
+ 	border-collapse: collapse;	 
 }
 
-th {
+
+.tableth {
 	padding: 5px;
 	text-align: center;
 	height: 30px;
@@ -122,64 +110,80 @@ th {
 
 td {
 	padding: 5px;
+	text-align: center;
+	height: 30px;
+	padding: 5px;
 }
+
 #searching{
 	margin-left: auto;
 	margin-right: auto;
-}
-.url{
-font-size:3px;
 }
 
 </style>
 
 <body>
-
-	<%-- 			<c:if test="${empty dto.member_id }"> --%>
-	<!-- 			  <div id="loginAlert"> -->
-	<!-- 			  	게시판을 보기 위해서는 <a id="doLogin" href="loginStart.do">로그인</a>이 필요합니다 -->
-	<!-- 				<br><br><br><br> -->
-	<!-- 			  </div> -->
-	<%-- 			</c:if> --%>
-
-	<%-- 		<c:if test="${dto.member_id != null}"> --%>
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
+				
+      
     
     <div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/backtoschool.jpg'); background-size: 100% 100%">
-    	<div class="container">
-     	      	<div class="col-md-12">
-         	  <h1 class="text-gray-dark" align="right" style="font-family:'Godo';"><b>오프라인 강의 찾아보기</b></h1><br/>
-         	  <h4 align="right" style="font-family:'Godo';"><b>오프라인 교육을 찾아보세요! 강좌명, 수강일자를 확인하고</b>
-         	  <br/><br>  링크를 통해 바로 수강신청하실 수 있습니다.</h4><br/>
-        	    	 
-   	    </div>
-   	    	<div class="col-md-12" align="right" >
-				<a class="btn btn-primary btn-lg">오프라인 강의 찾아보기</a>
-				<a href="eduoffMap.do" class="btn btn-outline-primary btn-lg">지도에서	교육기관 찾아보기</a>
-			</div>		
-    	</div>
-</div>
+		style="background-image: url('resources/img/backtoschool.jpg'); background-size: 100% 100%">
+		<div class="container">
+			<div class="col-md-12">
+				<div class="div">
+					<div class="jumbodiv">
+						<h1 class="text-right">오프라인 강의 찾아보기</h1>
+					</div>
+				</div>
+				<br />
+				<h4 align="right" style="font-family: 'Godo';">
+					<b>오프라인 교육을 찾아보세요! 강좌명, 수강일자를 확인하고</b> <br />
+					<br> 링크를 통해 바로 수강신청하실 수 있습니다.
+				</h4>
+				<br />
+			</div>
+			<div class="col-md-12" align="right">
+				<a class="btn btn-primary btn-lg">오프라인 강의 찾아보기</a> <a
+					href="eduoffMap.do" class="btn btn-outline-primary btn-lg">지도에서
+					교육기관 찾아보기</a>
+			</div>
+		</div><br>
+	</div><br>
 
-<!-- 검색 -->
-	
+<c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br><br> 
+         </div>
+         <div align="center">
+            <input type="button" style="height: 50px; font-size: 20px;" class="btn btn-dark" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
+      
 		<br><br><div align="center">
 			<form action="gangSelect.do" method="get">
-				<select name="searching2" id="searching2" >
+				
+				<select name="searching2" id="searching2"  style="height:29px" >
 					<option value="course_nm">강의명</option>
 					<option value="course_request_str_dt">신청시작일</option>
 					<option value="course_str_dt">교육시작일</option>
-				</select> 
+				</select>
+				
 				<input type="text" name="keyword2" id="keyword2" placeholder="ex)영어"	value="${map2.keyword2}"> 
 				<input type="submit" id="result" value="검색">
 			</form>
 		</div>
 	    <br><br>
 	    
-<!-- 테이블 -->
-	  <c:if test="${empty map2.keyword2}">
-		<div>
 
-				<table>
+    <c:choose>
+	  <c:when test="${empty map2.keyword2 || map2.keyword2 == null}">
+		<div>
+			<table class="keytable">
 					<colgroup>						
 						<col style="width:40%">
 						<col style="width:8%">
@@ -190,13 +194,13 @@ font-size:3px;
 						<col style="width:20%">
 					</colgroup>
 					<tr>
-						<th>강의명</th>
-						<th>신청시작일</th>
-						<th>신청종료일</th>
-						<th>교육시작일</th>
-						<th>교육종료일</th>
-						<th>정원</th>
-						<th id="url">수강신청 URL</th>
+						<th class="tableth">강의명</th>
+						<th class="tableth">신청시작일</th>
+						<th class="tableth">신청종료일</th>
+						<th class="tableth">교육시작일</th>
+						<th class="tableth">교육종료일</th>
+						<th class="tableth">정원</th>
+						<th class="tableth">수강신청 URL</th>
 					</tr>
 				<c:choose>
 					<c:when test="${empty allList}">
@@ -213,61 +217,28 @@ font-size:3px;
 									<td align="center">${dto.course_str_dt}</td>
 									<td align="center">${dto.course_end_dt}</td>
 									<td align="center">${dto.capacity}</td>
-									<td align="center"  id="url">${dto.course_apply_url}</td>
+								<c:choose>
+									<c:when test="${dto.course_apply_url eq null}">
+										<td>&nbsp;</td>
+									</c:when>
+									<c:otherwise>
+										<td><button onclick="location.href='${dto.course_apply_url}'">바로가기</button></td>
+									</c:otherwise>
+								 </c:choose>
+
 								</tr>
 							</c:forEach>
 					</c:otherwise>
 				</c:choose>
 				</table>
-			</div>
-	
- </c:if>
-
-
-<!-- 검색결과 -->
-		<c:if test="${map2.keyword2 != null}">
-		<div id="searchtbl" align="center">
-				<table style="margin-left:auto; margin-right:auto; width:800px; border-top: 1px solid #E1E6F6;
-				border-bottom: 1px solid #E1E6F6; border-left: 1px solid white; border-right: 1px solid white;" >
-					<colgroup>						
-						<col style="width:200">
-						<col style="width:80">
-						<col style="width:80">
-						<col style="width:80">
-						<col style="width:80">
-						<col style="width:80">
-						<col style="width:200">
-					</colgroup>
-					<tr>
-						<th>강의명</th>
-						<th>신청시작일</th>
-						<th>신청종료일</th>
-						<th>교육시작일</th>
-						<th>교육종료일</th>
-						<th>정원</th>
-						<th>수강신청 URL</th>
-					</tr>
-					<c:forEach items="${map2.allList}" var="dto" >
-						<tr>
-							<td>${dto.course_nm}</td>
-							<td>${dto.course_request_str_dt }</td>
-							<td>${dto.course_request_end_dt }</td>
-							<td>${dto.course_str_dt}</td>
-							<td>${dto.course_end_dt}</td>
-							<td>${dto.capacity}</td>
-							<td>${dto.course_apply_url}</td>
-						</tr>
-					</c:forEach>
-				</table>
-			</div>
-		</c:if>
-
-
-		<!-- 페이징 -->
-		<div align="center">
+				<br>
+			</div>	
+			 	<!-- 페이징 -->
+		<div align="center" >
+		<br>
 			<table>
 				<tr>
-					<td colspan="4" align="center"><c:choose>
+					<td colspan="4" align="center"style="border: none"><c:choose>
 							<c:when test="${nowPage eq 1 }">◀</c:when>
 							<c:otherwise>
 								<a href="board2.do?nowPage=${nowPage-1 }">◀</a>
@@ -284,7 +255,87 @@ font-size:3px;
 				</tr>
 			</table>
 		</div>
+			
+			
+				 
+	</c:when>
+		
 
-		<%--  </c:if> --%>
+
+
+ 		<c:otherwise>
+		<div align="center" >
+				<table class="keytable" > 
+					<colgroup>						
+						<col width="200px">
+						<col width="80px">
+						<col width=80px>
+						<col width=80px>
+						<col width=80px>
+						<col width=80px>
+						<col width=200px>
+					</colgroup>
+					<tr>
+						<th class="tableth">강의명</th>
+						<th class="tableth">신청시작일</th>
+						<th class="tableth">신청종료일</th>
+						<th class="tableth">교육시작일</th>
+						<th class="tableth">교육종료일</th>
+						<th class="tableth">정원</th>
+						<th class="tableth">수강신청 URL</th>
+					</tr>
+					<c:forEach items="${map2.allList}" var="dto" >
+						<tr>
+							<td>${dto.course_nm}</td>
+							<td>${dto.course_request_str_dt }</td>
+							<td>${dto.course_request_end_dt }</td>
+							<td>${dto.course_str_dt}</td>
+							<td>${dto.course_end_dt}</td>
+							<td>${dto.capacity}</td>					
+								<c:choose>
+									<c:when test="${dto.course_apply_url eq null}">
+										<td>&nbsp;</td>
+									</c:when>
+									<c:otherwise>
+										<td><button onclick="location.href='${dto.course_apply_url}'">바로가기</button>
+									</c:otherwise>
+								 </c:choose>
+							</tr>
+						</c:forEach>
+					</table>
+				</div>
+			<br>
+		</c:otherwise>
+	</c:choose>
+	
+
+ 
+ 
+
+ </c:if>
+ 
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
+	
+
 </body>
 </html>

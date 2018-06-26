@@ -40,11 +40,12 @@ public class RegistController {
 			@RequestParam String member_pw, 
 			@RequestParam String member_name, 
 			@RequestParam String member_email,
-			@RequestParam String member_phone) {
+			@RequestParam String member_phone
+			) {
 		System.out.println("rest");
 		   int res=0;
 			RegistDto dto = new RegistDto(0, member_id, member_pw,
-					member_name, member_email, member_phone, "Y", "USER");
+					member_name, member_email, member_phone, "Y", "USER" );
 			
 			res = biz.insertUser(dto);
 			System.out.println("res:"+res);

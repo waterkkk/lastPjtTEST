@@ -9,26 +9,20 @@
 <!DOCTYPE html >
 <html>
 <head>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <style type="text/css">
 
+
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -89,8 +83,13 @@ font-family:'Godo';
 
 <body>
 
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
+
+
 	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/food.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/food.jpg'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-7">
@@ -106,7 +105,7 @@ font-family:'Godo';
 					<div align="center">
 						<br> <label>로그인하시면 더 많은 정보를 이용하실 수 있습니다.</label> <br> <label
 							onclick="location.href='index.jsp'">메인화면</label> <label
-							onclick="location.href='userMain.do'">로그인</label>
+							onclick="location.href='userMain.do'">로그인</label>	<br><br>
 					</div>
 
 
@@ -119,6 +118,25 @@ font-family:'Godo';
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+ <div class="py-3 bg-dark text-white">
+     <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
 
 </body>
 </html>

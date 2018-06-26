@@ -1,44 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%
-	request.setCharacterEncoding("UTF-8");
+   request.setCharacterEncoding("UTF-8");
 %>
 <%
-	response.setContentType("text/html; charset=UTF-8");
+   response.setContentType("text/html; charset=UTF-8");
 %>
 <!DOCTYPE html >
 <html>
 <head>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="sources/js/jquery-3.3.1.min.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-	type="text/css">
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+   type="text/css">
 <link rel="stylesheet"
-	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"
-	type="text/css">
-	
-	<style type="text/css">
-	
-	@font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+   href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"
+   type="text/css">   
+   <style type="text/css">
+
+@font-face {
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+   font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -85,46 +77,97 @@ li span {
 body, table, div, p, h1, h2, h5, h4 {
 font-family:'Godo';
 }
-	
-	
-	</style>
+.opaque-overlay{
+   position:absolute;
+   width:100%;
+   height:700px;
+}
+
+.container{
+   position:absolute;
+   top:25%;
+}
+
+#foot{
+   width:100%;
+   height:200px;
+   position:absolute;
+   margin-top:700px;
+   background-color:#000000;
+}
+
+#space{
+   height:100px;
+   position:absolute;
+   width:100%;
+   top:50px;
+}
+#left{
+   position:absolute;
+   left:50px;
+   display: inline-block;
+}
+#copy{
+   display: inline-block;
+   position:absolute;
+   left:400px;
+   top:70px;
+}
+   
+   </style>
 </head>
 <body>
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
+
+
  <form action="main.do" method="post">
-	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/food.jpg'); background-size: 100% 100%">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-7">
-					<div align="center">
-						<h1 class="text-gray-dark"> 로그인 완료! </h1>
-						<p class="lead mb-4" align="center">
-					 회원님 환영합니다~! <br>제2의 인생과 함께 행복한 하루 보내세요
-					</p>
-					</div>
+   <div class="py-5 text-white opaque-overlay"
+      style="background-image: url('resources/img/food.jpg'); background-size: 100% 100%">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-7">
+               <div align="center"><br>
+                  <h1 class="text-gray-dark"> 로그인 완료! </h1>
+                  <p class="lead mb-4" align="center">
+                회원님 환영합니다~! <br>제2의 인생과 함께 행복한 하루 보내세요
+               </p>
+               </div>
 
 
-					<div align="center">
-						<input type="submit" class="btn btn-primary" value="메인화면" >
-						<input type="button" class="btn btn-primary" value="관리자페이지" 
-						 	onclick="location.href='Admin_list.do'">
-						 	</div>
-					</div>
+               <div align="center">
+                  <input type="submit" class="btn btn-primary" value="메인화면" >&nbsp;
+                  <input type="button" class="btn btn-primary" value="관리자페이지" 
+                      onclick="location.href='Admin_list.do'">
+                         <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+                      </div>
+               </div>
 
 
-				</div>
-			</div>
-		</div>
-	</div>
+            </div>
+         </div>
+      </div>
 
-	<script
-		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-	<script
-		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+   <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+   <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </form>
+<div id="foot">
+   <div id="space">
+      <div id="left">
+         <p style="color:white; font-size:15pt;">상호명 : 언제나 봄날</p>
+         <p style="color:white; font-size:15pt;">주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층</p>
+         <p style="color:white; font-size:15pt;">전화번호 : 02-5340-2233</p>
+      </div>
+      <div id="copy">
+         <p style="color:white; font-size:15pt;">Copyright@2018 언제나 봄날</p>
+      </div>
+   </div>
+</div>
 </body>
 </html>
-
 
 </body>
 </html>

@@ -1,5 +1,7 @@
 package com.bom.dto;
 
+import java.util.Date;
+
 public class LoginDto {
 	
 	private int member_no;
@@ -10,6 +12,7 @@ public class LoginDto {
 	private String member_phone;
 	private String member_enabled;
 	private String member_role;
+	private Date member_date;
 	
 	
 	
@@ -41,7 +44,19 @@ public class LoginDto {
 	}
 	
 	
-	
+	public LoginDto(int member_no, String member_id, String member_pw, String member_name, String member_email,
+			String member_phone, String member_enabled, String member_role, Date member_date) {
+		super();
+		this.member_no = member_no;
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.member_phone = member_phone;
+		this.member_enabled = member_enabled;
+		this.member_role = member_role;
+		this.member_date = member_date;
+	}
 	
 	
 	
@@ -100,6 +115,16 @@ public class LoginDto {
 	}
 	public void setMember_role(String member_role) {
 		this.member_role = member_role;
+	}
+
+
+
+	public Date getMember_date() {
+		return member_date;
+	}
+
+	public void setMember_date(Date member_date) {
+		this.member_date = member_date;
 	}
 	
 	

@@ -20,15 +20,9 @@
 </resultMap>
 
 <select id="selectAll" resultMap="EduoffDtoMap">
-	SELECT 
-			COURSE_NM,
-			COURSE_REQUEST_STR_DT, 
-			COURSE_REQUEST_END_DT,
-			COURSE_STR_DT, 
-			COURSE_END_DT,
-			CAPACITY, 
-			COURSE_APPLY_URL
+	SELECT *
 	FROM EDUOFF
+	ORDER BY COURSE_ID DESC
 </select>
 
 
@@ -55,15 +49,8 @@ VALUES(
 
 
 <!--  검색--> 
-<select id="searchList" parameterType="map" resultMap="EduoffDtoMap">
-SELECT 
-	COURSE_NM,
-	COURSE_REQUEST_STR_DT, 
-	COURSE_REQUEST_END_DT,
-	COURSE_STR_DT, 
-	COURSE_END_DT,
-	CAPACITY, 
-	COURSE_APPLY_URL 
+<select id="searchList" parameterType="String" resultMap="EduoffDtoMap">
+SELECT *
 FROM EDUOFF
 WHERE ${searching2} LIKE '%'||#{keyword2}||'%'
 </select>
@@ -72,7 +59,7 @@ WHERE ${searching2} LIKE '%'||#{keyword2}||'%'
 <select id="paging" parameterType="map" resultMap="EduoffDtoMap">
 	SELECT *
 		FROM (SELECT ROWNUM AS "RW", A.* 
-		FROM (SELECT * FROM EDUOFF ) A)
+		FROM (SELECT * FROM EDUOFF ORDER BY COURSE_ID DESC) A)
 	WHERE RW BETWEEN #{startPost} AND #{endPost}
 </select>
 
@@ -80,7 +67,7 @@ WHERE ${searching2} LIKE '%'||#{keyword2}||'%'
 	<![CDATA[
 	SELECT *  
 		FROM(SELECT ROWNUM AS RNUM,B.* 
-		FROM(SELECT * FROM EDUOFF)B) 
+		FROM(SELECT * FROM EDUOFF ORDER BY COURSE_ID DESC)B) 
 	WHERE RNUM>=#{startPost} 
       AND RNUM<=#{endPost} 
 	]]>

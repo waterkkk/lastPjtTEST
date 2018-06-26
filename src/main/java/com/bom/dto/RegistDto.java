@@ -10,11 +10,29 @@ public class RegistDto {
 	private String member_phone;
 	private String member_enabled;
 	private String member_role;
-	
+	private String member_date;
 
 	public RegistDto() {
 		super();
 	}
+
+	
+	
+	public RegistDto(int member_no, String member_id, String member_pw, String member_name, String member_email,
+			String member_phone, String member_enabled, String member_role, String member_date) {
+		super();
+		this.member_no = member_no;
+		this.member_id = member_id;
+		this.member_pw = member_pw;
+		this.member_name = member_name;
+		this.member_email = member_email;
+		this.member_phone = member_phone;
+		this.member_enabled = member_enabled;
+		this.member_role = member_role;
+		this.member_date = member_date;
+	}
+
+
 
 	public RegistDto(int member_no, String member_id, String member_pw, String member_name, String member_email,
 			String member_phone, String member_enabled, String member_role) {
@@ -28,6 +46,20 @@ public class RegistDto {
 		this.member_enabled = member_enabled;
 		this.member_role = member_role;
 	}
+
+	
+	
+	public String getMember_date() {
+		return member_date;
+	}
+
+
+
+	public void setMember_date(String member_date) {
+		this.member_date = member_date;
+	}
+
+
 
 	public int getMember_no() {
 		return member_no;

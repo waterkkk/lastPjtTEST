@@ -36,12 +36,6 @@ public class FreetableController {
 
 	
 
-	// 테스트
-	@RequestMapping(value = "test.do")
-	public String test(Model model) {
-		model.addAttribute("allList", freebiz.selectAll());
-		return "test";
-	}
 	
 	// 메인화면으로
 	@RequestMapping(value = "main.do")
@@ -58,7 +52,7 @@ public class FreetableController {
 	}
 
 	// 일부출력(원글/댓글)
-	@RequestMapping(value = "detail.do")
+	@RequestMapping(value = "freedetail.do")
 	public String detail(Model model, @RequestParam int freetable_no) {
 		model.addAttribute("detail", freebiz.selectOne(freetable_no));  // 나중에 정리할것
 		model.addAttribute("list", commbiz.commSelectAll(freetable_no)); // 나중에 정리할것
@@ -77,9 +71,9 @@ public class FreetableController {
 		@RequestMapping(value = "write.do", method = RequestMethod.POST)
 		public String write(Model model, @ModelAttribute FreetableDto dto,
 				@RequestParam("member_id") String member_id) {
-		System.out.println("member_id"+member_id);
-		System.out.println("freetable_title"+dto.getFreetable_title());
-		System.out.println("freetable_content"+dto.getFreetable_content());
+		System.out.println("member_id: "+member_id);
+		System.out.println("freetable_title: "+dto.getFreetable_title());
+		System.out.println("freetable_content: "+dto.getFreetable_content());
 		
 		Map<String, String> map=new HashMap<String,String>();
 		map.put("member_id",member_id);
@@ -123,7 +117,7 @@ public class FreetableController {
 
 	
 	// 글 삭제
-	@RequestMapping(value = "delete.do", method = RequestMethod.GET)
+	@RequestMapping(value = "freedelete.do", method = RequestMethod.GET)
 	public String delete(Model model, @RequestParam int freetable_no) {
 		System.out.println("freetable_no: "+freetable_no);
 		boolean res = freebiz.delete(freetable_no);
@@ -133,7 +127,7 @@ public class FreetableController {
 			return "redirect:board.do?nowPage=1";
 		} else {
 			System.out.println("삭제 실패");
-			return "redirect:detail.do?freetable_no=" + freetable_no;
+			return "redirect:freedetail.do?freetable_no=" + freetable_no;
 		}
 	}
 
@@ -201,7 +195,7 @@ public class FreetableController {
 	}
 
 	// 답글(원글에 대한)
-	@RequestMapping(value = "insertReply.do", method = RequestMethod.GET)
+	@RequestMapping(value = "insertReply.do", method = RequestMethod.POST)
 	public String insertReply(Model model, @ModelAttribute FreetableDto dto,
 			@RequestParam("freetable_no") int parentfreetableNo) {
 		boolean res = freebiz.insertReply(dto, parentfreetableNo);
@@ -216,6 +210,7 @@ public class FreetableController {
 		}
 	}
 	
+
 	
 	// 댓글입력 
 			
@@ -234,7 +229,7 @@ public class FreetableController {
 			}else {
 				System.out.println("[controller]reply not inserted");
 			}
-			return "redirect:detail.do?freetable_no="+freetable_no;
+			return "redirect:freedetail.do?freetable_no="+freetable_no;
 	}
 	
 
@@ -256,11 +251,11 @@ public class FreetableController {
 		if (res) {
 			System.out.println("[controller] commRe ok");
 			model.addAttribute("list", freebiz.selectAll());
-			return "redirect:detail.do?freetable_no="+dto.getFreetable_no();
+			return "redirect:freedetail.do?freetable_no="+dto.getFreetable_no();
 		} else {
 			System.out.println("[controller] commRe error");
 			model.addAttribute("list", freebiz.selectAll());
-			return "redirect:detail.do?freetable_no="+dto.getFreetable_no();
+			return "redirect:freedetail.do?freetable_no="+dto.getFreetable_no();
 		}
 	}	
 	

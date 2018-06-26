@@ -13,7 +13,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
@@ -21,29 +21,23 @@
 <link rel="stylesheet"
 	href="https://v40.pingendo.com/assets/4.0.0/default/theme.css"
 	type="text/css">
-<script
-	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- <script -->
+<!-- 	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> -->
+<!-- <script -->
+<!-- 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script> -->
 <style type="text/css">
 
+
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -110,7 +104,7 @@ textarea {
 	width: 100%;
 }
 
-th {
+.tableth {
 	padding: 5px;
 	text-align: center;
 	height: 30px;
@@ -129,14 +123,20 @@ th {
 </head>
 
 <body>
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
 
 <div class="py-5"
-		style="background-image: url('images/nori.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/nori.jpg'); background-size: 100% 100%">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12">
-					<h1 class="text-gray-dark" align="left">
-						<b>자유게시판</b></h1>
+		<div class="div">
+         <div class="jumbodiv">
+            <h1 class="text-left">자유게시판</h1>
+         </div>
+      </div>
 					<br />
 					<h4 align="left">
 						<b>&nbsp;</b>
@@ -149,6 +149,18 @@ th {
 			</div>
 		</div>
 	</div>
+
+      <c:if test="${empty dto.member_id }">
+         <div id="loginAlert" align="center">
+            로그인해주시면 게시판을 이용하실 수 있습니다.<br> <br>
+         </div>
+         <div align="center">
+            <input type="button" style="height: 50px; font-size: 20px;" class="btn btn-dark" onclick="location.href='loginStart.do'"
+               value="로그인"> <br> <br> <br>
+         </div>
+      </c:if>
+      <c:if test="${dto.member_id != null}">
+
 
 	<br><br>
 	<div class="title" align="center">
@@ -164,11 +176,11 @@ th {
 		<input type="hidden" name="freecomm_step" value="${commRe.freecomm_step}">
 			<table>
 				<tr>
-					<th>작성자</th>
-					<td><input type="text" style='border:none'  value="${commRe.freecomm_id}" readonly="readonly"></td>
+					<th class="tableth">작성자</th>
+					<td><input type="text" style='border:none'  value="${dto.member_id}" readonly="readonly"></td>
 				</tr>
 				<tr>
-					<th>내용</th>
+					<th class="tableth">내용</th>
 					<td ><textarea rows="10" cols="60" name="freecomm_content"></textarea></td>
 				</tr>
 		</table><br>
@@ -177,14 +189,32 @@ th {
 					<td colspan="2" align="right">
 					<input type="submit"  value="답글달기"> 
 					<input	type="button" value="취소" 
-					onclick="location.href='detail.do?freetable_no=${commRe.freetable_no}'"></td>
+					onclick="location.href='freedetail.do?freetable_no=${commRe.freetable_no}'"></td>
 				</tr>
 		</table>
 	</form>
 
-<!-- 	<div id="footer"> -->
-<%-- 	<%@ include file="Form/Footer.jsp"%> --%>
-<!-- 	</div> -->
-
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
+</c:if>
 </body>
 </html>

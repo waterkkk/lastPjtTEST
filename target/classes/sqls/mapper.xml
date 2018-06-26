@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="mapper">
+	
+	<resultMap type="com.bom.dto.LoginDto" id="LoginDtoMap">
+		<result column="MEMBER_NO" property="no"/>
+		<result column="MEMBER_ID" property="id"/>
+		<result column="MEMBER_PW" property="pw"/>
+		<result column="MEMBER_NAME" property="name"/>
+		<result column="MEMBER_EMAIL" property="email"/>
+		<result column="MEMBER_PHONE" property="phone"/>
+		<result column="MEMBER_ENABLED" property="enabled"/>
+		<result column="MEMBER_ROLE" property="role"/>
+		<result column="MEMBER_DATE" property="regDate"/>
+	</resultMap>
+	
+	<resultMap type="com.bom.dto.NoticDto" id="NoticDtoMap">
+		<result column="NOTICEBOARD_NO" property="noticeNo"/>
+		<result column="NOTICEBOARD_ID" property="noticeId"/>
+		<result column="NOTICEBOARD_WRITER" property="noticeWriter"/>
+		<result column="NOTICEBOARD_TITLE" property="noticeTitle"/>
+		<result column="NOTICEBOARD_REGDATE" property="noticeRegDate"/>
+		<result column="NOICEBOARD_COUNT" property="noticeCount"/>
+		<result column="NOTICEBOARD_CONTENT" property="noticeContent"/>
+	</resultMap>
+	
+	<resultMap type="com.bom.dto.IndiDto" id="IndiDtoMap">
+		<result column="IN_NO" property="inNo"/>
+		<result column="IN_ID" property="inId"/>
+		<result column="IN_TITLE" property="inTitle"/>
+		<result column="IN_CONTENT" property="inContent"/>
+		<result column="IN_MDATE" property="inMdate"/>
+		<result column="IN_REGDATE" property="inRegDate"/>
+	</resultMap>
+	
+	<!-- Member -->
+	<select id="login" parameterType="map" resultMap="LoginDtoMap">
+		SELECT * FROM MEMBER 
+		WHERE MEMBER_ID = #{id } AND MEMBER_PW=#{pw }
+	</select>
+	
+	<!-- Notice -->
+	<select id="notice" parameterType="map" resultMap="NoticDtoMap">
+		SELECT N.* FROM (SELECT ROWNUM AS RNUM, T.*
+		FROM (SELECT * 
+		FROM NOTICEBOARD ORDER BY NOTICEBOARD_NO DESC) T) N
+		WHERE RNUM BETWEEN #{startPost} AND #{endPost}	
+	</select>
+	
+	<select id="noticeOne" parameterType="int" resultMap="NoticDtoMap">
+		SELECT * FROM NOTICEBOARD
+		WHERE NOTICEBOARD_NO = #{noticeNo}
+	</select>
+	
+	<insert id="noticeInsert" parameterType="NoticDto">
+		INSERT INTO NOTICEBOARD VALUES
+		(NOTICEBOARDSEQ.NEXTVAL, #{noticeId}, #{noticeWriter}, #{noticeTitle}, SYSDATE, 0, #{noticeContent})	
+	</insert>
+	
+	<update id="noticeUpdate" parameterType="NoticDto">
+		UPDATE NOTICEBOARD SET NOTICEBOARD_TITLE = #{noticeTitle}, NOTICEBOARD_CONTENT=#{noticeContent}
+		WHERE NOTICEBOARD_NO = #{noticeNo}
+	</update>
+	
+	<delete id="noticeDelete" parameterType="int">
+		DELETE FROM NOTICEBOARD
+		WHERE NOTICEBOARD_NO = #{noticeNo}
+	</delete>
+	
+	<select id="countPost" resultMap="NoticDtoMap">
+		SELECT COUNT(*) AS noticeNo FROM NOTICEBOARD
+	</select>
+	
+	<update id="readCount" parameterType="int">
+		UPDATE NOTICEBOARD SET NOICEBOARD_COUNT = NOICEBOARD_COUNT + 1 
+		WHERE NOTICEBOARD_NO = #{noticeNo}
+	</update>
+	
+	<!-- INDIVIDUAL -->
+	<select id="calList" parameterType="map" resultMap="IndiDtoMap">
+		SELECT * FROM INDIVIDUAL 
+		WHERE IN_ID = #{id }  AND  SUBSTR(IN_MDATE, 1, 8) = #{yyyyMMdd }
+	</select>
+	<insert id="calInsert" parameterType="IndiDto">
+		INSERT INTO INDIVIDUAL VALUES
+		(INDIVIDUALSEQ.NEXTVAL, #{inId}, #{inTitle}, #{inContent}, #{inMdate}, SYSDATE)
+	</insert>
+	
+	<select id="calDetail" parameterType="int" resultMap="IndiDtoMap">
+		SELECT * FROM INDIVIDUAL
+		WHERE IN_NO= #{inNo}
+	</select>
+	
+	<update id="calUpdate" parameterType="IndiDto">
+		UPDATE INDIVIDUAL SET 
+		IN_TITLE = #{inTitle}, IN_CONTENT = #{inContent}
+		WHERE IN_NO = #{inNo}
+	</update>
+	<delete id="calDelete" parameterType="int">
+		DELETE FROM INDIVIDUAL
+		WHERE IN_NO = #{inNo}
+	</delete>
+	
+	<select id="calViewList" parameterType="map" resultMap="IndiDtoMap">
+		SELECT *
+		FROM
+			(SELECT (ROW_NUMBER() OVER(PARTITION BY SUBSTR(IN_MDATE,1,8) ORDER BY IN_MDATE)) RN,IN_NO,IN_ID,IN_TITLE,IN_CONTENT,IN_MDATE,IN_REGDATE
+			FROM individual
+			WHERE IN_ID = #{id} AND SUBSTR(IN_MDATE,1,6)=#{yyyyMM})
+		WHERE RN BETWEEN 1 AND 3
+	</select>
+</mapper>
+

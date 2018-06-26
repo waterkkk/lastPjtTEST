@@ -9,7 +9,7 @@
 <!DOCTYPE html >
 <html>
 <head>
-<script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="resources/js/jquery-3.3.1.min.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$("#commLogin").hide();
@@ -70,23 +70,17 @@
 
 <style type="text/css">
 
+
 @font-face {
-  font-family: 'Godo';
-  font-style: normal;
-  font-weight: 300;
-  src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoM.woff') format('woff');
+
+font-family:"Godo";
+src:url("resources/font/GodoB.ttf");
 }
 
- @font-face { 
-   font-family: 'Godo'; 
-   font-style: normal; 
-   font-weight: 600; 
-   src: url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff2') format('woff2'), url('//cdn.jsdelivr.net/korean-webfonts/1/corps/godo/Godo/GodoB.woff') format('woff'); 
- } 
-
-.godo * {
- font-family: 'Godo', sans-serif;
+*{
+	font-family:"Godo";
 }
+
 
 /** 이하는 공통 **/
 .normal {
@@ -130,9 +124,7 @@ li span {
  font-size: 1.3em;
 }
 
-body, table, div, p, h1, h2, h5, h4 {
-font-family:'Godo';
-}
+
 
 </style>
 
@@ -140,24 +132,28 @@ font-family:'Godo';
 </head>
 <body>
 
+<div id="header"> 
+<%@ include file="../Form/Header4.jsp"%> 
+</div>
 	<div class="py-5 text-white opaque-overlay"
-		style="background-image: url('images/food.jpg'); background-size: 100% 100%">
+		style="background-image: url('resources/img/food.jpg'); background-size: 100% 100%">
 		<div class="container" >
 			<div class="row">
 				<div class="col-md-7">
 					<div align="center">
+					<br><br><br>
 						<h1 class="text-gray-dark">로그인</h1>
 						<p class="lead mb-4">로그인하시면 더 많은 정보를 이용하실 수 있습니다.</p>
 					</div>
 
 
 					<input type="hidden" name="member_enabled"	value="${dto.member_enabled }">
-			
+<br>		
 					<div class="form-group">
 						<label>아이디</label> <input type="text" id="member_id" class="form-control" 
 						placeholder="아이디를 입력해 주세요." name="member_id">
 					</div>
-
+<br>
 					<div class="form-group">
 						<label>비밀번호</label> 
 						<input type="password" id="member_pw" name="member_pw" class="form-control"
@@ -180,7 +176,7 @@ font-family:'Godo';
 					</div>
 					<br><br>
 					<div align="center" id="commLogin"></div>
-
+<br><br><br><br><br><br><br><br>
 
 				</div>
 			</div>
@@ -191,6 +187,28 @@ font-family:'Godo';
 		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+ <!-- footer2 -->
+<div id="footer">
+  <div class="py-3 bg-dark text-white">
+    <div class="container">
+      <div class="row" >
+        <div class="col-md-8">
+          <div class="col-md-12 mt-3 text-left">
+            <p>상호명 : 언제나 봄날 </p>
+            <p>주소 : 서울시 영등포구 양평동 3가 15-1 월드메르디앙비즈센터 4층 </p>
+            <p>전화번호 : 02-5340-2233</p>
+          </div>
+        </div>
+        </div>
+        </div>
+      <div class="row">
+        <div class="col-md-12 mt-3 text-center">
+          <p>Copyright@2018 언제나 봄날 </p>
+        </div>
+      </div>
+     </div>
+</div>
 
 </body>
 </html>

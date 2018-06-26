@@ -25,6 +25,7 @@ public class RegistDao {
 		map.put("member_name", dto.getMember_name());
 		map.put("member_email", dto.getMember_email());
 		map.put("member_phone", dto.getMember_phone());
+		
 	
 
 		try {
