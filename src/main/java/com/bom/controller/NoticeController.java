@@ -74,7 +74,6 @@ public class NoticeController {
 	}
 	@RequestMapping(value="upda.do", method=RequestMethod.GET)
 	public String update(Model model, @RequestParam("no") String no) {
-		System.out.println("test");
 		int no1 = Integer.parseInt(no);
 		NoticDto dto = noticBiz.noticeOne(no1);
 		model.addAttribute("list", dto);
