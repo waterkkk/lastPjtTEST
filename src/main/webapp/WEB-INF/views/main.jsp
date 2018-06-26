@@ -264,7 +264,7 @@ function zooms(){
             </div>
           </div><br/>
            <div class="btn-group">
-            <a href="edu.do?currentPage=1" class="btn btn-lg mx-1 btn-dark">교육게시판</a>
+            <a href="eduoffList.do" class="btn btn-lg mx-1 btn-dark">교육게시판</a>
           </div>
         </div>
         <div class="py-5 col-md-3">

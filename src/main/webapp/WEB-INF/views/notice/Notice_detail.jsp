@@ -87,17 +87,17 @@
       position:absolute;
       background-image: url("resources/img/board.jpg");
       width:100%;
-      top:5%;
-      height:33%;
-      background-size: 1230px 300px;
+      top:50px;
+      height:330px;
+      background-size: 1230px 320px;
    }
    .back{
       background-image:url("resources/img/boardback.jpg");
-      background-size:1280px 850px;
+      background-size:1400px 850px;
       position:absolute;
-      top:38%;
+      top:380px;
       width:100%;
-      height:810px;
+      height:710px;
       background-color:#EFEFEF;
       z-index:1;
    }
@@ -195,15 +195,24 @@
          <td colspan="2" class="success" id="content">${list.noticeContent }</td>
       </tr>
       <tr>
-         <td colspan="5" align="right">
-            <input class="btn btn-primary btn-lg" type="button" value="수정" onclick="update();">
-            <input class="btn btn-primary btn-lg" type="button" value="삭제" onclick="deletePost(${list.noticeNo});">
-            <input class="btn btn-primary btn-lg" type="button" value="목록" onclick="back();">
-         </td>
+      <c:choose> 
+         <c:when test="${dto.member_role eq 'USER' }">
+            <td colspan="5" align="right">
+               <input class="btn btn-primary btn-lg" type="button" value="목록" onclick="back();">
+            </td>
+         </c:when>
+         <c:when test="${dto.member_role eq 'ADMIN' }">
+            <td colspan="5" align="right">
+               <input class="btn btn-primary btn-lg" type="button" value="수정" onclick="update();">
+               <input class="btn btn-primary btn-lg" type="button" value="삭제" onclick="deletePost(${list.noticeNo});">
+               <input class="btn btn-primary btn-lg" type="button" value="목록" onclick="back();">
+            </td>
+         </c:when>
+      </c:choose>
       </tr>
    </table>
    </div>
-</div><br/><br/><br/>
+</div>
 <div id="foot">
    <div id="space">
       <div id="left">

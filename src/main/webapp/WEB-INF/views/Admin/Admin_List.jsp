@@ -116,7 +116,7 @@ src:url("resources/font/GodoB.ttf");
                      <td>${admin_dto.member_enabled }</td>
                      <td>${admin_dto.member_date }</td>
                      <td>${admin_dto.member_role }</td>
-                     <td width="140px;">
+                     <td width="160px;">
                             <form action="Admin_role.do" method="post" style="display: flex;">
                                <input type="hidden" name="member_id" value="${admin_dto.member_id}"/>
                               <select name="member_role" id="${admin_dto.member_role}" class="form-control" style="height: 50px; font-size: 20px;">
